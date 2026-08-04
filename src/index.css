@@ -1,0 +1,305 @@
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ 
+ /* FLOODED - Emergency Survival System Design System
+    Brutalist, high-contrast, crisis-mode interface
+    All colors in HSL for consistency
+ */
+ 
+ @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap');
+ 
+ @layer base {
+   :root {
+     /* Core - Dark theme optimized for battery & visibility */
+     --background: 0 0% 4%;
+     --foreground: 0 0% 98%;
+ 
+     --card: 0 0% 7%;
+     --card-foreground: 0 0% 98%;
+ 
+     --popover: 0 0% 7%;
+     --popover-foreground: 0 0% 98%;
+ 
+     /* Emergency Primary - Bright Red */
+     --primary: 0 90% 50%;
+     --primary-foreground: 0 0% 100%;
+ 
+     /* Secondary - Tactical Gray */
+     --secondary: 0 0% 15%;
+     --secondary-foreground: 0 0% 98%;
+ 
+     /* Muted - Subdued elements */
+     --muted: 0 0% 12%;
+     --muted-foreground: 0 0% 60%;
+ 
+     /* Accent - Info Cyan */
+     --accent: 190 95% 50%;
+     --accent-foreground: 0 0% 4%;
+ 
+     /* Destructive - Critical Red */
+     --destructive: 0 100% 45%;
+     --destructive-foreground: 0 0% 100%;
+ 
+     /* Status Colors - Triage System */
+     --status-critical: 0 100% 50%;
+     --status-injured: 35 100% 50%;
+     --status-ok: 145 80% 45%;
+     --status-unknown: 0 0% 40%;
+     --status-synced: 190 95% 50%;
+ 
+     /* Warning Amber */
+     --warning: 35 100% 50%;
+     --warning-foreground: 0 0% 4%;
+ 
+     /* Success Green */
+     --success: 145 80% 45%;
+     --success-foreground: 0 0% 4%;
+ 
+     /* Border & Input */
+     --border: 0 0% 20%;
+     --input: 0 0% 15%;
+     --ring: 0 90% 50%;
+ 
+     --radius: 0.5rem;
+ 
+     /* Emergency Gradients */
+     --gradient-emergency: linear-gradient(135deg, hsl(0 100% 45%) 0%, hsl(0 90% 35%) 100%);
+     --gradient-warning: linear-gradient(135deg, hsl(35 100% 50%) 0%, hsl(25 100% 40%) 100%);
+     --gradient-safe: linear-gradient(135deg, hsl(145 80% 45%) 0%, hsl(145 70% 35%) 100%);
+     --gradient-info: linear-gradient(135deg, hsl(190 95% 50%) 0%, hsl(200 90% 40%) 100%);
+     --gradient-dark: linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(0 0% 4%) 100%);
+ 
+     /* Shadows */
+     --shadow-emergency: 0 0 30px hsl(0 100% 50% / 0.4);
+     --shadow-glow: 0 0 20px hsl(190 95% 50% / 0.3);
+     --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.5);
+ 
+     /* Sidebar */
+     --sidebar-background: 0 0% 6%;
+     --sidebar-foreground: 0 0% 98%;
+     --sidebar-primary: 0 90% 50%;
+     --sidebar-primary-foreground: 0 0% 100%;
+     --sidebar-accent: 0 0% 12%;
+     --sidebar-accent-foreground: 0 0% 98%;
+     --sidebar-border: 0 0% 15%;
+     --sidebar-ring: 0 90% 50%;
+   }
+ }
+ 
+ @layer base {
+   * {
+     @apply border-border;
+   }
+ 
+   html {
+     font-family: 'Inter', system-ui, sans-serif;
+     -webkit-tap-highlight-color: transparent;
+   }
+ 
+   body {
+     @apply bg-background text-foreground antialiased;
+     font-feature-settings: "cv11", "ss01";
+     touch-action: manipulation;
+   }
+ 
+   /* Prevent text selection during emergency actions */
+   .no-select {
+     user-select: none;
+     -webkit-user-select: none;
+   }
+ }
+ 
+ @layer components {
+   /* Emergency Button - Large, high visibility */
+   .btn-emergency {
+     @apply relative overflow-hidden rounded-2xl font-bold text-2xl uppercase tracking-wider;
+     @apply transition-all duration-200 active:scale-95;
+     background: var(--gradient-emergency);
+     box-shadow: var(--shadow-emergency);
+   }
+ 
+   .btn-emergency:active {
+     box-shadow: 0 0 50px hsl(0 100% 50% / 0.6);
+   }
+ 
+   /* Status Badge */
+   .status-critical {
+     @apply bg-[hsl(var(--status-critical))] text-white;
+   }
+ 
+   .status-injured {
+     @apply bg-[hsl(var(--status-injured))] text-black;
+   }
+ 
+   .status-ok {
+     @apply bg-[hsl(var(--status-ok))] text-black;
+   }
+ 
+   .status-unknown {
+     @apply bg-[hsl(var(--status-unknown))] text-white;
+   }
+ 
+   /* Tactical Card */
+   .tactical-card {
+     @apply rounded-xl border border-border bg-card p-4;
+     box-shadow: var(--shadow-card);
+   }
+ 
+   /* Mono text for data */
+   .mono {
+     font-family: 'JetBrains Mono', monospace;
+   }
+ 
+    /* Pulse animation for emergency */
+    .pulse-emergency {
+      animation: pulseEmergency 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseEmergency {
+      0%, 100% {
+        box-shadow: 0 0 30px hsl(0 100% 50% / 0.4);
+      }
+      50% {
+        box-shadow: 0 0 60px hsl(0 100% 50% / 0.7);
+      }
+    }
+
+    /* Enhanced Emergency Button Glow */
+    .btn-emergency-glow {
+      @apply relative overflow-hidden rounded-2xl font-bold text-2xl uppercase tracking-wider;
+      @apply transition-all duration-200 active:scale-95;
+      background: var(--gradient-emergency);
+      box-shadow: 
+        0 0 30px hsl(0 100% 50% / 0.5),
+        0 0 60px hsl(0 100% 50% / 0.3),
+        inset 0 0 20px hsl(0 100% 70% / 0.2);
+      animation: emergencyGlow 2s ease-in-out infinite;
+    }
+
+    .btn-emergency-glow::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 1.25rem;
+      background: linear-gradient(45deg, 
+        hsl(0 100% 50% / 0.6), 
+        hsl(0 100% 70% / 0.3), 
+        hsl(0 100% 50% / 0.6));
+      z-index: -1;
+      animation: emergencyGlow 2s ease-in-out infinite;
+      filter: blur(8px);
+    }
+
+    @keyframes emergencyGlow {
+      0%, 100% {
+        box-shadow: 
+          0 0 30px hsl(0 100% 50% / 0.5),
+          0 0 60px hsl(0 100% 50% / 0.3);
+        opacity: 0.8;
+      }
+      50% {
+        box-shadow: 
+          0 0 50px hsl(0 100% 50% / 0.7),
+          0 0 100px hsl(0 100% 50% / 0.5);
+        opacity: 1;
+      }
+    }
+
+    /* Health Status Full Fill Buttons */
+    .health-status-btn {
+      @apply rounded-xl font-bold text-center transition-all duration-200;
+      @apply border-2 border-transparent;
+    }
+
+    .health-status-btn.status-ok-fill {
+      @apply bg-[hsl(var(--status-ok))] text-black border-[hsl(var(--status-ok))];
+    }
+
+    .health-status-btn.status-injured-fill {
+      @apply bg-[hsl(var(--status-injured))] text-black border-[hsl(var(--status-injured))];
+    }
+
+    .health-status-btn.status-critical-fill {
+      @apply bg-[hsl(var(--status-critical))] text-white border-[hsl(var(--status-critical))];
+    }
+
+    .health-status-btn.status-unconscious-fill {
+      @apply bg-[hsl(0_0%_25%)] text-white border-[hsl(0_0%_40%)];
+    }
+
+    /* Need Tags */
+    .need-tag {
+      @apply px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150;
+      @apply bg-secondary text-foreground border border-border;
+    }
+
+    .need-tag.selected {
+      @apply bg-primary text-primary-foreground border-primary;
+    }
+
+    .need-tag:active {
+      @apply scale-95;
+    }
+ 
+   /* Sync indicator animation */
+   .sync-pulse {
+     animation: syncPulse 1.5s ease-in-out infinite;
+   }
+ 
+   @keyframes syncPulse {
+     0%, 100% {
+       opacity: 1;
+     }
+     50% {
+       opacity: 0.5;
+     }
+   }
+ 
+   /* Grid pattern overlay */
+   .grid-overlay {
+     background-image: 
+       linear-gradient(hsl(0 0% 20% / 0.1) 1px, transparent 1px),
+       linear-gradient(90deg, hsl(0 0% 20% / 0.1) 1px, transparent 1px);
+     background-size: 20px 20px;
+   }
+ }
+ 
+ @layer utilities {
+   /* Safe area padding for mobile */
+   .safe-top {
+     padding-top: env(safe-area-inset-top);
+   }
+   
+   .safe-bottom {
+     padding-bottom: env(safe-area-inset-bottom);
+   }
+ 
+   /* High contrast text */
+   .text-emergency {
+     color: hsl(var(--status-critical));
+   }
+ 
+   .text-warning {
+     color: hsl(var(--warning));
+   }
+ 
+   .text-success {
+     color: hsl(var(--success));
+   }
+ 
+   .text-info {
+     color: hsl(var(--accent));
+   }
+  }
+
+  /* Leaflet marker pulse animation */
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.3); }
+  }
+
+  .custom-sos-marker, .custom-team-marker {
+    background: transparent !important;
+    border: none !important;
+  }

@@ -1,0 +1,18 @@
+ {
+   "name": "FLOODED - Survival & Rescue System",
+   "short_name": "FLOODED",
+   "description": "Offline-first emergency survival and rescue system",
+   "start_url": "/",
+   "display": "standalone",
+   "background_color": "#0a0a0a",
+   "theme_color": "#0a0a0a",
+   "orientation": "portrait",
+   "icons": [
+     {
+       "src": "/favicon.ico",
+       "sizes": "64x64",
+       "type": "image/x-icon"
+     }
+   ],
+   "categories": ["emergency", "safety", "utilities"]
+ }
