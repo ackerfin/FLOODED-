@@ -16,6 +16,12 @@ jobs:
       - name: Sync Capacitor
         run: |
           npx cap sync ios
+      - name: Install CocoaPods
+        run: |
+          cd ios/App
+          pod install
+          
+
       - name: Build iOS IPA (Unsigned)
         run: |
           cd ios/App
