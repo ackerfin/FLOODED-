@@ -17,11 +17,22 @@ jobs:
           npm install
           npm run build
 
+      - name: Install CocoaPods
+        run: sudo gem install cocoapods
+
       - name: Clean & Re-add iOS Platform
         run: |
           rm -rf ios
           npx cap add ios
           npx cap sync ios
+
+      - name: Install Pods
+        run: |
+          cd ios/App
+          pod install --repo-update
+
+      - name: Verify workspace exists
+        run: ls -la ios/App/*.xcworkspace
 
       - name: Build iOS IPA (Unsigned)
         run: |
