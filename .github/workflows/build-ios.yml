@@ -1,41 +1,44 @@
 name: Build iOS App
 on: [push]
+
 jobs:
   build:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
+
       - name: Install Dependencies & Build Web
         run: |
           npm install
           npm run build
+
       - name: Sync Capacitor
-        run: |
-          npx cap sync ios
-      - name: Install CocoaPods
-        run: |
-          cd ios/App
-          pod install
-          
+        run: npx cap sync ios
 
       - name: Build iOS IPA (Unsigned)
         run: |
           cd ios/App
-          xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug -sdk iphoneos \
-            CODE_SIGNING_ALLOWED=NO \
-            CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY="" \
-            CODE_SIGN_STYLE=Manual \
-            PROVISIONING_PROFILE_SPECIFIER="" \
-            ONLY_ACTIVE_ARCH=NO \
-            clean build
+          xcodebuild -workspace App.xcworkspace \
+                     -scheme App \
+                     -configuration Debug \
+                     -sdk iphoneos \
+                     -derivedDataPath build \
+                     CODE_SIGNING_ALLOWED=NO \
+                     CODE_SIGNING_REQUIRED=NO \
+                     CODE_SIGN_IDENTITY="" \
+                     CODE_SIGN_STYLE=Manual \
+                     PROVISIONING_PROFILE_SPECIFIER="" \
+                     ONLY_ACTIVE_ARCH=NO \
+                     clean build
           mkdir -p Payload
-          mv build/Debug-iphoneos/App.app Payload/
+          mv build/Build/Products/Debug-iphoneos/App.app Payload/
           zip -r App.ipa Payload
+
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
         with:
