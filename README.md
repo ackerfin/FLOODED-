@@ -1,73 +1,56 @@
-# Welcome to your Lovable project
+# FLOODED
 
-## Project info
+> **Offline-First Hybrid Emergency SOS Communications & Rescue Coordination Network**
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+FLOODED is a resilient, offline-first emergency communications system designed for flood disaster response when cellular networks and internet infrastructure fail. It combines short-range **Bluetooth Low Energy (BLE)** mesh relaying with a long-range **LoRa (433MHz)** backbone to route rescue requests directly to local command centers.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## ⚡ Key Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+- **Zero-Infrastructure Dependency**: Fully operational without GSM, 4G/5G, or internet connections.
+- **Hybrid Protocol Stack**:
+  - **BLE GATT**: Handles localized phone-to-phone and phone-to-relay data exchange.
+  - **LoRa (433MHz)**: Provides long-range transmission back to the command hub.
+- **Efficient Fallback Routing**: Direct-to-Gateway transmission by default; automatically falls back to LoRa multi-hop if `GATEWAY_STORED_ACK` is not received.
+- **Store-Before-ACK**: Fixed Gateway writes payloads to local non-volatile storage before issuing ACKs to guarantee zero data loss.
+- **Volunteer Mobile Gateway**: Allows field responders' phones (active-scan mode) to collect SOS payloads directly from isolated victims.
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🛠 Hardware Specifications
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+| Component                 | Specifications                                                         | Primary Role             |
+| :------------------------ | :--------------------------------------------------------------------- | :----------------------- |
+| **Access Relay Node**     | LILYGO TTGO T-Beam V1.1 (SX1278 433MHz), 2x 18650 3400mAh              | Field BLE-to-LoRa relay  |
+| **Fixed Command Gateway** | ESP32 DevKitC V4, Ra-02 LoRa (433MHz), W5500 Ethernet, MicroSD, 5V UPS | Central HQ receiver node |
+| **Mobile Gateway**        | Responders' Smartphones (App active-scan mode)                         | Mobile field collector   |
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+## 🚀 App Quickstart
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Prerequisites
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- **Node.js**: `>= 18.x`
+- **npm** / **pnpm** / **yarn**
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Local Setup
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+# Clone the repository
+git clone [https://github.com/ackerfin/FLOODED-.git](https://github.com/ackerfin/FLOODED-.git)
+
+# Enter project directory
+cd FLOODED-
+
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
+📜 License
+This project is licensed under the MIT License.
 ```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
