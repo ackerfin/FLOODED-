@@ -17,8 +17,11 @@ jobs:
           npm install
           npm run build
 
-      - name: Sync Capacitor
-        run: npx cap sync ios
+      - name: Clean & Re-add iOS Platform
+        run: |
+          rm -rf ios
+          npx cap add ios
+          npx cap sync ios
 
       - name: Build iOS IPA (Unsigned)
         run: |
