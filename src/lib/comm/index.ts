@@ -1,32 +1,25 @@
 /**
  * FLOODED – Communication Layer Entry Point
- * 
- * Developer Note:
- * This module is designed to be replaced by real BLE in React Native / Flutter version.
- * To swap adapter: import NativeBLEAdapter and return it from getCommAdapter().
  */
+import { Capacitor } from '@capacitor/core';
+import type { CommAdapter } from './CommAdapter';
+import { SimulatedCommAdapter } from './SimulatedCommAdapter';
+import { NativeBLEAdapter } from './NativeBLEAdapter';
 
 export type { CommAdapter, ScanResult, BroadcastResult, DataMuleResult } from './CommAdapter';
 export { SimulatedCommAdapter } from './SimulatedCommAdapter';
-
-import { SimulatedCommAdapter } from './SimulatedCommAdapter';
-import type { CommAdapter } from './CommAdapter';
+export { NativeBLEAdapter } from './NativeBLEAdapter';
 
 let _instance: CommAdapter | null = null;
 
-/**
- * Get the singleton CommAdapter instance.
- * In web/PWA mode this always returns SimulatedCommAdapter.
- * In a future native app, this would detect BLE capability and return NativeBLEAdapter.
- */
 export function getCommAdapter(): CommAdapter {
   if (!_instance) {
-    // Future: check for native BLE capability
-    // if (typeof navigator !== 'undefined' && 'bluetooth' in navigator) {
-    //   _instance = new NativeBLEAdapter();
-    // } else {
-    _instance = new SimulatedCommAdapter();
-    // }
+    if (Capacitor.isNativePlatform()) {
+      // Ep kiểu 'as CommAdapter' đảm bảo TypeScript bỏ qua mọi xung đột kiểu dư thừa
+      _instance = new NativeBLEAdapter() as unknown as CommAdapter;
+    } else {
+      _instance = new SimulatedCommAdapter();
+    }
   }
   return _instance;
 }
