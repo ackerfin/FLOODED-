@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FLOODED - Survival &amp; Rescue Offline System</string>
+    <string name="title_activity_main">FLOODED - Survival &amp; Rescue Offline System</string>
+    <string name="package_name">com.ackerfin.flooded</string>
+    <string name="custom_url_scheme">com.ackerfin.flooded</string>
+</resources>
