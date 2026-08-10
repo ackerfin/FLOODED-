@@ -4,7 +4,7 @@ import { ArrowLeft, MapPin, Users, HeartPulse, Loader2, CheckCircle, Radio, Pack
 import { useApp } from '@/contexts/AppContext';
 import { useGeolocation } from '@/hooks/useGeolocation';
 import { createSOSReport } from '@/lib/db';
-import { broadcastSOSToNearby } from '@/lib/mesh';
+import { getCommAdapter } from '@/lib/comm';
 import { getCategoriesOrdered, getCasesByCategory, type SurvivalCase } from '@/lib/survivalData';
 import { CategorySection } from '@/components/CategorySection';
 import { CaseSteps } from '@/components/CaseSteps';
@@ -31,6 +31,7 @@ export function SOSFlow({ onComplete, onCancel }: SOSFlowProps) {
   const [otherNote, setOtherNote] = useState('');
   const [sentReport, setSentReport] = useState<SOSReport | null>(null);
   const [broadcastCount, setBroadcastCount] = useState(0);
+  const [broadcastError, setBroadcastError] = useState<string | null>(null);
   
   // Profile selector
   const [profiles, setProfiles] = useState<EmergencyProfile[]>([]);
@@ -62,34 +63,66 @@ export function SOSFlow({ onComplete, onCancel }: SOSFlowProps) {
     if (!device) return;
 
     setStep('sending');
+    setBroadcastError(null);
+
+    // Report đã lưu ở lần bấm trước (nếu có) → không tạo bản trùng
+    let report = sentReport;
 
     try {
-      const location = await getLocation();
-      
-      // Build description from selected needs
-      const needsDescription = selectedNeeds.join(', ') + (otherNote ? ` - ${otherNote}` : '');
+      if (!report) {
+        const location = await getLocation();
 
-      const report = await createSOSReport({
-        deviceId: device.id,
-        location: location || undefined,
-        peopleCount,
-        healthStatus,
-        scenarioType: selectedCase?.id as any,
-        description: needsDescription || undefined,
-        medicalProfile: medicalProfile || undefined,
-      });
+        // Build description from selected needs
+        const needsDescription = selectedNeeds.join(', ') + (otherNote ? ` - ${otherNote}` : '');
 
-      const { reachedCount } = await broadcastSOSToNearby(report);
-      setBroadcastCount(reachedCount);
+        // Hồ sơ đang chọn trong dropdown (nếu có) được ưu tiên đính kèm
+        const picked = profiles.find(p => p.id === selectedProfileId);
+        const attachedProfile = picked
+          ? {
+              bloodType: picked.bloodType,
+              allergies: picked.allergies || [],
+              medications: picked.medications || [],
+              conditions: picked.conditions || [],
+              emergencyContact: picked.emergencyContactName
+                ? {
+                    name: picked.emergencyContactName,
+                    phone: picked.emergencyContactPhone || '',
+                    relationship: '',
+                  }
+                : undefined,
+              notes: picked.medicalNote || picked.specialNotes,
+            }
+          : medicalProfile || undefined;
 
-      setSentReport(report);
-      await refreshReports();
-      setStep('sent');
+        report = await createSOSReport({
+          deviceId: device.id,
+          location: location || undefined,
+          peopleCount,
+          healthStatus,
+          scenarioType: selectedCase?.id as any,
+          description: needsDescription || undefined,
+          medicalProfile: attachedProfile,
+        });
+
+        setSentReport(report);
+        await refreshReports();
+      }
+
+      // Gọi Adapter chuẩn (tự động dùng BLE thật khi có NativeBLEAdapter)
+      const result = await getCommAdapter().broadcastSOS(report);
+      setBroadcastCount(result?.reachedCount ?? 0);
     } catch (error) {
-      console.error('Failed to send SOS:', error);
-      setStep('sent');
+      // Offline-first: tín hiệu đã lưu, chỉ là chưa phát được
+      console.error('Failed to broadcast SOS:', error);
+      setBroadcastCount(0);
+      setBroadcastError(
+        error instanceof Error ? error.message : 'Không thể phát tín hiệu'
+      );
     }
+
+    setStep('sent');
   };
+
 
   return (
     <div className="fixed inset-0 bg-background z-50 overflow-auto">
@@ -317,8 +350,19 @@ export function SOSFlow({ onComplete, onCancel }: SOSFlowProps) {
               {language === 'vi' ? 'ĐÃ GỬI SOS' : 'SOS SENT'}
             </h2>
             <p className="text-muted-foreground mt-2 text-center">
-              {language === 'vi' ? 'Tín hiệu đã được lưu và phát đi' : 'Signal saved and broadcast'}
+              {broadcastError
+                ? (language === 'vi'
+                    ? 'Tín hiệu đã được lưu, sẽ tự phát khi có thiết bị lân cận'
+                    : 'Signal saved, will broadcast when devices are nearby')
+                : (language === 'vi' ? 'Tín hiệu đã được lưu và phát đi' : 'Signal saved and broadcast')}
             </p>
+            {broadcastError && (
+              <div className="mt-4 px-4 py-2 bg-primary/10 rounded-xl max-w-xs text-center">
+                <span className="text-xs text-primary font-medium break-words">
+                  {(language === 'vi' ? 'Lỗi phát tín hiệu: ' : 'Broadcast error: ') + broadcastError}
+                </span>
+              </div>
+            )}
             {broadcastCount > 0 && (
               <div className="flex items-center gap-2 mt-4 px-4 py-2 bg-accent/10 rounded-full">
                 <Radio className="w-4 h-4 text-accent" />
@@ -329,6 +373,7 @@ export function SOSFlow({ onComplete, onCancel }: SOSFlowProps) {
                 </span>
               </div>
             )}
+
             <motion.button 
               onClick={onComplete} 
               className="mt-8 px-8 py-4 bg-secondary rounded-xl font-bold" 
