@@ -1,6 +1,6 @@
-import { useEffect } from "react"; // 1. Thêm useEffect để chạy code khi mở app
-import { BleClient } from "@capacitor-community/bluetooth-le"; // 2. Import plugin Bluetooth
-
+import { useEffect } from "react";
+import { BleClient } from "@capacitor-community/bluetooth-le";
+import { Capacitor } from "@capacitor/core"; // Thêm Capacitor check để tránh crash trên Web
 
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -30,30 +30,27 @@ import RescueTeamDashboard from "./pages/RescueTeamDashboard";
 import CommandLogin from "./pages/CommandLogin";
 import NotFound from "./pages/NotFound";
 
-
 const queryClient = new QueryClient();
 
-
 const App = () => {
-  // 3. Đoạn code tự động gọi quyền Bluetooth khi app vừa khởi chạy
   useEffect(() => {
     const initBluetooth = async () => {
-      try {
-        await BleClient.initialize();
-        console.log("Capacitor BLE initialized");
-       
-        // Gọi hàm quét thiết bị ảo để iOS bắt buộc phải kích hoạt Pop-up xin quyền
-        //  comment dòng dưới nếu muốn tự gọi ở trang /rescue hoặc /remote-sos
-        await BleClient.requestDevice();
-      } catch (error) {
-        console.error("Bluetooth init error hoặc bị từ chối:", error);
+      // 1. Kiểm tra nếu đang chạy trên thiết bị Native (iOS/Android)
+      if (Capacitor.isNativePlatform()) {
+        try {
+          // Chỉ thực hiện khởi tạo BLE module ở tầng Native
+          await BleClient.initialize();
+          console.log("Capacitor BLE initialized thành công!");
+          
+          // LƯU Ý: Tuyệt đối KHÔNG gọi BleClient.requestDevice() ở đây!
+        } catch (error) {
+          console.error("Bluetooth init error:", error);
+        }
       }
     };
 
-
     initBluetooth();
   }, []);
-
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -93,8 +90,4 @@ const App = () => {
   );
 };
 
-
 export default App;
-
-
-
