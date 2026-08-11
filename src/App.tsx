@@ -39,9 +39,11 @@ const App = () => {
       try {
         // Gọi hàm khởi tạo để kích hoạt module Bluetooth native dưới iOS
         await BleClient.initialize();
-        console.log("Capacitor BleClient initialized successfully!");
-      } catch (error) {
-        console.error("Failed to initialize Bluetooth LE:", error);
+        // Nếu thành công, bắn thông báo màu xanh
+        alert("Bluetooth Native kết nối THÀNH CÔNG!");
+      } catch (error: any) {
+            // NẾU CÓ LỖI, NÓ SẼ HIỆN THẲNG LÊN MÀN HÌNH CHỮ NÀY
+        alert("LỖI BLUETOOTH: " + (error?.message || JSON.stringify(error)));
       }
     };
 
