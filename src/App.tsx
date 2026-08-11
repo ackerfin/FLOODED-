@@ -1,3 +1,6 @@
+import { useEffect } from "react"; // 1. THÊM IMPORT NÀY
+import { BleClient } from "@capacitor-community/bluetooth-le"; // 2. THÊM IMPORT NÀY
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -30,6 +33,21 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
+  // 3. THÊM ĐOẠN KHỞI TẠO BLUETOOTH NÀY
+  useEffect(() => {
+    const initEmergencyBluetooth = async () => {
+      try {
+        // Gọi hàm khởi tạo để kích hoạt module Bluetooth native dưới iOS
+        await BleClient.initialize();
+        console.log("Capacitor BleClient initialized successfully!");
+      } catch (error) {
+        console.error("Failed to initialize Bluetooth LE:", error);
+      }
+    };
+
+    initEmergencyBluetooth();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <AppProvider>
