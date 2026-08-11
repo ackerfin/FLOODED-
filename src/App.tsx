@@ -1,13 +1,10 @@
-import { useEffect } from "react";
-import { BleClient } from "@capacitor-community/bluetooth-le";
-import { Capacitor } from "@capacitor/core"; // Thêm Capacitor check để tránh crash trên Web
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "@/contexts/AppContext";
+
 import Home from "./pages/Home";
 import Guides from "./pages/Guides";
 import CommunityBoard from "./pages/CommunityBoard";
@@ -33,25 +30,6 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const App = () => {
-  useEffect(() => {
-    const initBluetooth = async () => {
-      // 1. Kiểm tra nếu đang chạy trên thiết bị Native (iOS/Android)
-      if (Capacitor.isNativePlatform()) {
-        try {
-          // Chỉ thực hiện khởi tạo BLE module ở tầng Native
-          await BleClient.initialize();
-          console.log("Capacitor BLE initialized thành công!");
-          
-          // LƯU Ý: Tuyệt đối KHÔNG gọi BleClient.requestDevice() ở đây!
-        } catch (error) {
-          console.error("Bluetooth init error:", error);
-        }
-      }
-    };
-
-    initBluetooth();
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <AppProvider>
@@ -80,6 +58,7 @@ const App = () => {
               <Route path="/rescue-dashboard" element={<RescueDashboard />} />
               <Route path="/rescue-team" element={<RescueTeamDashboard />} />
               <Route path="/command-login" element={<CommandLogin />} />
+              
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
