@@ -3,6 +3,7 @@
 // converts approved ones into official SOS cases.
 
 import { v4 as uuidv4 } from 'uuid';
+import { createManualCase } from './gatewayCases';
 import { getCases, saveCases, addLog, type SOSCase, type CaseSeverity } from './commandCenter';
 
 const KEY = 'flooded_remote_sos';
@@ -87,11 +88,17 @@ export function acceptRelativeReport(id: string): SOSCase | null {
     needTags: rep.needs || [],
     createdAt: rep.createdAt || now,
     updatedAt: now,
+    messageId: `manual-${rep.id}`,
+    origin: 'COMMAND_MANUAL',
+    verifyStatus: 'UNVERIFIED',
+    auditLog: [],
   };
 
   const cases = getCases();
   cases.push(newCase);
   saveCases(cases);
+  // Persist into the Dexie data layer as a COMMAND_MANUAL case (deduped by messageId)
+  void createManualCase(newCase);
   addLog(newCase.id, 'CREATED_FROM_RELATIVE_REPORT', `Hồ sơ báo hộ ${rep.id.slice(0, 8).toUpperCase()}`);
 
   patch(id, { review: 'ACCEPTED', reviewedAt: now, linkedCaseId: newCase.id });

@@ -66,7 +66,20 @@ export interface SOSCase {
   needTags?: string[];
   createdAt: number;
   updatedAt: number;
+  // ---- Gateway / local data-layer fields (see src/lib/gatewayCases.ts) ----
+  /** Duplicate key coming from the Gateway (LoRa/mesh message id). */
+  messageId?: string;
+  /** Transport source of the case: GATEWAY or COMMAND_MANUAL. */
+  origin?: 'GATEWAY' | 'COMMAND_MANUAL';
+  /** Command-owned verification state (preserved across polls). */
+  verifyStatus?: 'UNVERIFIED' | 'VERIFYING' | 'VERIFIED' | 'REJECTED';
+  /** Command-owned assigned team (preserved across polls). */
+  assignedTeam?: string;
+  /** Command-owned audit trail (preserved across polls). */
+  auditLog?: { id: string; timestamp: number; actor: string; action: string; note?: string }[];
+  gatewayUpdatedAt?: number;
 }
+
 
 export interface CaseLog {
   id: string;
@@ -205,6 +218,10 @@ export function getZoneStats(zoneId: string) {
 
 // ==================== SEED DATA ====================
 export function seedDemoData() {
+
+  // chỉ nạp data sample khi dùng npm run dev chạy thử
+  if (import.meta.env.PROD) return;
+  
   if (localStorage.getItem(KEYS.seeded)) return;
 
   // Zones

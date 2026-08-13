@@ -11,11 +11,26 @@ export class NativeBLEAdapter implements CommAdapter {
   async broadcastSOS(report: SOSReport): Promise<BroadcastResult> {
     try {
       await BleClient.initialize();
+
+      // Bọc Timeout 8 giây: Tránh việc iOS bị treo Promise vô tận
+      const timeoutMs = 8000;
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('BLE_TIMEOUT')), timeoutMs)
+      );
+
+      const sendPromise = (async () => {
+        const result = await broadcastSOSToNearby(report);
+        return { success: result.success, reachedCount: result.reachedCount, hopsAdded: 0 };
+      })();
+
+      // Đua giữa việc gửi BLE và thời gian Timeout
+      return await Promise.race([sendPromise, timeoutPromise]);
+
     } catch (e) {
-      console.error('[NativeBLEAdapter] initialize() lỗi:', e);
+      console.error('[NativeBLEAdapter] Lỗi hoặc hết thời gian chờ BLE:', e);
+      // Trả về false để UI biết và dừng spinner
+      return { success: false, reachedCount: 0, hopsAdded: 0 };
     }
-    const result = await broadcastSOSToNearby(report); // gọi ĐÚNG hàm đã viết, dùng sendPacketViaBle bên dưới
-    return { success: result.success, reachedCount: result.reachedCount, hopsAdded: 0 };
   }
 
   async scanNearby(): Promise<ScanResult> {

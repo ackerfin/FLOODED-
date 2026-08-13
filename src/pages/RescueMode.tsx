@@ -9,6 +9,8 @@ import {
   Timer, Ban, LogOut, HeartHandshake
 } from 'lucide-react';
 import commandMapImg from '@/assets/command-map.jpg';
+import { GatewayBadge } from '@/components/GatewayBadge';
+import { useGatewayCases } from '@/hooks/useGatewayCases';
 import RescueMap from '@/components/RescueMap';
 import { useApp } from '@/contexts/AppContext';
 import { useNavigate } from 'react-router-dom';
@@ -88,6 +90,10 @@ export default function RescueMode() {
 
   // Auto-refresh every 5s
   useEffect(() => { const iv = setInterval(refresh, 5000); return () => clearInterval(iv); }, [refresh]);
+
+  // Gateway data layer: poll http://192.168.4.1/api/cases every 4s (Dexie-backed)
+  const { status: gatewayStatus, cases: gatewayCases } = useGatewayCases();
+  useEffect(() => { if (gatewayCases.length) setCases(gatewayCases); }, [gatewayCases]);
 
   // Filters
   const [pipelineFilter, setPipelineFilter] = useState<PipelineFilterKey>('ALL');
@@ -479,6 +485,11 @@ export default function RescueMode() {
           <button onClick={() => setShowSettings(!showSettings)} className="p-2 rounded-lg bg-secondary">
             <SettingsIcon className="w-4 h-4" />
           </button>
+        </div>
+
+        {/* Gateway connection badge */}
+        <div className="px-3 pb-2">
+          <GatewayBadge status={gatewayStatus} />
         </div>
 
         {/* Stats bar */}
