@@ -1,6 +1,8 @@
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRemoteReportsSync } from '@/hooks/useRemoteReportsSync';
+import { GatewayBadge } from '@/components/GatewayBadge';
+import { useGatewayCases } from '@/hooks/useGatewayCases';
 import {
   Inbox, MapIcon, Users2, Layers, Settings as SettingsIcon,
   ArrowLeft, RefreshCw, Download, Phone, Navigation, CheckCircle2,
@@ -89,6 +91,13 @@ export default function RescueMode() {
 
   // Auto-refresh every 5s
   useEffect(() => { const iv = setInterval(refresh, 5000); return () => clearInterval(iv); }, [refresh]);
+
+  // Gateway (SoftAP LoRa) live cases - overrides local/demo cases once real data arrives
+  const { status: gatewayStatus, cases: gatewayCases } = useGatewayCases();
+  useEffect(() => { if (gatewayCases.length) setCases(gatewayCases); }, [gatewayCases]);
+
+  // Relative (Internet/Supabase) reports - auto-sync every 8s
+  useRemoteReportsSync(() => setRelativeReports(getRelativeReports()));
 
   // Filters
   const [pipelineFilter, setPipelineFilter] = useState<PipelineFilterKey>('ALL');
@@ -498,6 +507,9 @@ export default function RescueMode() {
             </button>
           ))}
         </div>
+
+        {/* Gateway (SoftAP LoRa) connection status */}
+        <GatewayBadge status={gatewayStatus} />
       </header>
 
       {/* Settings panel */}
