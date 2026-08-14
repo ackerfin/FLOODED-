@@ -109,6 +109,14 @@ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
     if (!isOnline) {
       setShowExport(true);
       setPageView('success');
+
+
+    if (!supabase) {
+      patchLocalSyncStatus(reportId, 'offline');
+      setShowExport(true);
+      setPageView('success');
+  return;
+}
       return;
     }
 

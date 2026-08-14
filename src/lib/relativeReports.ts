@@ -160,6 +160,7 @@ export function simulateRelativeReport(): RelativeReport {
 
 /** Keo report moi tu Supabase, merge vao local storage. Dedupe theo id (client da sinh uuid san). */
 export async function syncRemoteReportsFromSupabase(): Promise<void> {
+  if (!supabase) return;
   const { data, error } = await supabase
     .from('remote_sos_reports')
     .select('*')
