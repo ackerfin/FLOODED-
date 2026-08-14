@@ -1,7 +1,5 @@
-// Relative (remote) SOS reports submitted from /remote-sos by family members.
-// Stored in localStorage under 'flooded_remote_sos'. Command reviews them and
-// converts approved ones into official SOS cases.
 
+import { supabase } from './supabaseClient';
 import { v4 as uuidv4 } from 'uuid';
 import { createManualCase } from './gatewayCases';
 import { getCases, saveCases, addLog, type SOSCase, type CaseSeverity } from './commandCenter';
@@ -156,4 +154,46 @@ export function simulateRelativeReport(): RelativeReport {
   list.push(rep);
   saveRelativeReports(list);
   return rep;
+}
+
+
+
+/** Keo report moi tu Supabase, merge vao local storage. Dedupe theo id (client da sinh uuid san). */
+export async function syncRemoteReportsFromSupabase(): Promise<void> {
+  const { data, error } = await supabase
+    .from('remote_sos_reports')
+    .select('*')
+    .order('inserted_at', { ascending: false })
+    .limit(200);
+
+  if (error) {
+    console.error('[RemoteSync] Loi doc Supabase:', error.message);
+    return;
+  }
+  if (!data || data.length === 0) return;
+
+  const local = getRelativeReports();
+  const localIds = new Set(local.map(r => r.id));
+
+  const incoming: RelativeReport[] = data
+    .filter((row: any) => !localIds.has(row.id))
+    .map((row: any) => ({
+      id: row.id,
+      personName: row.person_name,
+      personPhone: row.person_phone ?? undefined,
+      address: row.address ?? undefined,
+      province: row.province ?? undefined,
+      urgency: row.urgency,
+      needs: row.needs ?? [],
+      note: row.note ?? undefined,
+      createdAt: row.created_at,
+      location: (row.location_lat != null && row.location_lng != null)
+        ? { lat: row.location_lat, lng: row.location_lng } : null,
+      syncStatus: 'synced',
+      review: 'PENDING',
+      reporterName: 'Người thân (qua Internet)',
+      reporterPhone: row.person_phone ?? undefined,
+    }));
+
+  if (incoming.length > 0) saveRelativeReports([...incoming, ...local]);
 }

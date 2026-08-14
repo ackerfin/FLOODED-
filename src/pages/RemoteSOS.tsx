@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { supabase } from '@/lib/supabaseClient';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, Phone, MapPin, Send, User, AlertTriangle,
@@ -37,6 +38,7 @@ export default function RemoteSOS() {
   const [victimLocation, setVictimLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [pageView, setPageView] = useState<PageView>('form');
   const [submittedReportId, setSubmittedReportId] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const maxNoteLength = 120;
   const filteredProvinces = provinces.filter(p => p.toLowerCase().includes(provinceSearch.toLowerCase()));
@@ -75,7 +77,13 @@ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
     toast.success(language === 'vi' ? 'Đã sao chép báo cáo' : 'Report copied');
   };
 
-  const handleSubmit = () => {
+  const patchLocalSyncStatus = (reportId: string, status: string) => {
+    const list = JSON.parse(localStorage.getItem('flooded_remote_sos') || '[]');
+    const updated = list.map((r: any) => (r.id === reportId ? { ...r, syncStatus: status } : r));
+    localStorage.setItem('flooded_remote_sos', JSON.stringify(updated));
+  };
+
+  const handleSubmit = async () => {
     if (!personName.trim()) {
       toast.error(language === 'vi' ? 'Vui lòng nhập tên người cần cứu' : 'Please enter person name');
       return;
@@ -90,20 +98,52 @@ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
       id: reportId, personName, personPhone, address, province, urgency,
       needs: selectedNeeds, note, createdAt: Date.now(),
       location: victimLocation,
-      syncStatus: isOnline ? 'pending' : 'offline',
+      syncStatus: 'pending' as string,
     };
 
+    // Store-before-ACK: luon luu local truoc, du co mang hay khong
     const existing = JSON.parse(localStorage.getItem('flooded_remote_sos') || '[]');
     localStorage.setItem('flooded_remote_sos', JSON.stringify([...existing, report]));
-
     setSubmittedReportId(reportId);
 
-    if (isOnline) {
-      setPageView('success');
-    } else {
+    if (!isOnline) {
       setShowExport(true);
       setPageView('success');
+      return;
     }
+
+    // Co "isOnline" khong co nghia server chac chan nhan duoc - phai thu gui that
+    setIsSubmitting(true);
+    const { error } = await supabase.from('remote_sos_reports').insert({
+      id: reportId,
+      person_name: personName,
+      person_phone: personPhone || null,
+      address: address || null,
+      province,
+      urgency,
+      needs: selectedNeeds,
+      note: note || null,
+      location_lat: victimLocation?.lat ?? null,
+      location_lng: victimLocation?.lng ?? null,
+      created_at: report.createdAt,
+    });
+    setIsSubmitting(false);
+
+    if (error) {
+      // Bao co mang nhung gui that su fail - khong duoc hien banner "da gui truc tuyen"
+      console.error('[RemoteSOS] Loi gui Supabase:', error.message);
+      patchLocalSyncStatus(reportId, 'offline');
+      toast.error(language === 'vi'
+        ? 'Không gửi được lên hệ thống — đã lưu để sao chép gửi tay'
+        : 'Could not reach server — saved for manual copy');
+      setShowExport(true);
+      setPageView('success');
+      return;
+    }
+
+    patchLocalSyncStatus(reportId, 'synced');
+    setShowExport(false);
+    setPageView('success');
   };
 
   // ===== SUCCESS SCREEN =====
@@ -128,13 +168,13 @@ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
             <p className="text-xs text-muted-foreground">{province}</p>
           </div>
 
-          <div className={`text-center text-xs py-2 rounded-lg ${isOnline ? 'bg-[hsl(var(--success))]/20 text-[hsl(var(--success))]' : 'bg-warning/20 text-warning'}`}>
-            {isOnline
+          <div className={`text-center text-xs py-2 rounded-lg ${!showExport ? 'bg-[hsl(var(--success))]/20 text-[hsl(var(--success))]' : 'bg-warning/20 text-warning'}`}>
+            {!showExport
               ? (language === 'vi' ? '🟢 Đã gửi trực tuyến' : '🟢 Sent online')
-              : (language === 'vi' ? '🟡 Đã lưu ngoại tuyến — Hãy sao chép gửi qua Zalo/SMS' : '🟡 Saved offline — Copy and send via messaging')}
+              : (language === 'vi' ? '🟡 Chưa gửi được — Hãy sao chép gửi qua Zalo/SMS' : '🟡 Not sent — Copy and send via messaging')}
           </div>
 
-          {!isOnline && (
+          {showExport && (
             <div className="tactical-card space-y-3 p-4">
               <pre className="p-3 bg-secondary rounded-lg text-xs overflow-x-auto whitespace-pre-wrap">{generateReportText()}</pre>
               <button onClick={handleCopyReport} className="w-full py-3 bg-accent text-accent-foreground rounded-xl font-medium flex items-center justify-center gap-2">
@@ -274,10 +314,12 @@ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
         </div>
 
         {/* Submit */}
-        <motion.button onClick={handleSubmit} whileTap={{ scale: 0.98 }}
-          className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold text-lg flex items-center justify-center gap-2">
-          <Send className="w-5 h-5" />
-          {isOnline ? (language === 'vi' ? 'GỬI BÁO CÁO' : 'SEND REPORT') : (language === 'vi' ? 'TẠO BÁO CÁO' : 'CREATE REPORT')}
+        <motion.button onClick={handleSubmit} disabled={isSubmitting} whileTap={{ scale: 0.98 }}
+          className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-60">
+          {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+          {isSubmitting
+            ? (language === 'vi' ? 'ĐANG GỬI...' : 'SENDING...')
+            : (isOnline ? (language === 'vi' ? 'GỬI BÁO CÁO' : 'SEND REPORT') : (language === 'vi' ? 'TẠO BÁO CÁO' : 'CREATE REPORT'))}
         </motion.button>
 
         <div className={`text-center text-xs py-2 rounded-lg ${isOnline ? 'bg-[hsl(var(--success))]/20 text-[hsl(var(--success))]' : 'bg-warning/20 text-warning'}`}>
