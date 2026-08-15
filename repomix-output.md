@@ -84,25 +84,25 @@ android/
             ic_launcher_round.xml
             ic_launcher.xml
           mipmap-hdpi/
-            ic_launcher_foreground.png
-            ic_launcher_round.png
-            ic_launcher.png
+            ic_launcher_foreground.webp
+            ic_launcher_round.webp
+            ic_launcher.webp
           mipmap-mdpi/
-            ic_launcher_foreground.png
-            ic_launcher_round.png
-            ic_launcher.png
+            ic_launcher_foreground.webp
+            ic_launcher_round.webp
+            ic_launcher.webp
           mipmap-xhdpi/
-            ic_launcher_foreground.png
-            ic_launcher_round.png
-            ic_launcher.png
+            ic_launcher_foreground.webp
+            ic_launcher_round.webp
+            ic_launcher.webp
           mipmap-xxhdpi/
-            ic_launcher_foreground.png
-            ic_launcher_round.png
-            ic_launcher.png
+            ic_launcher_foreground.webp
+            ic_launcher_round.webp
+            ic_launcher.webp
           mipmap-xxxhdpi/
-            ic_launcher_foreground.png
-            ic_launcher_round.png
-            ic_launcher.png
+            ic_launcher_foreground.webp
+            ic_launcher_round.webp
+            ic_launcher.webp
           values/
             ic_launcher_background.xml
             strings.xml
@@ -110,6 +110,7 @@ android/
           xml/
             file_paths.xml
         AndroidManifest.xml
+        ic_launcher-playstore.png
       test/
         java/
           com/
@@ -174,7 +175,7 @@ ios/
   .gitignore
   debug.xcconfig
 public/
-  favicon.ico
+  icon.ico
   manifest.json
   placeholder.svg
   robots.txt
@@ -238,6 +239,7 @@ src/
     CaseSteps.tsx
     CategorySection.tsx
     EmergencyButton.tsx
+    GatewayBadge.tsx
     HealthStatusSelector.tsx
     NavLink.tsx
     NeedTags.tsx
@@ -254,7 +256,9 @@ src/
   hooks/
     use-mobile.tsx
     use-toast.ts
+    useGatewayCases.ts
     useGeolocation.ts
+    useRemoteReportsSync.ts
   lib/
     ble/
       bleService.ts
@@ -271,6 +275,7 @@ src/
       sendSos.ts
     commandCenter.ts
     db.ts
+    gatewayCases.ts
     mesh.ts
     provinces.ts
     quotes.ts
@@ -278,6 +283,7 @@ src/
     rescueRegistration.ts
     scenarios.ts
     stormZones.ts
+    supabaseClient.ts
     survivalData.ts
     sync.ts
     utils.ts
@@ -322,6 +328,7 @@ index.html
 package.json
 postcss.config.js
 README.md
+start-dashboard.bat
 tailwind.config.ts
 test-trigger.txt
 tsconfig.app.json
@@ -370,180 +377,6 @@ package com.ackerfin.flooded;
 import com.getcapacitor.BridgeActivity;
 
 public class MainActivity extends BridgeActivity {}
-````
-
-## File: android/app/src/main/res/drawable/ic_launcher_background.xml
-````xml
-<?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp"
-    android:height="108dp"
-    android:viewportHeight="108"
-    android:viewportWidth="108">
-    <path
-        android:fillColor="#26A69A"
-        android:pathData="M0,0h108v108h-108z" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M9,0L9,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M19,0L19,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M29,0L29,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M39,0L39,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M49,0L49,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M59,0L59,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M69,0L69,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M79,0L79,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M89,0L89,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M99,0L99,108"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,9L108,9"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,19L108,19"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,29L108,29"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,39L108,39"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,49L108,49"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,59L108,59"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,69L108,69"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,79L108,79"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,89L108,89"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M0,99L108,99"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M19,29L89,29"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M19,39L89,39"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M19,49L89,49"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M19,59L89,59"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M19,69L89,69"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M19,79L89,79"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M29,19L29,89"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M39,19L39,89"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M49,19L49,89"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M59,19L59,89"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M69,19L69,89"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-    <path
-        android:fillColor="#00000000"
-        android:pathData="M79,19L79,89"
-        android:strokeColor="#33FFFFFF"
-        android:strokeWidth="0.8" />
-</vector>
 ````
 
 ## File: android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml
@@ -600,24 +433,6 @@ public class MainActivity extends BridgeActivity {}
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 ````
 
-## File: android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
-````xml
-<?xml version="1.0" encoding="utf-8"?>
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/ic_launcher_background"/>
-    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
-</adaptive-icon>
-````
-
-## File: android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
-````xml
-<?xml version="1.0" encoding="utf-8"?>
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@color/ic_launcher_background"/>
-    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
-</adaptive-icon>
-````
-
 ## File: android/app/src/main/res/values/ic_launcher_background.xml
 ````xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -670,60 +485,6 @@ public class MainActivity extends BridgeActivity {}
     <external-path name="my_images" path="." />
     <cache-path name="my_cache_images" path="." />
 </paths>
-````
-
-## File: android/app/src/main/AndroidManifest.xml
-````xml
-<?xml version="1.0" encoding="utf-8" ?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<uses-permission
-    android:name="android.permission.BLUETOOTH_SCAN"
-    android:usesPermissionFlags="neverForLocation"
-  />
-<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-
-    <application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme"
-  >
-
-        <activity
-      android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
-      android:name=".MainActivity"
-      android:label="@string/title_activity_main"
-      android:theme="@style/AppTheme.NoActionBarLaunch"
-      android:launchMode="singleTask"
-      android:exported="true"
-    >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-        <provider
-      android:name="androidx.core.content.FileProvider"
-      android:authorities="${applicationId}.fileprovider"
-      android:exported="false"
-      android:grantUriPermissions="true"
-    >
-            <meta-data
-        android:name="android.support.FILE_PROVIDER_PATHS"
-        android:resource="@xml/file_paths"
-      />
-        </provider>
-    </application>
-
-    <!-- Permissions -->
-
-    <uses-permission android:name="android.permission.INTERNET" />
-</manifest>
 ````
 
 ## File: android/app/src/test/java/com/getcapacitor/myapp/ExampleUnitTest.java
@@ -6761,6 +6522,29 @@ export function EmergencyButton({ onClick }: EmergencyButtonProps) {
 }
 ````
 
+## File: src/components/GatewayBadge.tsx
+````typescript
+import { Wifi, WifiOff } from 'lucide-react';
+import { formatTime, type GatewayStatus } from '@/lib/gatewayCases';
+
+export function GatewayBadge({ status }: { status: GatewayStatus }) {
+  if (status.connected) {
+    return (
+      <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-success/15 text-success text-[11px] font-bold">
+        <Wifi className="w-3.5 h-3.5" />
+        <span>Gatewsay: đã kết nối {formatTime(status.lastSuccessAt)}</span>
+      </div>
+    );
+  }
+  return (
+    <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-destructive/15 text-destructive text-[11px] font-bold">
+      <WifiOff className="w-3.5 h-3.5" />
+      <span>Gateway: mất kết nối lúc {formatTime(status.lastErrorAt)}</span>
+    </div>
+  );
+}
+````
+
 ## File: src/components/HealthStatusSelector.tsx
 ````typescript
 import { useApp } from '@/contexts/AppContext';
@@ -8152,6 +7936,32 @@ function useToast() {
 export { useToast, toast };
 ````
 
+## File: src/hooks/useGatewayCases.ts
+````typescript
+import { useEffect, useState } from 'react';
+import {
+  subscribeGateway,
+  getGatewayStatus,
+  type CommandCase,
+  type GatewayStatus,
+} from '@/lib/gatewayCases';
+
+/** Polls the SoftAP Gateway every 4s and returns the locally persisted cases. */
+export function useGatewayCases() {
+  const [cases, setCases] = useState<CommandCase[]>([]);
+  const [status, setStatus] = useState<GatewayStatus>(getGatewayStatus);
+
+  useEffect(() => {
+    return subscribeGateway((s, c) => {
+      setStatus({ ...s });
+      setCases(c);
+    });
+  }, []);
+
+  return { cases, status };
+}
+````
+
 ## File: src/hooks/useGeolocation.ts
 ````typescript
 import { useState, useCallback } from 'react';
@@ -8213,6 +8023,28 @@ import { useState, useCallback } from 'react';
  
    return { location, error, isLoading, getLocation };
  }
+````
+
+## File: src/hooks/useRemoteReportsSync.ts
+````typescript
+import { useEffect } from 'react';
+import { syncRemoteReportsFromSupabase } from '@/lib/relativeReports';
+
+const POLL_MS = 8000;
+
+/** Poll Supabase moi 8s, tu dong merge report moi vao local storage. */
+export function useRemoteReportsSync(onSynced?: () => void) {
+  useEffect(() => {
+    let cancelled = false;
+    const tick = async () => {
+      await syncRemoteReportsFromSupabase();
+      if (!cancelled) onSynced?.();
+    };
+    tick();
+    const id = setInterval(tick, POLL_MS);
+    return () => { cancelled = true; clearInterval(id); };
+  }, [onSynced]);
+}
 ````
 
 ## File: src/lib/ble/bleService.ts
@@ -8987,311 +8819,6 @@ export async function sendSos(input: CreateSosInput): Promise<SendSosResult> {
 }
 ````
 
-## File: src/lib/commandCenter.ts
-````typescript
-// FLOODED - Command Center Data Layer
-// Types, seed data, and localStorage persistence for Rescue Command Center
-import { v4 as uuidv4 } from 'uuid';
-import { provinces } from './provinces';
-
-// ==================== TYPES ====================
-
-export type CaseSeverity = 'RED' | 'ORANGE' | 'GREEN';
-
-export type CaseStatus =
-  | 'NEW'
-  | 'VERIFYING'
-  | 'VERIFIED'
-  | 'WAITING_FOR_ASSIGNMENT'
-  | 'ASSIGNED'
-  | 'TEAM_ACCEPTED'
-  | 'IN_PROGRESS'
-  | 'RESCUED'
-  | 'CLOSED'
-  | 'DUPLICATE'
-  | 'FALSE_REPORT'
-  | 'WAITING_SAFE_CONDITIONS';
-
-export type TeamStatus = 'AVAILABLE' | 'BUSY' | 'OFFLINE' | 'RETURNING';
-export type ZoneStatus = 'OK' | 'NEED_SUPPORT' | 'NO_TEAM';
-export type SourceType = 'citizen' | 'relative';
-
-export interface RescueTeamAccount {
-  id: string;
-  name: string;
-  leaderName: string;
-  leaderPhone: string;
-  membersCount: number;
-  vehicleType: string;
-  username: string;
-  password: string; // plain for demo
-  status: TeamStatus;
-  currentLocation?: { lat: number; lng: number };
-  lastUpdated: number;
-  assignedCaseId?: string;
-}
-
-export interface Zone {
-  id: string;
-  name: string;
-  province: string;
-  status: ZoneStatus;
-}
-
-export interface SOSCase {
-  id: string;
-  sourceType: SourceType;
-  reporterName: string;
-  reporterPhone: string;
-  victimName?: string;
-  locationText: string;
-  lat?: number;
-  lng?: number;
-  zoneId?: string;
-  severity: CaseSeverity;
-  status: CaseStatus;
-  assignedTeamId?: string;
-  peopleCount: number;
-  vulnerableGroups?: string; // children, elderly, disabled
-  description?: string;
-  needTags?: string[];
-  createdAt: number;
-  updatedAt: number;
-}
-
-export interface CaseLog {
-  id: string;
-  caseId: string;
-  actorRole: 'operator' | 'system';
-  actorName: string;
-  action: string;
-  note?: string;
-  timestamp: number;
-}
-
-// ==================== STATUS METADATA ====================
-
-export const caseStatusMeta: Record<CaseStatus, { vi: string; en: string; color: string }> = {
-  NEW: { vi: 'Mới', en: 'New', color: 'bg-destructive text-destructive-foreground' },
-  VERIFYING: { vi: 'Đang xác minh', en: 'Verifying', color: 'bg-warning text-warning-foreground' },
-  VERIFIED: { vi: 'Đã xác minh', en: 'Verified', color: 'bg-accent text-accent-foreground' },
-  WAITING_FOR_ASSIGNMENT: { vi: 'Chờ phân công', en: 'Waiting', color: 'bg-warning text-warning-foreground' },
-  ASSIGNED: { vi: 'Đã phân công', en: 'Assigned', color: 'bg-accent text-accent-foreground' },
-  TEAM_ACCEPTED: { vi: 'Đội đã nhận', en: 'Accepted', color: 'bg-accent text-accent-foreground' },
-  IN_PROGRESS: { vi: 'Đang xử lý', en: 'In Progress', color: 'bg-warning text-warning-foreground' },
-  RESCUED: { vi: 'Đã cứu', en: 'Rescued', color: 'bg-success text-success-foreground' },
-  CLOSED: { vi: 'Đóng', en: 'Closed', color: 'bg-muted text-muted-foreground' },
-  DUPLICATE: { vi: 'Trùng', en: 'Duplicate', color: 'bg-muted text-muted-foreground' },
-  FALSE_REPORT: { vi: 'Báo giả', en: 'False', color: 'bg-muted text-muted-foreground' },
-  WAITING_SAFE_CONDITIONS: { vi: 'Chờ an toàn', en: 'Wait Safe', color: 'bg-secondary text-secondary-foreground' },
-};
-
-export const severityMeta: Record<CaseSeverity, { vi: string; en: string; color: string; bgClass: string }> = {
-  RED: { vi: 'Đỏ – Nguy hiểm', en: 'RED – Critical', color: 'bg-status-critical', bgClass: 'bg-destructive/20 text-destructive' },
-  ORANGE: { vi: 'Cam – Khẩn', en: 'ORANGE – Urgent', color: 'bg-status-injured', bgClass: 'bg-warning/20 text-warning' },
-  GREEN: { vi: 'Xanh – Theo dõi', en: 'GREEN – Monitor', color: 'bg-status-ok', bgClass: 'bg-success/20 text-success' },
-};
-
-export const teamStatusMeta: Record<TeamStatus, { vi: string; en: string; color: string }> = {
-  AVAILABLE: { vi: 'Sẵn sàng', en: 'Available', color: 'bg-success/20 text-success' },
-  BUSY: { vi: 'Đang làm', en: 'Busy', color: 'bg-warning/20 text-warning' },
-  OFFLINE: { vi: 'Offline', en: 'Offline', color: 'bg-muted text-muted-foreground' },
-  RETURNING: { vi: 'Đang về', en: 'Returning', color: 'bg-accent/20 text-accent' },
-};
-
-// Pipeline filter groups for COMMAND workflow
-export type PipelineFilterKey = 'ALL' | 'VERIFYING_GROUP' | 'IN_PROGRESS' | 'ASSIGNED_GROUP' | 'COMPLETED_GROUP';
-
-export const pipelineFilters: { key: PipelineFilterKey; vi: string; en: string }[] = [
-  { key: 'ALL', vi: 'Tất cả', en: 'All' },
-  { key: 'VERIFYING_GROUP', vi: 'Đang xác minh', en: 'Verifying' },
-  { key: 'IN_PROGRESS', vi: 'Điều hướng', en: 'En Route' },
-  { key: 'ASSIGNED_GROUP', vi: 'Đã phân công', en: 'Assigned' },
-  { key: 'COMPLETED_GROUP', vi: 'Hoàn thành', en: 'Completed' },
-];
-
-// Map pipeline filter keys to actual case statuses
-export function filterCasesByPipeline(cases: SOSCase[], filter: PipelineFilterKey): SOSCase[] {
-  if (filter === 'ALL') return cases;
-  if (filter === 'VERIFYING_GROUP') return cases.filter(c => ['NEW', 'VERIFYING', 'VERIFIED', 'WAITING_FOR_ASSIGNMENT', 'WAITING_SAFE_CONDITIONS'].includes(c.status));
-  if (filter === 'IN_PROGRESS') return cases.filter(c => c.status === 'IN_PROGRESS');
-  if (filter === 'ASSIGNED_GROUP') return cases.filter(c => ['ASSIGNED', 'TEAM_ACCEPTED'].includes(c.status));
-  if (filter === 'COMPLETED_GROUP') return cases.filter(c => ['RESCUED', 'CLOSED', 'DUPLICATE', 'FALSE_REPORT'].includes(c.status));
-  return cases;
-}
-
-// ==================== STORAGE KEYS ====================
-const KEYS = {
-  cases: 'cc_sos_cases',
-  teams: 'cc_rescue_teams',
-  zones: 'cc_zones',
-  logs: 'cc_case_logs',
-  seeded: 'cc_seeded_v3',
-};
-
-// ==================== PERSISTENCE ====================
-function load<T>(key: string, fallback: T[]): T[] {
-  try { const d = localStorage.getItem(key); return d ? JSON.parse(d) : fallback; }
-  catch { return fallback; }
-}
-function save<T>(key: string, data: T[]) { localStorage.setItem(key, JSON.stringify(data)); }
-
-// ==================== ACCESSORS ====================
-export function getCases(): SOSCase[] { return load<SOSCase>(KEYS.cases, []); }
-export function saveCases(c: SOSCase[]) { save(KEYS.cases, c); }
-
-export function getTeams(): RescueTeamAccount[] { return load<RescueTeamAccount>(KEYS.teams, []); }
-export function saveTeams(t: RescueTeamAccount[]) { save(KEYS.teams, t); }
-
-export function getZones(): Zone[] { return load<Zone>(KEYS.zones, []); }
-export function saveZones(z: Zone[]) { save(KEYS.zones, z); }
-
-export function getLogs(): CaseLog[] { return load<CaseLog>(KEYS.logs, []); }
-export function saveLogs(l: CaseLog[]) { save(KEYS.logs, l); }
-
-export function addLog(caseId: string, action: string, note?: string) {
-  const logs = getLogs();
-  logs.push({ id: uuidv4(), caseId, actorRole: 'operator', actorName: 'Command', action, note, timestamp: Date.now() });
-  saveLogs(logs);
-}
-
-export function updateCaseStatus(caseId: string, status: CaseStatus, note?: string) {
-  const cases = getCases();
-  const idx = cases.findIndex(c => c.id === caseId);
-  if (idx === -1) return;
-  cases[idx].status = status;
-  cases[idx].updatedAt = Date.now();
-  saveCases(cases);
-  addLog(caseId, `Status → ${status}`, note);
-}
-
-export function assignTeamToCase(caseId: string, teamId: string) {
-  const cases = getCases();
-  const teams = getTeams();
-  const ci = cases.findIndex(c => c.id === caseId);
-  const ti = teams.findIndex(t => t.id === teamId);
-  if (ci === -1 || ti === -1) return;
-  cases[ci].assignedTeamId = teamId;
-  cases[ci].status = 'ASSIGNED';
-  cases[ci].updatedAt = Date.now();
-  teams[ti].status = 'BUSY';
-  teams[ti].assignedCaseId = caseId;
-  teams[ti].lastUpdated = Date.now();
-  saveCases(cases);
-  saveTeams(teams);
-  addLog(caseId, `Phân công đội: ${teams[ti].name}`);
-}
-
-// Zone stats helper
-export function getZoneStats(zoneId: string) {
-  const cases = getCases().filter(c => c.zoneId === zoneId);
-  const active = cases.filter(c => !['CLOSED', 'RESCUED', 'DUPLICATE', 'FALSE_REPORT'].includes(c.status));
-  const unassigned = active.filter(c => !c.assignedTeamId);
-  const teams = getTeams().filter(t => {
-    const tc = getCases().find(c => c.id === t.assignedCaseId);
-    return tc && tc.zoneId === zoneId && t.status === 'BUSY';
-  });
-  return { total: cases.length, active: active.length, unassigned: unassigned.length, teamsInZone: teams.length };
-}
-
-// ==================== SEED DATA ====================
-export function seedDemoData() {
-  if (localStorage.getItem(KEYS.seeded)) return;
-
-  // Zones
-  const zones: Zone[] = [
-    { id: 'z1', name: 'Q. Hải Châu', province: 'Đà Nẵng', status: 'NEED_SUPPORT' },
-    { id: 'z2', name: 'H. Hòa Vang', province: 'Đà Nẵng', status: 'NO_TEAM' },
-    { id: 'z3', name: 'Q. Sơn Trà', province: 'Đà Nẵng', status: 'OK' },
-    { id: 'z4', name: 'TX. Điện Bàn', province: 'Quảng Ngãi', status: 'NEED_SUPPORT' },
-    { id: 'z5', name: 'TP. Huế', province: 'Huế', status: 'OK' },
-    { id: 'z6', name: 'H. Phú Lộc', province: 'Huế', status: 'NO_TEAM' },
-  ];
-
-  // Teams
-  const teams: RescueTeamAccount[] = [
-    { id: 't1', name: 'Đội Rồng Xanh', leaderName: 'Nguyễn Văn Hùng', leaderPhone: '0901234567', membersCount: 6, vehicleType: 'Thuyền máy', username: 'rongxanh', password: 'demo1234', status: 'AVAILABLE', currentLocation: { lat: 16.054, lng: 108.202 }, lastUpdated: Date.now() },
-    { id: 't2', name: 'Đội Sấm Sét', leaderName: 'Trần Minh Đức', leaderPhone: '0909876543', membersCount: 5, vehicleType: 'Xe tải + canô', username: 'samset', password: 'demo1234', status: 'BUSY', currentLocation: { lat: 16.060, lng: 108.215 }, lastUpdated: Date.now(), assignedCaseId: 'c3' },
-    { id: 't3', name: 'Đội Phượng Hoàng', leaderName: 'Lê Thị Mai', leaderPhone: '0912345678', membersCount: 4, vehicleType: 'Thuyền cao su', username: 'phuonghoang', password: 'demo1234', status: 'AVAILABLE', currentLocation: { lat: 16.048, lng: 108.198 }, lastUpdated: Date.now() },
-    { id: 't4', name: 'Đội Bão Táp', leaderName: 'Phạm Quốc Tuấn', leaderPhone: '0923456789', membersCount: 7, vehicleType: 'Xe cứu hộ', username: 'baotap', password: 'demo1234', status: 'RETURNING', currentLocation: { lat: 16.070, lng: 108.220 }, lastUpdated: Date.now() },
-    { id: 't5', name: 'Đội Thần Tốc', leaderName: 'Hoàng Anh Kiệt', leaderPhone: '0934567890', membersCount: 5, vehicleType: 'Thuyền máy', username: 'thantoc', password: 'demo1234', status: 'OFFLINE', currentLocation: { lat: 16.045, lng: 108.180 }, lastUpdated: Date.now() - 3600000 },
-    { id: 't6', name: 'Đội Lũ Quét', leaderName: 'Vũ Đình Hải', leaderPhone: '0945678901', membersCount: 4, vehicleType: 'Canô', username: 'luquet', password: 'demo1234', status: 'AVAILABLE', currentLocation: { lat: 16.462, lng: 107.590 }, lastUpdated: Date.now() },
-    { id: 't7', name: 'Đội Sao Biển', leaderName: 'Đặng Thanh Sơn', leaderPhone: '0956789012', membersCount: 3, vehicleType: 'Thuyền nhỏ', username: 'saobien', password: 'demo1234', status: 'BUSY', currentLocation: { lat: 16.465, lng: 107.595 }, lastUpdated: Date.now(), assignedCaseId: 'c8' },
-  ];
-
-  // Cases
-  const now = Date.now();
-  const cases: SOSCase[] = [
-    { id: 'c1', sourceType: 'citizen', reporterName: 'Nguyễn Thị Hoa', reporterPhone: '0911111111', locationText: '45 Trần Phú, Q. Hải Châu', lat: 16.054, lng: 108.202, zoneId: 'z1', severity: 'RED', status: 'NEW', peopleCount: 5, vulnerableGroups: '2 trẻ em, 1 người già', description: 'Nước ngập tầng 1, gia đình mắc kẹt trên tầng 2', needTags: ['Áo phao', 'Thuyền'], createdAt: now - 600000, updatedAt: now - 600000 },
-    { id: 'c2', sourceType: 'relative', reporterName: 'Phạm Minh Tuấn', reporterPhone: '0922222222', victimName: 'Phạm Văn Tám', locationText: 'Thôn 3, xã Hòa Phong, H. Hòa Vang', lat: 16.010, lng: 108.140, zoneId: 'z2', severity: 'RED', status: 'VERIFYING', peopleCount: 3, vulnerableGroups: '1 người già bệnh nền', description: 'Mất liên lạc 2 tiếng, vùng ngập sâu', needTags: ['Thuốc', 'Nước sạch', 'Di chuyển'], createdAt: now - 1200000, updatedAt: now - 900000 },
-    { id: 'c3', sourceType: 'citizen', reporterName: 'Lê Quang Vinh', reporterPhone: '0933333333', locationText: '12 Ngô Quyền, Q. Sơn Trà', lat: 16.072, lng: 108.225, zoneId: 'z3', severity: 'ORANGE', status: 'IN_PROGRESS', assignedTeamId: 't2', peopleCount: 2, description: 'Xe ô tô chết máy giữa đường ngập, cần kéo ra', needTags: ['Di chuyển'], createdAt: now - 2400000, updatedAt: now - 1800000 },
-    { id: 'c4', sourceType: 'citizen', reporterName: 'Trương Thị Lan', reporterPhone: '0944444444', locationText: '78 Lê Duẩn, Q. Hải Châu', lat: 16.056, lng: 108.210, zoneId: 'z1', severity: 'ORANGE', status: 'VERIFIED', peopleCount: 8, vulnerableGroups: '3 trẻ em', description: 'Nhà trọ 8 người, nước ngập gần 1m, cần di tản', needTags: ['Áo phao', 'Đồ ăn', 'Nước sạch'], createdAt: now - 1800000, updatedAt: now - 1200000 },
-    { id: 'c5', sourceType: 'citizen', reporterName: 'Hồ Văn Nam', reporterPhone: '0955555555', locationText: '23 Bạch Đằng, Q. Hải Châu', lat: 16.052, lng: 108.200, zoneId: 'z1', severity: 'GREEN', status: 'WAITING_FOR_ASSIGNMENT', peopleCount: 2, description: 'Cần nước sạch và lương thực, nhà ngập nhẹ', needTags: ['Nước sạch', 'Đồ ăn'], createdAt: now - 3600000, updatedAt: now - 3000000 },
-    { id: 'c6', sourceType: 'relative', reporterName: 'Đỗ Thị Thanh', reporterPhone: '0966666666', victimName: 'Đỗ Minh Quân', locationText: 'Xã Hòa Nhơn, H. Hòa Vang', lat: 16.020, lng: 108.150, zoneId: 'z2', severity: 'RED', status: 'NEW', peopleCount: 4, vulnerableGroups: '1 phụ nữ mang thai', description: 'Mắc kẹt trong nhà, nước dâng nhanh, có thai phụ', needTags: ['Di chuyển', 'Y tế', 'Áo phao'], createdAt: now - 300000, updatedAt: now - 300000 },
-    { id: 'c7', sourceType: 'citizen', reporterName: 'Bùi Xuân Trường', reporterPhone: '0977777777', locationText: '156 Điện Biên Phủ, TX. Điện Bàn', lat: 15.890, lng: 108.260, zoneId: 'z4', severity: 'ORANGE', status: 'WAITING_SAFE_CONDITIONS', peopleCount: 6, description: 'Khu vực nước xiết, chờ nước rút mới tiếp cận được', needTags: ['Đồ ăn', 'Pin/Sạc'], createdAt: now - 5400000, updatedAt: now - 3600000 },
-    { id: 'c8', sourceType: 'citizen', reporterName: 'Phan Thị Ngọc', reporterPhone: '0988888888', locationText: '34 Lê Lợi, TP. Huế', lat: 16.463, lng: 107.592, zoneId: 'z5', severity: 'ORANGE', status: 'ASSIGNED', assignedTeamId: 't7', peopleCount: 3, description: 'Ông bà cần thuốc huyết áp, nước ngập không ra ngoài được', needTags: ['Thuốc', 'Nước sạch'], createdAt: now - 4200000, updatedAt: now - 2400000 },
-    { id: 'c9', sourceType: 'citizen', reporterName: 'Võ Thanh Hải', reporterPhone: '0999999999', locationText: '89 Hùng Vương, Q. Sơn Trà', lat: 16.068, lng: 108.218, zoneId: 'z3', severity: 'GREEN', status: 'RESCUED', peopleCount: 2, description: 'Đã được đưa lên cao, an toàn', createdAt: now - 7200000, updatedAt: now - 3600000 },
-    { id: 'c10', sourceType: 'relative', reporterName: 'Mai Thị Hồng', reporterPhone: '0900000001', victimName: 'Mai Văn Đức', locationText: 'Thôn Phú Lộc, H. Phú Lộc', lat: 16.300, lng: 107.880, zoneId: 'z6', severity: 'RED', status: 'NEW', peopleCount: 7, vulnerableGroups: '2 trẻ em, 1 người già, 1 người khuyết tật', description: 'Mất liên lạc hoàn toàn, vùng sạt lở', needTags: ['Di chuyển', 'Y tế', 'Đèn pin'], createdAt: now - 180000, updatedAt: now - 180000 },
-    { id: 'c11', sourceType: 'citizen', reporterName: 'Ngô Văn Thành', reporterPhone: '0900000002', locationText: '67 Phan Châu Trinh, Q. Hải Châu', lat: 16.058, lng: 108.208, zoneId: 'z1', severity: 'GREEN', status: 'CLOSED', peopleCount: 1, description: 'Tự di chuyển được, đã an toàn', createdAt: now - 10800000, updatedAt: now - 7200000 },
-    { id: 'c12', sourceType: 'citizen', reporterName: 'Đặng Thị Vân', reporterPhone: '0900000003', locationText: '90 Nguyễn Tri Phương, Q. Hải Châu', lat: 16.050, lng: 108.206, zoneId: 'z1', severity: 'ORANGE', status: 'DUPLICATE', peopleCount: 5, description: 'Trùng với case c4 - cùng khu nhà trọ', createdAt: now - 1500000, updatedAt: now - 1200000 },
-  ];
-
-  // Logs
-  const logs: CaseLog[] = [
-    { id: 'l1', caseId: 'c2', actorRole: 'operator', actorName: 'Command', action: 'Status → VERIFYING', note: 'Đang gọi xác minh', timestamp: now - 900000 },
-    { id: 'l2', caseId: 'c3', actorRole: 'operator', actorName: 'Command', action: 'Phân công đội: Đội Sấm Sét', timestamp: now - 1800000 },
-    { id: 'l3', caseId: 'c3', actorRole: 'operator', actorName: 'Command', action: 'Status → IN_PROGRESS', timestamp: now - 1800000 },
-    { id: 'l4', caseId: 'c9', actorRole: 'operator', actorName: 'Command', action: 'Status → RESCUED', note: 'Đã cứu thành công', timestamp: now - 3600000 },
-    { id: 'l5', caseId: 'c12', actorRole: 'operator', actorName: 'Command', action: 'Status → DUPLICATE', note: 'Trùng c4', timestamp: now - 1200000 },
-    { id: 'l6', caseId: 'c4', actorRole: 'operator', actorName: 'Command', action: 'Status → VERIFIED', note: 'Đã xác minh, nhà trọ 8 người', timestamp: now - 1200000 },
-  ];
-
-  saveZones(zones);
-  saveTeams(teams);
-  saveCases(cases);
-  saveLogs(logs);
-  localStorage.setItem(KEYS.seeded, 'true');
-}
-
-// Utility: distance between two coords (km)
-export function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
-  const R = 6371;
-  const dLat = (lat2 - lat1) * Math.PI / 180;
-  const dLng = (lng2 - lng1) * Math.PI / 180;
-  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-}
-
-// ETA estimate (rough: 15 km/h in flood)
-export function estimateETA(distKm: number): string {
-  const mins = Math.round(distKm / 15 * 60);
-  if (mins < 1) return '< 1 phút';
-  if (mins < 60) return `~${mins} phút`;
-  return `~${Math.round(mins / 60 * 10) / 10}h`;
-}
-
-// Simulate team movement toward assigned case
-export function simulateTeamMovement() {
-  const teams = getTeams();
-  const cases = getCases();
-  let changed = false;
-  teams.forEach(t => {
-    if (t.status === 'BUSY' && t.assignedCaseId && t.currentLocation) {
-      const c = cases.find(cs => cs.id === t.assignedCaseId);
-      if (c && c.lat && c.lng) {
-        const dLat = (c.lat - t.currentLocation.lat) * 0.08;
-        const dLng = (c.lng - t.currentLocation.lng) * 0.08;
-        t.currentLocation.lat += dLat + (Math.random() - 0.5) * 0.001;
-        t.currentLocation.lng += dLng + (Math.random() - 0.5) * 0.001;
-        t.lastUpdated = Date.now();
-        changed = true;
-      }
-    }
-  });
-  if (changed) saveTeams(teams);
-}
-````
-
 ## File: src/lib/db.ts
 ````typescript
 // FLOODED - IndexedDB Offline Database Service
@@ -9539,6 +9066,290 @@ export function simulateTeamMovement() {
  }
 ````
 
+## File: src/lib/gatewayCases.ts
+````typescript
+// FLOODED - Gateway data layer (Dexie/IndexedDB + SoftAP polling)
+// Replaces the static mock array as the source of truth for SOS cases.
+// - Polls the local SoftAP Gateway every 4s (no Internet required)
+// - Persists cases in IndexedDB via Dexie
+// - Command-owned fields (verifyStatus, assignedTeam, auditLog) survive every poll
+// - messageId is the duplicate key: existing messageId => update, never duplicate
+import Dexie, { type Table } from 'dexie';
+import { v4 as uuidv4 } from 'uuid';
+import { getCases, saveCases, type SOSCase, type CaseSeverity, type CaseStatus } from './commandCenter';
+
+export const GATEWAY_URL = 'http://192.168.4.1/api/cases';
+export const POLL_INTERVAL_MS = 4000;
+const REQUEST_TIMEOUT_MS = 3000;
+
+export type CaseOrigin = 'GATEWAY' | 'COMMAND_MANUAL';
+export type VerifyStatus = 'UNVERIFIED' | 'VERIFYING' | 'VERIFIED' | 'REJECTED';
+
+export interface AuditEntry {
+  id: string;
+  timestamp: number;
+  actor: string;
+  action: string;
+  note?: string;
+}
+
+/** A case as stored locally: Gateway payload + Command-owned management fields. */
+export interface CommandCase extends SOSCase {
+  messageId: string;
+  /** Origin channel of the case (field requested as "sourceType" for the transport layer). */
+  origin: CaseOrigin;
+  verifyStatus: VerifyStatus;
+  assignedTeam?: string;
+  auditLog: AuditEntry[];
+  gatewayUpdatedAt?: number;
+}
+
+// ==================== DEXIE ====================
+class FloodedCaseDB extends Dexie {
+  cases!: Table<CommandCase, string>;
+  constructor() {
+    super('flooded_command');
+    this.version(1).stores({
+      cases: 'id, &messageId, origin, status, severity, verifyStatus, updatedAt',
+    });
+  }
+}
+
+export const caseDb = new FloodedCaseDB();
+
+// ==================== GATEWAY STATUS ====================
+export interface GatewayStatus {
+  connected: boolean;
+  lastSuccessAt: number | null;
+  lastErrorAt: number | null;
+  lastError?: string;
+}
+
+let status: GatewayStatus = { connected: false, lastSuccessAt: null, lastErrorAt: null };
+const listeners = new Set<(s: GatewayStatus, cases: CommandCase[]) => void>();
+
+export function getGatewayStatus(): GatewayStatus {
+  return status;
+}
+
+function emit(cases: CommandCase[]) {
+  listeners.forEach(l => l(status, cases));
+}
+
+// ==================== HELPERS ====================
+function auditEntry(action: string, note?: string, actor = 'System'): AuditEntry {
+  return { id: uuidv4(), timestamp: Date.now(), actor, action, note };
+}
+
+/** Wrap any legacy/local SOSCase into a CommandCase with defaults. */
+export function toCommandCase(c: SOSCase, origin: CaseOrigin = 'COMMAND_MANUAL'): CommandCase {
+  const anyC = c as Partial<CommandCase>;
+  return {
+    ...c,
+    messageId: anyC.messageId || `local-${c.id}`,
+    origin: anyC.origin || origin,
+    verifyStatus: anyC.verifyStatus || 'UNVERIFIED',
+    assignedTeam: anyC.assignedTeam ?? c.assignedTeamId,
+    auditLog: anyC.auditLog || [],
+    gatewayUpdatedAt: anyC.gatewayUpdatedAt,
+  };
+}
+
+/** Normalize a raw Gateway payload item into a CommandCase shape (gateway-owned fields only). */
+function normalizeGatewayItem(raw: Record<string, unknown>): Partial<CommandCase> & { messageId: string } {
+  const num = (v: unknown) => (typeof v === 'number' ? v : typeof v === 'string' && v !== '' ? Number(v) : undefined);
+  const sev = String(raw.severity ?? raw.level ?? 'ORANGE').toUpperCase();
+  const severity: CaseSeverity = sev === 'RED' || sev === 'GREEN' ? (sev as CaseSeverity) : 'ORANGE';
+  const messageId = String(raw.messageId ?? raw.message_id ?? raw.id ?? uuidv4());
+  return {
+    messageId,
+    sourceType: (raw.sourceType === 'relative' ? 'relative' : 'citizen'),
+    reporterName: String(raw.reporterName ?? raw.name ?? 'Không rõ'),
+    reporterPhone: String(raw.reporterPhone ?? raw.phone ?? '—'),
+    victimName: raw.victimName ? String(raw.victimName) : undefined,
+    locationText: String(raw.locationText ?? raw.address ?? 'Chưa rõ vị trí'),
+    lat: num(raw.lat),
+    lng: num(raw.lng),
+    severity,
+    peopleCount: num(raw.peopleCount) ?? 1,
+    vulnerableGroups: raw.vulnerableGroups ? String(raw.vulnerableGroups) : undefined,
+    description: raw.description ? String(raw.description) : undefined,
+    needTags: Array.isArray(raw.needTags) ? (raw.needTags as string[]) : undefined,
+    createdAt: num(raw.createdAt) ?? Date.now(),
+    gatewayUpdatedAt: num(raw.updatedAt) ?? Date.now(),
+    status: (raw.status ? String(raw.status) : 'NEW') as CaseStatus,
+  };
+}
+
+// ==================== MIGRATION / BOOTSTRAP ====================
+let bootstrapped = false;
+
+/** Seed IndexedDB from any existing localStorage cases (one-off migration). */
+export async function bootstrapCaseDb(): Promise<CommandCase[]> {
+  const existing = await caseDb.cases.toArray();
+  if (!bootstrapped && existing.length === 0) {
+    const legacy = getCases().map(c => toCommandCase(c, 'COMMAND_MANUAL'));
+    if (legacy.length) await caseDb.cases.bulkPut(legacy);
+    bootstrapped = true;
+    return legacy;
+  }
+  bootstrapped = true;
+  return existing;
+}
+
+/** Mirror IndexedDB into localStorage so existing screens keep working unchanged. */
+async function mirrorToLocalStorage(): Promise<CommandCase[]> {
+  const all = await caseDb.cases.toArray();
+  all.sort((a, b) => b.createdAt - a.createdAt);
+  saveCases(all);
+  return all;
+}
+
+// ==================== UPSERT ====================
+/** Insert or update a case keyed by messageId. Command fields are never overwritten. */
+export async function upsertCase(
+  incoming: Partial<CommandCase> & { messageId: string },
+  origin: CaseOrigin,
+): Promise<CommandCase> {
+  const existing = await caseDb.cases.where('messageId').equals(incoming.messageId).first();
+
+  if (existing) {
+    // Preserve Command-owned fields, take fresh operational data from source.
+    const merged: CommandCase = {
+      ...existing,
+      ...incoming,
+      id: existing.id,
+      messageId: existing.messageId,
+      origin: existing.origin,
+      // Command-owned — untouched by Gateway
+      status: existing.status,
+      verifyStatus: existing.verifyStatus,
+      assignedTeam: existing.assignedTeam,
+      assignedTeamId: existing.assignedTeamId,
+      auditLog: existing.auditLog,
+      zoneId: existing.zoneId ?? incoming.zoneId,
+      createdAt: existing.createdAt,
+      updatedAt: Date.now(),
+    };
+    await caseDb.cases.put(merged);
+    return merged;
+  }
+
+  const now = Date.now();
+  const created: CommandCase = {
+    id: uuidv4(),
+    sourceType: 'citizen',
+    reporterName: 'Không rõ',
+    reporterPhone: '—',
+    locationText: 'Chưa rõ vị trí',
+    severity: 'ORANGE',
+    status: 'NEW',
+    peopleCount: 1,
+    createdAt: now,
+    ...incoming,
+    origin,
+    verifyStatus: 'UNVERIFIED',
+    auditLog: [auditEntry(origin === 'GATEWAY' ? 'RECEIVED_FROM_GATEWAY' : 'CREATED_BY_COMMAND')],
+    updatedAt: now,
+  } as CommandCase;
+  await caseDb.cases.put(created);
+  return created;
+}
+
+/** Create a case from the Command "Báo hộ" flow (always COMMAND_MANUAL). */
+export async function createManualCase(base: SOSCase): Promise<CommandCase> {
+  const c = await upsertCase(
+    { ...toCommandCase(base, 'COMMAND_MANUAL'), messageId: (base as Partial<CommandCase>).messageId || `manual-${base.id}` },
+    'COMMAND_MANUAL',
+  );
+  await mirrorToLocalStorage();
+  return c;
+}
+
+/** Update Command-owned management fields + append an audit entry. */
+export async function updateCommandFields(
+  caseId: string,
+  patch: Partial<Pick<CommandCase, 'verifyStatus' | 'assignedTeam' | 'assignedTeamId' | 'status'>>,
+  action: string,
+  note?: string,
+  actor = 'Command',
+): Promise<void> {
+  const existing = await caseDb.cases.get(caseId);
+  if (!existing) return;
+  await caseDb.cases.put({
+    ...existing,
+    ...patch,
+    auditLog: [...existing.auditLog, auditEntry(action, note, actor)],
+    updatedAt: Date.now(),
+  });
+  await mirrorToLocalStorage();
+}
+
+// ==================== POLLING ====================
+async function fetchGatewayCases(): Promise<Record<string, unknown>[]> {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+  try {
+    const res = await fetch(GATEWAY_URL, { signal: ctrl.signal, cache: 'no-store' });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const list = Array.isArray(data) ? data : Array.isArray(data?.cases) ? data.cases : [];
+    return list as Record<string, unknown>[];
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+/** One poll cycle. On error the local data is kept intact (never emptied). */
+export async function pollGatewayOnce(): Promise<CommandCase[]> {
+  await bootstrapCaseDb();
+  try {
+    const raw = await fetchGatewayCases();
+    for (const item of raw) {
+      await upsertCase(normalizeGatewayItem(item), 'GATEWAY');
+    }
+    status = { connected: true, lastSuccessAt: Date.now(), lastErrorAt: status.lastErrorAt };
+  } catch (e) {
+    status = {
+      connected: false,
+      lastSuccessAt: status.lastSuccessAt,
+      lastErrorAt: Date.now(),
+      lastError: e instanceof Error ? e.message : 'unknown',
+    };
+  }
+  const all = await mirrorToLocalStorage();
+  emit(all);
+  return all;
+}
+
+let pollTimer: number | null = null;
+let refCount = 0;
+
+/** Subscribe to the polling loop. Returns an unsubscribe function. */
+export function subscribeGateway(cb: (s: GatewayStatus, cases: CommandCase[]) => void): () => void {
+  listeners.add(cb);
+  refCount++;
+  if (pollTimer === null) {
+    void pollGatewayOnce();
+    pollTimer = window.setInterval(() => void pollGatewayOnce(), POLL_INTERVAL_MS);
+  }
+  return () => {
+    listeners.delete(cb);
+    refCount--;
+    if (refCount <= 0 && pollTimer !== null) {
+      clearInterval(pollTimer);
+      pollTimer = null;
+      refCount = 0;
+    }
+  };
+}
+
+export function formatTime(ts: number | null): string {
+  if (!ts) return '--:--';
+  return new Date(ts).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+````
+
 ## File: src/lib/provinces.ts
 ````typescript
 // 34 đơn vị hành chính cấp tỉnh của Việt Nam
@@ -9702,162 +9513,6 @@ export function getRandomThemeIndex(lastIndex: number): number {
     newIndex = Math.floor(Math.random() * quoteThemes.length);
   } while (newIndex === lastIndex);
   return newIndex;
-}
-````
-
-## File: src/lib/relativeReports.ts
-````typescript
-// Relative (remote) SOS reports submitted from /remote-sos by family members.
-// Stored in localStorage under 'flooded_remote_sos'. Command reviews them and
-// converts approved ones into official SOS cases.
-
-import { v4 as uuidv4 } from 'uuid';
-import { getCases, saveCases, addLog, type SOSCase, type CaseSeverity } from './commandCenter';
-
-const KEY = 'flooded_remote_sos';
-
-export type RelativeReportReview = 'PENDING' | 'ACCEPTED' | 'REJECTED';
-
-export interface RelativeReport {
-  id: string;
-  personName: string;
-  personPhone?: string;
-  address?: string;
-  province?: string;
-  urgency: 'low' | 'medium' | 'high' | 'critical';
-  needs?: string[];
-  note?: string;
-  createdAt: number;
-  location?: { lat: number; lng: number } | null;
-  syncStatus?: string;
-  // Command review fields
-  review?: RelativeReportReview;
-  reviewNote?: string;
-  reviewedAt?: number;
-  linkedCaseId?: string;
-  reporterName?: string;
-  reporterPhone?: string;
-}
-
-export function getRelativeReports(): RelativeReport[] {
-  try {
-    const raw = JSON.parse(localStorage.getItem(KEY) || '[]') as RelativeReport[];
-    return Array.isArray(raw) ? raw.sort((a, b) => b.createdAt - a.createdAt) : [];
-  } catch {
-    return [];
-  }
-}
-
-export function saveRelativeReports(list: RelativeReport[]) {
-  localStorage.setItem(KEY, JSON.stringify(list));
-}
-
-function patch(id: string, updates: Partial<RelativeReport>) {
-  const list = getRelativeReports();
-  const i = list.findIndex(r => r.id === id);
-  if (i === -1) return null;
-  list[i] = { ...list[i], ...updates };
-  saveRelativeReports(list);
-  return list[i];
-}
-
-export function urgencyToSeverity(u: RelativeReport['urgency']): CaseSeverity {
-  if (u === 'critical' || u === 'high') return 'RED';
-  if (u === 'medium') return 'ORANGE';
-  return 'GREEN';
-}
-
-export const urgencyLabels: Record<RelativeReport['urgency'], { vi: string; en: string }> = {
-  low: { vi: 'Thấp', en: 'Low' },
-  medium: { vi: 'Trung bình', en: 'Medium' },
-  high: { vi: 'Cao', en: 'High' },
-  critical: { vi: 'Nguy kịch', en: 'Critical' },
-};
-
-/** Approve a relative report → create an official SOS case (source: relative). */
-export function acceptRelativeReport(id: string): SOSCase | null {
-  const rep = getRelativeReports().find(r => r.id === id);
-  if (!rep || rep.review === 'ACCEPTED') return null;
-
-  const now = Date.now();
-  const newCase: SOSCase = {
-    id: uuidv4(),
-    sourceType: 'relative',
-    reporterName: rep.reporterName || (rep.personName ? `Người thân của ${rep.personName}` : 'Người thân'),
-    reporterPhone: rep.reporterPhone || rep.personPhone || '—',
-    victimName: rep.personName,
-    locationText: [rep.address, rep.province].filter(Boolean).join(', ') || 'Chưa rõ',
-    lat: rep.location?.lat,
-    lng: rep.location?.lng,
-    severity: urgencyToSeverity(rep.urgency),
-    status: 'VERIFYING',
-    peopleCount: 1,
-    description: rep.note,
-    needTags: rep.needs || [],
-    createdAt: rep.createdAt || now,
-    updatedAt: now,
-  };
-
-  const cases = getCases();
-  cases.push(newCase);
-  saveCases(cases);
-  addLog(newCase.id, 'CREATED_FROM_RELATIVE_REPORT', `Hồ sơ báo hộ ${rep.id.slice(0, 8).toUpperCase()}`);
-
-  patch(id, { review: 'ACCEPTED', reviewedAt: now, linkedCaseId: newCase.id });
-  return newCase;
-}
-
-export function rejectRelativeReport(id: string, note: string) {
-  return patch(id, { review: 'REJECTED', reviewNote: note, reviewedAt: Date.now() });
-}
-
-export function resetRelativeReview(id: string) {
-  return patch(id, { review: 'PENDING', reviewNote: undefined, reviewedAt: undefined });
-}
-
-// ==================== SIMULATION ====================
-
-const SIM_PEOPLE = [
-  { name: 'Bà Nguyễn Thị Lan', phone: '0912345678', addr: 'Tổ 4, Phường Vỹ Dạ', province: 'Thừa Thiên Huế' },
-  { name: 'Ông Trần Văn Bảy', phone: '0987654321', addr: 'Thôn Đông, Xã Quảng Phú', province: 'Quảng Trị' },
-  { name: 'Em Lê Minh Khôi', phone: '0933221144', addr: 'Hẻm 12 Lê Lợi', province: 'Đà Nẵng' },
-  { name: 'Chị Phạm Thu Hà', phone: '0977553311', addr: 'Khu tập thể số 3, Phường An Cựu', province: 'Thừa Thiên Huế' },
-  { name: 'Gia đình ông Hồ Văn Sáu', phone: '0905112233', addr: 'Xóm Bãi, Xã Hương Toàn', province: 'Thừa Thiên Huế' },
-];
-const SIM_NEEDS = [['Nước sạch', 'Thực phẩm'], ['Y tế', 'Thuốc'], ['Thuyền cứu hộ'], ['Sơ tán khẩn cấp', 'Y tế']];
-const SIM_NOTES = [
-  'Nước ngập tới tầng 2, người già không di chuyển được.',
-  'Mất liên lạc từ tối qua, nhà ở vùng trũng.',
-  'Có trẻ nhỏ và người bệnh nền, cần hỗ trợ gấp.',
-  'Nhà bị cô lập, hết lương thực 2 ngày.',
-];
-const SIM_URGENCY: RelativeReport['urgency'][] = ['medium', 'high', 'critical', 'high'];
-
-const pick = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-
-/** Create a fake relative report as if a user submitted it from /remote-sos. */
-export function simulateRelativeReport(): RelativeReport {
-  const p = pick(SIM_PEOPLE);
-  const rep: RelativeReport = {
-    id: uuidv4(),
-    personName: p.name,
-    personPhone: p.phone,
-    address: p.addr,
-    province: p.province,
-    urgency: pick(SIM_URGENCY),
-    needs: pick(SIM_NEEDS),
-    note: pick(SIM_NOTES),
-    createdAt: Date.now(),
-    location: { lat: 16.35 + Math.random() * 0.6, lng: 107.4 + Math.random() * 0.9 },
-    syncStatus: 'pending',
-    review: 'PENDING',
-    reporterName: 'Người thân (mô phỏng)',
-    reporterPhone: '09' + Math.floor(10000000 + Math.random() * 89999999),
-  };
-  const list = getRelativeReports();
-  list.push(rep);
-  saveRelativeReports(list);
-  return rep;
 }
 ````
 
@@ -18735,301 +18390,6 @@ export default function RegisterRescueSuccess() {
 }
 ````
 
-## File: src/pages/RemoteSOS.tsx
-````typescript
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { 
-  ArrowLeft, Phone, MapPin, Send, User, AlertTriangle,
-  Copy, Info, Loader2, CheckCircle, Home
-} from 'lucide-react';
-import { useApp } from '@/contexts/AppContext';
-import { useGeolocation } from '@/hooks/useGeolocation';
-import { Link } from 'react-router-dom';
-import { NeedTags } from '@/components/NeedTags';
-import { toast } from 'sonner';
-import { v4 as uuidv4 } from 'uuid';
-import { provinces } from '@/lib/provinces';
-
-const urgencyLevels = [
-  { id: 'low', labelVi: 'Thấp', labelEn: 'Low', color: 'bg-accent' },
-  { id: 'medium', labelVi: 'Trung bình', labelEn: 'Medium', color: 'bg-warning' },
-  { id: 'high', labelVi: 'Cao', labelEn: 'High', color: 'bg-[hsl(var(--status-injured))]' },
-  { id: 'critical', labelVi: 'Nguy kịch', labelEn: 'Critical', color: 'bg-destructive' },
-];
-
-type PageView = 'form' | 'success';
-
-export default function RemoteSOS() {
-  const { language, isOnline } = useApp();
-  const { getLocation, isLoading: geoLoading } = useGeolocation();
-  const [personName, setPersonName] = useState('');
-  const [personPhone, setPersonPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [province, setProvince] = useState('');
-  const [provinceSearch, setProvinceSearch] = useState('');
-  const [showProvinceDropdown, setShowProvinceDropdown] = useState(false);
-  const [urgency, setUrgency] = useState('medium');
-  const [selectedNeeds, setSelectedNeeds] = useState<string[]>([]);
-  const [note, setNote] = useState('');
-  const [showExport, setShowExport] = useState(false);
-  const [victimLocation, setVictimLocation] = useState<{ lat: number; lng: number } | null>(null);
-  const [pageView, setPageView] = useState<PageView>('form');
-  const [submittedReportId, setSubmittedReportId] = useState('');
-
-  const maxNoteLength = 120;
-  const filteredProvinces = provinces.filter(p => p.toLowerCase().includes(provinceSearch.toLowerCase()));
-
-  const handleGetLocation = async () => {
-    const loc = await getLocation();
-    if (loc) {
-      setVictimLocation({ lat: loc.latitude, lng: loc.longitude });
-      toast.success(language === 'vi' ? 'Đã lấy vị trí' : 'Location obtained');
-    } else {
-      toast.error(language === 'vi' ? 'Không lấy được vị trí' : 'Cannot get location');
-    }
-  };
-
-  const generateReportText = () => {
-    const urgencyLabel = urgencyLevels.find(u => u.id === urgency);
-    const needs = selectedNeeds.join(', ');
-    const locationText = victimLocation ? `\n📍 Tọa độ: ${victimLocation.lat.toFixed(5)}, ${victimLocation.lng.toFixed(5)}` : '';
-    
-    return `🆘 BÁO CỨU HỘ
-━━━━━━━━━━━━━━
-👤 Người cần cứu: ${personName || 'Chưa rõ'}
-📞 SĐT: ${personPhone || 'Chưa rõ'}
-📍 Địa chỉ: ${address || 'Chưa rõ'}
-🏛️ Tỉnh/TP: ${province || 'Chưa chọn'}${locationText}
-⚠️ Mức độ: ${urgencyLabel?.labelVi || 'Trung bình'}
-📋 Nhu cầu: ${needs || 'Chưa chọn'}
-📝 Ghi chú: ${note || 'Không có'}
-━━━━━━━━━━━━━━
-Gửi từ app FLOODED
-Thời gian: ${new Date().toLocaleString('vi-VN')}`;
-  };
-
-  const handleCopyReport = () => {
-    navigator.clipboard.writeText(generateReportText());
-    toast.success(language === 'vi' ? 'Đã sao chép báo cáo' : 'Report copied');
-  };
-
-  const handleSubmit = () => {
-    if (!personName.trim()) {
-      toast.error(language === 'vi' ? 'Vui lòng nhập tên người cần cứu' : 'Please enter person name');
-      return;
-    }
-    if (!province) {
-      toast.error(language === 'vi' ? 'Vui lòng chọn tỉnh/thành phố' : 'Please select province');
-      return;
-    }
-
-    const reportId = uuidv4();
-    const report = {
-      id: reportId, personName, personPhone, address, province, urgency,
-      needs: selectedNeeds, note, createdAt: Date.now(),
-      location: victimLocation,
-      syncStatus: isOnline ? 'pending' : 'offline',
-    };
-
-    const existing = JSON.parse(localStorage.getItem('flooded_remote_sos') || '[]');
-    localStorage.setItem('flooded_remote_sos', JSON.stringify([...existing, report]));
-
-    setSubmittedReportId(reportId);
-
-    if (isOnline) {
-      setPageView('success');
-    } else {
-      setShowExport(true);
-      setPageView('success');
-    }
-  };
-
-  // ===== SUCCESS SCREEN =====
-  if (pageView === 'success') {
-    return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6">
-        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.1 }} className="mb-6">
-          <CheckCircle className="w-24 h-24 text-[hsl(var(--success))]" />
-        </motion.div>
-        <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-2xl font-bold text-[hsl(var(--success))] text-center mb-2">
-          {language === 'vi' ? 'ĐÃ GỬI BÁO CÁO THÀNH CÔNG' : 'REPORT SENT SUCCESSFULLY'}
-        </motion.h1>
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-muted-foreground text-center mb-4">
-          {language === 'vi' ? 'Báo cáo cứu hộ cho người thân đã được ghi nhận' : 'Remote rescue report has been recorded'}
-        </motion.p>
-        
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="w-full max-w-sm space-y-3">
-          <div className="tactical-card p-4 space-y-2 text-center">
-            <p className="text-xs text-muted-foreground">{language === 'vi' ? 'Mã báo cáo' : 'Report ID'}</p>
-            <p className="font-mono font-bold text-primary">{submittedReportId.slice(0, 12).toUpperCase()}</p>
-            <p className="text-xs text-muted-foreground">{language === 'vi' ? `Người cần cứu: ${personName}` : `Person: ${personName}`}</p>
-            <p className="text-xs text-muted-foreground">{province}</p>
-          </div>
-
-          <div className={`text-center text-xs py-2 rounded-lg ${isOnline ? 'bg-[hsl(var(--success))]/20 text-[hsl(var(--success))]' : 'bg-warning/20 text-warning'}`}>
-            {isOnline
-              ? (language === 'vi' ? '🟢 Đã gửi trực tuyến' : '🟢 Sent online')
-              : (language === 'vi' ? '🟡 Đã lưu ngoại tuyến — Hãy sao chép gửi qua Zalo/SMS' : '🟡 Saved offline — Copy and send via messaging')}
-          </div>
-
-          {!isOnline && (
-            <div className="tactical-card space-y-3 p-4">
-              <pre className="p-3 bg-secondary rounded-lg text-xs overflow-x-auto whitespace-pre-wrap">{generateReportText()}</pre>
-              <button onClick={handleCopyReport} className="w-full py-3 bg-accent text-accent-foreground rounded-xl font-medium flex items-center justify-center gap-2">
-                <Copy className="w-5 h-5" />{language === 'vi' ? 'SAO CHÉP BÁO CÁO' : 'COPY REPORT'}
-              </button>
-            </div>
-          )}
-
-          <div className="flex gap-3 pt-2">
-            <button onClick={() => {
-              setPageView('form');
-              setPersonName(''); setPersonPhone(''); setAddress(''); setProvince(''); setProvinceSearch('');
-              setUrgency('medium'); setSelectedNeeds([]); setNote(''); setVictimLocation(null); setShowExport(false);
-            }} className="flex-1 py-3 bg-secondary rounded-xl font-medium text-sm">
-              {language === 'vi' ? 'Báo thêm người' : 'Report Another'}
-            </button>
-            <Link to="/" className="flex-1 py-3 bg-primary text-primary-foreground rounded-xl font-bold text-sm flex items-center justify-center gap-1">
-              <Home className="w-4 h-4" />{language === 'vi' ? 'Về trang chủ' : 'Go Home'}
-            </Link>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
-
-  // ===== FORM =====
-  return (
-    <div className="min-h-screen bg-background pb-8">
-      <header className="sticky top-0 bg-background/95 backdrop-blur border-b border-border z-10">
-        <div className="flex items-center gap-4 p-4">
-          <Link to="/more" className="p-2 rounded-lg bg-secondary">
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
-          <div className="flex-1">
-            <h1 className="font-bold text-lg">{language === 'vi' ? 'Báo SOS hộ người thân' : 'Remote SOS for Family'}</h1>
-            <p className="text-xs text-muted-foreground">{language === 'vi' ? 'Gửi từ nơi an toàn' : 'Send from safe location'}</p>
-          </div>
-        </div>
-      </header>
-
-      <main className="p-4 space-y-4">
-        <div className="p-3 rounded-xl bg-warning/10 border border-warning/30">
-          <div className="flex items-start gap-2">
-            <Info className="w-5 h-5 text-warning mt-0.5 flex-shrink-0" />
-            <p className="text-sm text-warning">
-              {language === 'vi'
-                ? 'Đây là báo cáo hỗ trợ, không thay thế cứu hộ chính thức (113/114/115).'
-                : 'This is a support report, not a replacement for official rescue (113/114/115).'}
-            </p>
-          </div>
-        </div>
-
-        {/* Person Info */}
-        <div className="tactical-card space-y-4">
-          <div className="flex items-center gap-2 text-sm font-medium">
-            <User className="w-4 h-4 text-primary" />
-            {language === 'vi' ? 'Thông tin người cần cứu' : 'Person Information'}
-          </div>
-          <input type="text" value={personName} onChange={(e) => setPersonName(e.target.value)}
-            placeholder={language === 'vi' ? 'Họ tên *' : 'Full name *'}
-            className="w-full px-3 py-3 bg-secondary rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary" />
-          <input type="tel" value={personPhone} onChange={(e) => setPersonPhone(e.target.value)}
-            placeholder={language === 'vi' ? 'Số điện thoại' : 'Phone number'}
-            className="w-full px-3 py-2 bg-secondary rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary" />
-        </div>
-
-        {/* Address + Province + Location */}
-        <div className="tactical-card space-y-3">
-          <div className="flex items-center gap-2 text-sm font-medium">
-            <MapPin className="w-4 h-4 text-destructive" />
-            {language === 'vi' ? 'Địa chỉ / vị trí nạn nhân' : 'Victim address / location'}
-          </div>
-          <textarea value={address} onChange={(e) => setAddress(e.target.value)}
-            placeholder={language === 'vi' ? 'Địa chỉ chi tiết hoặc mô tả vị trí...' : 'Detailed address or location description...'}
-            className="w-full h-16 px-3 py-2 bg-secondary rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary" />
-
-          {/* Province dropdown */}
-          <div className="relative">
-            <input type="text" value={provinceSearch} onChange={(e) => { setProvinceSearch(e.target.value); setShowProvinceDropdown(true); }} onFocus={() => setShowProvinceDropdown(true)}
-              placeholder={language === 'vi' ? 'Tỉnh/Thành phố * (bắt buộc)' : 'Province * (required)'}
-              className="w-full px-3 py-2 bg-secondary rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
-            {showProvinceDropdown && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded-lg shadow-lg max-h-40 overflow-y-auto z-30">
-                {filteredProvinces.slice(0, 15).map(p => (
-                  <button key={p} onClick={() => { setProvince(p); setProvinceSearch(p); setShowProvinceDropdown(false); }}
-                    className={`w-full text-left px-3 py-2 text-sm hover:bg-secondary ${province === p ? 'bg-primary/10 font-medium' : ''}`}>{p}</button>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Get Location button */}
-          <div className="flex items-center gap-2">
-            <button onClick={handleGetLocation} disabled={geoLoading}
-              className="flex items-center gap-2 px-4 py-2.5 bg-accent/20 text-accent rounded-lg text-sm font-medium disabled:opacity-50">
-              {geoLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <MapPin className="w-4 h-4" />}
-              {language === 'vi' ? 'Lấy vị trí GPS' : 'Get GPS Location'}
-            </button>
-            {victimLocation && (
-              <span className="text-xs font-mono text-muted-foreground">
-                {victimLocation.lat.toFixed(4)}, {victimLocation.lng.toFixed(4)}
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Urgency */}
-        <div className="tactical-card space-y-3">
-          <div className="flex items-center gap-2 text-sm font-medium">
-            <AlertTriangle className="w-4 h-4 text-warning" />
-            {language === 'vi' ? 'Mức độ khẩn cấp' : 'Urgency Level'}
-          </div>
-          <div className="grid grid-cols-4 gap-2">
-            {urgencyLevels.map((level) => (
-              <button key={level.id} onClick={() => setUrgency(level.id)}
-                className={`py-2 px-1 rounded-lg text-xs font-bold transition-all ${urgency === level.id ? `${level.color} text-white` : 'bg-secondary text-muted-foreground'}`}>
-                {language === 'vi' ? level.labelVi : level.labelEn}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Needs */}
-        <div className="tactical-card">
-          <NeedTags selectedTags={selectedNeeds} onTagsChange={setSelectedNeeds} otherNote="" onOtherNoteChange={() => {}} />
-        </div>
-
-        {/* Note */}
-        <div className="tactical-card space-y-3">
-          <label className="text-sm font-medium">{language === 'vi' ? 'Ghi chú ngắn' : 'Short note'}</label>
-          <div className="relative">
-            <textarea value={note} onChange={(e) => setNote(e.target.value.slice(0, maxNoteLength))}
-              placeholder={language === 'vi' ? 'Mô tả ngắn tình huống...' : 'Brief description...'}
-              className="w-full h-16 px-3 py-2 bg-secondary rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary" />
-            <span className="absolute bottom-2 right-2 text-xs text-muted-foreground">{note.length}/{maxNoteLength}</span>
-          </div>
-        </div>
-
-        {/* Submit */}
-        <motion.button onClick={handleSubmit} whileTap={{ scale: 0.98 }}
-          className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold text-lg flex items-center justify-center gap-2">
-          <Send className="w-5 h-5" />
-          {isOnline ? (language === 'vi' ? 'GỬI BÁO CÁO' : 'SEND REPORT') : (language === 'vi' ? 'TẠO BÁO CÁO' : 'CREATE REPORT')}
-        </motion.button>
-
-        <div className={`text-center text-xs py-2 rounded-lg ${isOnline ? 'bg-[hsl(var(--success))]/20 text-[hsl(var(--success))]' : 'bg-warning/20 text-warning'}`}>
-          {isOnline
-            ? (language === 'vi' ? '🟢 Có mạng - Báo cáo sẽ được gửi ngay' : '🟢 Online - Report will be sent immediately')
-            : (language === 'vi' ? '🟡 Ngoại tuyến - Sao chép gửi qua Zalo/SMS' : '🟡 Offline - Copy and send via messaging')}
-        </div>
-      </main>
-    </div>
-  );
-}
-````
-
 ## File: src/pages/RescueDashboard.tsx
 ````typescript
 import { useEffect, useState } from 'react';
@@ -19154,1259 +18514,6 @@ export default function RescueLogin() {
           <Link to="/register-rescue/status" className="text-xs text-muted-foreground">Tra cứu trạng thái đăng ký</Link>
         </div>
       </div>
-    </div>
-  );
-}
-````
-
-## File: src/pages/RescueMode.tsx
-````typescript
-import { useState, useMemo, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Inbox, MapIcon, Users2, Layers, Settings as SettingsIcon,
-  ArrowLeft, RefreshCw, Download, Phone, Navigation, CheckCircle2,
-  AlertTriangle, X, Shield, Send, Plus, MapPin, Loader2,
-  Eye, UserPlus, Clock, ChevronRight, Copy, MoreVertical,
-  XCircle, Flag, Truck, Target, Search, PhoneCall, FileWarning,
-  Timer, Ban, LogOut, HeartHandshake
-} from 'lucide-react';
-import commandMapImg from '@/assets/command-map.jpg';
-import RescueMap from '@/components/RescueMap';
-import { useApp } from '@/contexts/AppContext';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'sonner';
-import { v4 as uuidv4 } from 'uuid';
-import { provinces } from '@/lib/provinces';
-import {
-  seedDemoData, getCases, saveCases, getTeams, saveTeams, getZones, saveZones,
-  getLogs, addLog, updateCaseStatus, assignTeamToCase, getZoneStats,
-  haversineKm, estimateETA, simulateTeamMovement,
-  caseStatusMeta, severityMeta, teamStatusMeta, pipelineFilters, filterCasesByPipeline,
-  type SOSCase, type CaseStatus, type CaseSeverity, type RescueTeamAccount,
-  type Zone, type TeamStatus, type CaseLog, type PipelineFilterKey,
-} from '@/lib/commandCenter';
-import {
-  getRegistrations, approveRegistration, rejectRegistration,
-  teamTypeLabels, vehicleTypeLabels, availabilityLabels,
-  type RescueTeamRegistration, type RegistrationStatus,
-} from '@/lib/rescueRegistration';
-import {
-  getStormZones, seedStormZones, addStormZone, updateStormZone, deleteStormZone,
-  type StormZone,
-} from '@/lib/stormZones';
-import {
-  getRelativeReports, acceptRelativeReport, rejectRelativeReport, resetRelativeReview,
-  simulateRelativeReport, urgencyLabels, urgencyToSeverity,
-  type RelativeReport,
-} from '@/lib/relativeReports';
-
-type CCTab = 'cases' | 'map' | 'teams' | 'zones' | 'relatives';
-
-function timeAgo(ts: number, vi: boolean): string {
-  const diff = (Date.now() - ts) / 60000;
-  if (diff < 1) return vi ? 'vừa xong' : 'just now';
-  if (diff < 60) return `${Math.floor(diff)} ${vi ? 'phút trước' : 'min ago'}`;
-  if (diff < 1440) return `${Math.floor(diff / 60)}h ${vi ? 'trước' : 'ago'}`;
-  return `${Math.floor(diff / 1440)}d`;
-}
-
-export default function RescueMode() {
-  const { language, updateAppSettings } = useApp();
-  const navigate = useNavigate();
-  const vi = language === 'vi';
-
-  // Auth guard: require COMMAND login
-  useEffect(() => {
-    const authed = sessionStorage.getItem('flooded_command_auth');
-    if (!authed) { navigate('/command-login'); return; }
-  }, [navigate]);
-
-  // Seed on mount
-  useEffect(() => { seedDemoData(); seedStormZones(); }, []);
-
-  // Simulate team movement
-  useEffect(() => {
-    const iv = setInterval(simulateTeamMovement, 5000);
-    return () => clearInterval(iv);
-  }, []);
-
-  const [tab, setTab] = useState<CCTab>('cases');
-  const [cases, setCases] = useState<SOSCase[]>(getCases);
-  const [teams, setTeamsState] = useState<RescueTeamAccount[]>(getTeams);
-  const [zones, setZonesState] = useState<Zone[]>(getZones);
-  const [logs, setLogs] = useState<CaseLog[]>(getLogs);
-  const [stormZones, setStormZonesState] = useState<StormZone[]>(getStormZones);
-  const [relativeReports, setRelativeReports] = useState<RelativeReport[]>(getRelativeReports);
-
-  // Refresh from storage
-  const refresh = useCallback(() => {
-    setCases(getCases());
-    setTeamsState(getTeams());
-    setZonesState(getZones());
-    setLogs(getLogs());
-    setStormZonesState(getStormZones());
-    setRelativeReports(getRelativeReports());
-  }, []);
-
-  // Auto-refresh every 5s
-  useEffect(() => { const iv = setInterval(refresh, 5000); return () => clearInterval(iv); }, [refresh]);
-
-  // Filters
-  const [pipelineFilter, setPipelineFilter] = useState<PipelineFilterKey>('ALL');
-  const [severityFilter, setSeverityFilter] = useState<CaseSeverity | 'ALL'>('ALL');
-  const [searchText, setSearchText] = useState('');
-
-  // Detail drawer
-  const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
-  const [showTeamForm, setShowTeamForm] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-  const [confirmAction, setConfirmAction] = useState<{ label: string; description: string; onConfirm: () => void } | null>(null);
-  const [showRegistrations, setShowRegistrations] = useState(false);
-  const [registrations, setRegistrations] = useState<RescueTeamRegistration[]>(getRegistrations);
-  const [selectedRegId, setSelectedRegId] = useState<string | null>(null);
-  const [rejectReason, setRejectReason] = useState('');
-  const [showRejectForm, setShowRejectForm] = useState(false);
-  const [approvedCreds, setApprovedCreds] = useState<{ teamCode: string; teamName: string } | null>(null);
-  // Storm zone management
-  const [showStormEditor, setShowStormEditor] = useState(false);
-  const [newStormName, setNewStormName] = useState('');
-  const [newStormCoords, setNewStormCoords] = useState('');
-  // Coordination modal (approved teams)
-  const [showCoordination, setShowCoordination] = useState(false);
-  // Relative (remote) SOS reports review
-  const [showRelativeReports, setShowRelativeReports] = useState(false);
-  const [relFilter, setRelFilter] = useState<'PENDING' | 'ACCEPTED' | 'REJECTED'>('PENDING');
-  const [relRejectId, setRelRejectId] = useState<string | null>(null);
-  const [relRejectReason, setRelRejectReason] = useState('');
-
-  // Filtered & sorted cases: RED first, then oldest first
-  const filteredCases = useMemo(() => {
-    let r = [...cases];
-    r = filterCasesByPipeline(r, pipelineFilter);
-    if (severityFilter !== 'ALL') r = r.filter(c => c.severity === severityFilter);
-    if (searchText) {
-      const q = searchText.toLowerCase();
-      r = r.filter(c => c.reporterName.toLowerCase().includes(q) || c.locationText.toLowerCase().includes(q) || (c.victimName || '').toLowerCase().includes(q) || c.id.includes(q));
-    }
-    const sev = { RED: 0, ORANGE: 1, GREEN: 2 };
-    r.sort((a, b) => sev[a.severity] - sev[b.severity] || a.createdAt - b.createdAt);
-    return r;
-  }, [cases, pipelineFilter, severityFilter, searchText]);
-
-  // Stats
-  const stats = useMemo(() => ({
-    total: cases.length,
-    red: cases.filter(c => c.severity === 'RED').length,
-    orange: cases.filter(c => c.severity === 'ORANGE').length,
-    green: cases.filter(c => c.severity === 'GREEN').length,
-    waitSafe: cases.filter(c => c.status === 'WAITING_SAFE_CONDITIONS').length,
-    active: cases.filter(c => !['CLOSED', 'RESCUED', 'DUPLICATE', 'FALSE_REPORT'].includes(c.status)).length,
-  }), [cases]);
-
-  // Actions
-  const doUpdateStatus = (caseId: string, status: CaseStatus, note?: string) => {
-    updateCaseStatus(caseId, status, note);
-    refresh();
-    toast.success(`${caseStatusMeta[status][vi ? 'vi' : 'en']}`);
-  };
-
-  const doAssign = (caseId: string, teamId: string) => {
-    assignTeamToCase(caseId, teamId);
-    refresh();
-    toast.success(vi ? 'Đã phân công' : 'Assigned');
-  };
-
-  const doApproveRegistration = (id: string) => {
-    const creds = approveRegistration(id);
-    if (creds) {
-      setApprovedCreds(creds);
-      setRegistrations(getRegistrations());
-      refresh();
-      toast.success(vi ? 'Đã duyệt — chuyển sang Điều phối cứu hộ để triển khai' : 'Approved — go to Coordination to dispatch');
-    }
-  };
-
-  // Dispatch approved team into active teams list
-  const doDispatchTeam = (reg: RescueTeamRegistration) => {
-    const t = getTeams();
-    // Check if already dispatched
-    if (t.find(x => x.name === reg.teamName && x.leaderPhone === reg.leaderPhone)) {
-      toast.error(vi ? 'Đội này đã được điều phối rồi' : 'Team already dispatched');
-      return;
-    }
-    const nt: RescueTeamAccount = {
-      id: uuidv4(), name: reg.teamName, leaderName: reg.leaderName, leaderPhone: reg.leaderPhone,
-      membersCount: reg.membersCount, vehicleType: reg.vehicleTypes.map(v => vehicleTypeLabels[v]).join(', '),
-      username: reg.leaderName, password: reg.leaderPhone,
-      status: 'AVAILABLE', lastUpdated: Date.now(),
-    };
-    t.push(nt);
-    saveTeams(t);
-    refresh();
-    toast.success(vi ? `Đã điều phối đội "${reg.teamName}" vào danh sách` : `Dispatched "${reg.teamName}"`);
-  };
-
-  const doRejectRegistration = (id: string) => {
-    if (!rejectReason.trim()) { toast.error(vi ? 'Vui lòng nhập lý do' : 'Please enter reason'); return; }
-    rejectRegistration(id, rejectReason.trim());
-    setRegistrations(getRegistrations());
-    setShowRejectForm(false);
-    setRejectReason('');
-    toast.success(vi ? 'Đã từ chối hồ sơ' : 'Registration rejected');
-  };
-
-  const pendingRegs = useMemo(() => registrations.filter(r => r.status === 'PENDING'), [registrations]);
-
-  // ===== Relative (remote) SOS reports =====
-  const pendingRelReports = useMemo(() => relativeReports.filter(r => (r.review ?? 'PENDING') === 'PENDING'), [relativeReports]);
-  const filteredRelReports = useMemo(
-    () => relativeReports.filter(r => (r.review ?? 'PENDING') === relFilter),
-    [relativeReports, relFilter]
-  );
-
-  const doAcceptRelative = (id: string) => {
-    const created = acceptRelativeReport(id);
-    setConfirmAction(null);
-    refresh();
-    if (created) {
-      // Move the approved report straight into SOS Cases for dispatching
-      setShowRelativeReports(false);
-      setRelRejectId(null);
-      setPipelineFilter('ALL');
-      setSeverityFilter('ALL');
-      setSearchText('');
-      setTab('cases');
-      setSelectedCaseId(created.id);
-      toast.success(vi ? 'Đã tạo ca SOS từ hồ sơ báo hộ — sẵn sàng phân công đội' : 'SOS case created — ready to assign a team');
-    } else {
-      toast.error(vi ? 'Không thể xử lý hồ sơ này' : 'Cannot process this report');
-    }
-  };
-
-
-  const doRejectRelative = () => {
-    if (!relRejectId) return;
-    if (!relRejectReason.trim()) { toast.error(vi ? 'Vui lòng nhập lý do' : 'Please enter a reason'); return; }
-    rejectRelativeReport(relRejectId, relRejectReason.trim());
-    setRelRejectId(null);
-    setRelRejectReason('');
-    refresh();
-    toast.success(vi ? 'Đã từ chối hồ sơ' : 'Report rejected');
-  };
-
-  const doSimulateRelative = () => {
-    const r = simulateRelativeReport();
-    refresh();
-    setRelFilter('PENDING');
-    toast.success(vi ? `Mô phỏng: hồ sơ báo hộ "${r.personName}"` : `Simulated relative report: ${r.personName}`);
-  };
-
-  const doTeamStatus = (teamId: string, status: TeamStatus) => {
-    const t = getTeams();
-    const i = t.findIndex(x => x.id === teamId);
-    if (i === -1) return;
-    t[i].status = status;
-    t[i].lastUpdated = Date.now();
-    if (status === 'AVAILABLE' || status === 'OFFLINE') { t[i].assignedCaseId = undefined; }
-    saveTeams(t);
-    refresh();
-  };
-
-  const exportData = (fmt: 'csv' | 'json') => {
-    const data = { cases, teams, zones, logs };
-    let content: string, filename: string, mime: string;
-    if (fmt === 'json') {
-      content = JSON.stringify(data, null, 2); filename = 'command-center-export.json'; mime = 'application/json';
-    } else {
-      const h = ['ID', 'Severity', 'Status', 'Reporter', 'Phone', 'Location', 'People', 'Team', 'Created'];
-      const rows = cases.map(c => [c.id.slice(0, 8), c.severity, c.status, c.reporterName, c.reporterPhone, `"${c.locationText}"`, c.peopleCount, teams.find(t => t.id === c.assignedTeamId)?.name || '', new Date(c.createdAt).toISOString()]);
-      content = [h.join(','), ...rows.map(r => r.join(','))].join('\n'); filename = 'command-center-export.csv'; mime = 'text/csv';
-    }
-    const blob = new Blob([content], { type: mime }); const url = URL.createObjectURL(blob);
-    const a = document.createElement('a'); a.href = url; a.download = filename; a.click(); URL.revokeObjectURL(url);
-  };
-
-  const handleDisable = () => { sessionStorage.removeItem('flooded_command_auth'); updateAppSettings({ rescueMode: false }); navigate('/settings'); };
-  const handleCommandLogout = () => { sessionStorage.removeItem('flooded_command_auth'); navigate('/command-login'); };
-
-  const selectedCase = cases.find(c => c.id === selectedCaseId);
-  const caseLogs = selectedCaseId ? logs.filter(l => l.caseId === selectedCaseId).sort((a, b) => b.timestamp - a.timestamp) : [];
-
-  const tabs: { id: CCTab; icon: typeof Inbox; vi: string; en: string; badge?: number }[] = [
-    { id: 'cases', icon: Inbox, vi: 'SOS Cases', en: 'SOS Cases', badge: stats.active },
-    { id: 'map', icon: MapIcon, vi: 'Bản đồ', en: 'Map' },
-    { id: 'relatives', icon: HeartHandshake, vi: 'Báo hộ', en: 'Relatives', badge: pendingRelReports.length },
-    { id: 'teams', icon: Users2, vi: 'Đội', en: 'Teams', badge: teams.filter(t => t.status === 'AVAILABLE').length },
-    { id: 'zones', icon: Layers, vi: 'Khu vực', en: 'Zones' },
-  ];
-
-
-  // ========== CASE DETAIL DRAWER ==========
-  const renderCaseDrawer = () => {
-    if (!selectedCase) return null;
-    const sev = severityMeta[selectedCase.severity];
-    const st = caseStatusMeta[selectedCase.status];
-    const assignedTeam = teams.find(t => t.id === selectedCase.assignedTeamId);
-    const availableTeams = teams.filter(t => t.status === 'AVAILABLE');
-    const zone = zones.find(z => z.id === selectedCase.zoneId);
-
-    return (
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-end sm:items-center justify-center" onClick={() => setSelectedCaseId(null)}>
-        <motion.div initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }} className="bg-card w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl" onClick={e => e.stopPropagation()}>
-          {/* Header */}
-          <div className="sticky top-0 bg-card border-b border-border p-4 flex items-center justify-between z-10 rounded-t-2xl">
-            <div className="flex items-center gap-2">
-              <div className={`w-4 h-4 rounded-full ${sev.color}`} />
-              <span className="font-bold text-sm">{selectedCase.severity === 'RED' ? (vi ? 'Cần cứu ngay' : 'Critical') : selectedCase.severity === 'ORANGE' ? (vi ? 'Nguy cơ cao' : 'High Risk') : (vi ? 'Tạm ổn' : 'Stable')}</span>
-              <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${st.color}`}>{st[vi ? 'vi' : 'en']}</span>
-            </div>
-            <button onClick={() => setSelectedCaseId(null)} className="p-1.5 rounded-lg bg-secondary"><X className="w-4 h-4" /></button>
-          </div>
-
-          <div className="p-4 space-y-4">
-            {/* Basic info */}
-            <div className="grid grid-cols-2 gap-3 text-sm">
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Người báo' : 'Reporter'}</p>
-                <p className="font-bold">{selectedCase.reporterName}</p>
-                <p className="text-xs text-muted-foreground flex items-center gap-1"><Phone className="w-3 h-3" />{selectedCase.reporterPhone}</p>
-              </div>
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Nguồn' : 'Source'}</p>
-                <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${selectedCase.sourceType === 'citizen' ? 'bg-accent/20 text-accent' : 'bg-warning/20 text-warning'}`}>
-                  {selectedCase.sourceType === 'citizen' ? (vi ? 'Người dân' : 'Citizen') : (vi ? 'Người thân' : 'Relative')}
-                </span>
-              </div>
-              {selectedCase.victimName && (
-                <div className="col-span-2">
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Nạn nhân' : 'Victim'}</p>
-                  <p className="font-bold">{selectedCase.victimName}</p>
-                </div>
-              )}
-              <div className="col-span-2">
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Vị trí' : 'Location'}</p>
-                <p className="font-medium text-sm">{selectedCase.locationText}</p>
-                {zone && <p className="text-xs text-muted-foreground">{zone.name}, {zone.province}</p>}
-                {selectedCase.lat && <p className="text-[10px] font-mono text-muted-foreground">{selectedCase.lat.toFixed(5)}, {selectedCase.lng?.toFixed(5)}</p>}
-              </div>
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Số người' : 'People'}</p>
-                <p className="text-2xl font-bold">{selectedCase.peopleCount}</p>
-              </div>
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Thời gian' : 'Time'}</p>
-                <p className="text-xs font-mono">{timeAgo(selectedCase.createdAt, vi)}</p>
-                <p className="text-[10px] text-muted-foreground">{new Date(selectedCase.createdAt).toLocaleString()}</p>
-              </div>
-            </div>
-
-            {selectedCase.vulnerableGroups && (
-              <div className="p-2.5 rounded-lg bg-destructive/10 border border-destructive/30">
-                <p className="text-[10px] text-destructive uppercase tracking-wider font-bold mb-1">{vi ? 'Nhóm dễ tổn thương' : 'Vulnerable Groups'}</p>
-                <p className="text-sm text-destructive">{selectedCase.vulnerableGroups}</p>
-              </div>
-            )}
-
-            {selectedCase.description && (
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{vi ? 'Mô tả' : 'Description'}</p>
-                <p className="text-sm">{selectedCase.description}</p>
-              </div>
-            )}
-
-            {selectedCase.needTags && selectedCase.needTags.length > 0 && (
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{vi ? 'Nhu cầu' : 'Needs'}</p>
-                <div className="flex flex-wrap gap-1">{selectedCase.needTags.map((t, i) => <span key={i} className="px-2 py-0.5 rounded bg-secondary text-xs">{t}</span>)}</div>
-              </div>
-            )}
-
-            {/* Assigned team */}
-            {assignedTeam && (
-              <div className="p-3 rounded-lg border border-accent/30 bg-accent/5">
-                <p className="text-[10px] text-accent uppercase tracking-wider font-bold mb-1">{vi ? 'Đội được phân công' : 'Assigned Team'}</p>
-                <p className="font-bold text-sm">{assignedTeam.name}</p>
-                <p className="text-xs text-muted-foreground">{assignedTeam.leaderName} • {assignedTeam.vehicleType}</p>
-                {assignedTeam.currentLocation && selectedCase.lat && (
-                  <p className="text-xs text-accent mt-1">
-                    📍 {haversineKm(assignedTeam.currentLocation.lat, assignedTeam.currentLocation.lng, selectedCase.lat, selectedCase.lng!).toFixed(1)} km
-                    — ETA: {estimateETA(haversineKm(assignedTeam.currentLocation.lat, assignedTeam.currentLocation.lng, selectedCase.lat, selectedCase.lng!))}
-                  </p>
-                )}
-              </div>
-            )}
-
-            {/* Quick status actions */}
-            <div>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">{vi ? 'Cập nhật trạng thái' : 'Update Status'}</p>
-              <div className="grid grid-cols-3 gap-1.5">
-                {selectedCase.status === 'NEW' && (
-                  <button onClick={() => setConfirmAction({ label: vi ? 'Xác minh' : 'Verify', description: vi ? 'Bắt đầu xác minh ca SOS này?' : 'Start verifying this SOS case?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'VERIFYING', vi ? 'Bắt đầu xác minh' : 'Start verifying'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-warning/20 text-warning text-xs font-bold flex items-center justify-center gap-1"><Eye className="w-3 h-3" />{vi ? 'Xác minh' : 'Verify'}</button>
-                )}
-                {(selectedCase.status === 'VERIFYING') && (
-                  <button onClick={() => setConfirmAction({ label: vi ? 'Đã xác minh' : 'Verified', description: vi ? 'Xác nhận ca này đã được xác minh?' : 'Confirm this case is verified?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'VERIFIED'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-accent/20 text-accent text-xs font-bold flex items-center justify-center gap-1"><CheckCircle2 className="w-3 h-3" />{vi ? 'Đã xác minh' : 'Verified'}</button>
-                )}
-                {(['NEW', 'VERIFIED', 'WAITING_FOR_ASSIGNMENT'] as CaseStatus[]).includes(selectedCase.status) && (
-                  <button onClick={() => setConfirmAction({ label: vi ? 'Chờ an toàn' : 'Wait Safe', description: vi ? 'Chuyển ca sang trạng thái chờ điều kiện an toàn?' : 'Set case to waiting for safe conditions?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'WAITING_SAFE_CONDITIONS'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-secondary text-muted-foreground text-xs font-bold flex items-center justify-center gap-1"><Timer className="w-3 h-3" />{vi ? 'Chờ an toàn' : 'Wait Safe'}</button>
-                )}
-                {(['ASSIGNED', 'TEAM_ACCEPTED'] as CaseStatus[]).includes(selectedCase.status) && (
-                  <button onClick={() => setConfirmAction({ label: vi ? 'Đang đến' : 'En Route', description: vi ? 'Xác nhận đội đang trên đường đến?' : 'Confirm team is en route?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'IN_PROGRESS'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-warning/20 text-warning text-xs font-bold flex items-center justify-center gap-1"><Truck className="w-3 h-3" />{vi ? 'Đang đến' : 'En Route'}</button>
-                )}
-                {(['IN_PROGRESS'] as CaseStatus[]).includes(selectedCase.status) && (
-                  <button onClick={() => setConfirmAction({ label: vi ? 'Đã cứu' : 'Rescued', description: vi ? 'Xác nhận ca này đã được cứu thành công?' : 'Confirm this case has been rescued?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'RESCUED'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-success/20 text-success text-xs font-bold flex items-center justify-center gap-1"><CheckCircle2 className="w-3 h-3" />{vi ? 'Đã cứu' : 'Rescued'}</button>
-                )}
-                <button onClick={() => setConfirmAction({ label: vi ? 'Báo trùng' : 'Duplicate', description: vi ? 'Đánh dấu ca này là TRÙNG LẶP? Hành động không thể hoàn tác.' : 'Mark this case as DUPLICATE? This cannot be undone.', onConfirm: () => { doUpdateStatus(selectedCase.id, 'DUPLICATE'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center gap-1"><Copy className="w-3 h-3" />{vi ? 'Trùng' : 'Dup'}</button>
-                <button onClick={() => setConfirmAction({ label: vi ? 'Báo giả' : 'False Report', description: vi ? 'Đánh dấu ca này là BÁO GIẢ? Hành động không thể hoàn tác.' : 'Mark this case as FALSE REPORT? This cannot be undone.', onConfirm: () => { doUpdateStatus(selectedCase.id, 'FALSE_REPORT'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center gap-1"><Ban className="w-3 h-3" />{vi ? 'Báo giả' : 'False'}</button>
-                <button onClick={() => setConfirmAction({ label: vi ? 'Đóng ca' : 'Close Case', description: vi ? 'Đóng ca SOS này? Hành động không thể hoàn tác.' : 'Close this SOS case? This cannot be undone.', onConfirm: () => { doUpdateStatus(selectedCase.id, 'CLOSED'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center gap-1"><XCircle className="w-3 h-3" />{vi ? 'Đóng' : 'Close'}</button>
-              </div>
-            </div>
-
-            {/* Assign team */}
-            {!assignedTeam && availableTeams.length > 0 && (
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">{vi ? 'Phân công đội' : 'Assign Team'}</p>
-                <div className="space-y-1.5">
-                  {availableTeams.map(t => {
-                    const dist = t.currentLocation && selectedCase.lat ? haversineKm(t.currentLocation.lat, t.currentLocation.lng, selectedCase.lat, selectedCase.lng!) : null;
-                    return (
-                      <button key={t.id} onClick={() => setConfirmAction({ label: vi ? `Phân công ${t.name}` : `Assign ${t.name}`, description: vi ? `Phân công đội "${t.name}" cho ca SOS này?` : `Assign team "${t.name}" to this SOS case?`, onConfirm: () => { doAssign(selectedCase.id, t.id); setConfirmAction(null); setSelectedCaseId(null); } })}
-                        className="w-full p-2.5 rounded-lg bg-secondary flex items-center justify-between hover:bg-accent/10 transition-colors">
-                        <div className="text-left">
-                          <p className="font-medium text-sm">{t.name}</p>
-                          <p className="text-[10px] text-muted-foreground">{t.leaderName} • {t.vehicleType} • {t.membersCount}{vi ? ' người' : ' ppl'}</p>
-                        </div>
-                        <div className="text-right">
-                          {dist !== null && (
-                            <>
-                              <p className="text-xs font-mono text-accent">{dist.toFixed(1)} km</p>
-                              <p className="text-[10px] text-muted-foreground">ETA: {estimateETA(dist)}</p>
-                            </>
-                          )}
-                          <ChevronRight className="w-4 h-4 text-muted-foreground inline" />
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {/* Directions */}
-            {selectedCase.lat && (
-              <button onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedCase.lat},${selectedCase.lng}`, '_blank')}
-                className="w-full py-2.5 bg-accent/20 text-accent rounded-xl text-sm font-bold flex items-center justify-center gap-1">
-                <Navigation className="w-4 h-4" />{vi ? 'Mở bản đồ / Chỉ đường' : 'Open Map / Directions'}
-              </button>
-            )}
-
-            {/* Timeline log */}
-            <div>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">{vi ? 'Nhật ký' : 'Timeline'}</p>
-              {caseLogs.length === 0 ? (
-                <p className="text-xs text-muted-foreground">{vi ? 'Chưa có thao tác' : 'No actions yet'}</p>
-              ) : (
-                <div className="space-y-1 max-h-40 overflow-y-auto">
-                  {caseLogs.map(l => (
-                    <div key={l.id} className="flex items-start gap-2 text-xs p-1.5 rounded bg-secondary/50">
-                      <Clock className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
-                      <div className="flex-1">
-                        <span className="font-medium">{l.action}</span>
-                        {l.note && <span className="text-muted-foreground"> — {l.note}</span>}
-                        <p className="text-[10px] text-muted-foreground font-mono">{new Date(l.timestamp).toLocaleString()}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    );
-  };
-
-  // ========== RENDER ==========
-  return (
-    <div className="min-h-screen bg-background pb-20">
-      {/* Top bar */}
-      <header className="sticky top-0 bg-background/95 backdrop-blur border-b border-primary/30 z-10">
-        <div className="flex items-center gap-3 p-3">
-          <div className="w-9 h-9 rounded-xl bg-primary/20 flex items-center justify-center">
-            <Shield className="w-5 h-5 text-primary" />
-          </div>
-          <div className="flex-1">
-            <h1 className="font-bold text-sm tracking-wider">{vi ? 'TRUNG TÂM ĐIỀU PHỐI' : 'COMMAND CENTER'}</h1>
-            <p className="text-[10px] text-muted-foreground">{vi ? 'COMMAND Dashboard • Bảng điều phối cứu hộ' : 'COMMAND Dashboard • Rescue Coordination'}</p>
-          </div>
-          <button onClick={() => setShowSettings(!showSettings)} className="p-2 rounded-lg bg-secondary">
-            <SettingsIcon className="w-4 h-4" />
-          </button>
-        </div>
-
-        {/* Stats bar */}
-        <div className="grid grid-cols-5 gap-1 px-3 pb-2">
-          {[
-            { label: vi ? 'Tổng' : 'Total', val: stats.total, bg: 'bg-secondary', sev: 'ALL' as const },
-            { label: vi ? 'Cần cứu ngay' : 'Critical', val: stats.red, bg: 'bg-destructive/20', sev: 'RED' as const },
-            { label: vi ? 'Nguy cơ cao' : 'High Risk', val: stats.orange, bg: 'bg-warning/20', sev: 'ORANGE' as const },
-            { label: vi ? 'Tạm ổn' : 'Stable', val: stats.green, bg: 'bg-success/20', sev: 'GREEN' as const },
-            { label: vi ? 'Chờ AT' : 'Wait', val: stats.waitSafe, bg: 'bg-secondary', sev: 'ALL' as const },
-          ].map(s => (
-            <button key={s.label} onClick={() => s.label !== (vi ? 'Chờ AT' : 'Wait') ? setSeverityFilter(s.sev === severityFilter ? 'ALL' : s.sev) : null}
-              className={`p-1.5 rounded-lg ${s.bg} text-center transition-all ${severityFilter === s.sev && s.sev !== 'ALL' ? 'ring-2 ring-primary' : ''}`}>
-              <p className="text-lg font-bold leading-none">{s.val}</p>
-              <p className="text-[9px] text-muted-foreground">{s.label}</p>
-            </button>
-          ))}
-        </div>
-      </header>
-
-      {/* Settings panel */}
-      <AnimatePresence>
-        {showSettings && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden bg-card border-b border-border">
-            <div className="p-4 space-y-3">
-              <div className="flex gap-2">
-                <button onClick={() => exportData('csv')} className="flex-1 py-2 bg-secondary rounded-lg text-sm font-medium flex items-center justify-center gap-1"><Download className="w-4 h-4" />CSV</button>
-                <button onClick={() => exportData('json')} className="flex-1 py-2 bg-secondary rounded-lg text-sm font-medium flex items-center justify-center gap-1"><Download className="w-4 h-4" />JSON</button>
-              </div>
-              <p className="text-xs text-muted-foreground">{vi ? `Nhật ký: ${logs.length} thao tác` : `Logs: ${logs.length} actions`}</p>
-              <button onClick={handleCommandLogout} className="w-full py-2.5 bg-warning/20 text-warning rounded-lg text-sm font-bold flex items-center justify-center gap-1"><LogOut className="w-4 h-4" />{vi ? 'Đăng xuất COMMAND' : 'Logout COMMAND'}</button>
-              <button onClick={handleDisable} className="w-full py-2.5 bg-destructive/20 text-destructive rounded-lg text-sm font-bold">{vi ? 'Tắt chế độ cứu hộ' : 'Disable Rescue Mode'}</button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Content */}
-      <main className="px-3 pt-2 pb-4">
-        {/* ===== TAB: SOS CASES ===== */}
-        {tab === 'cases' && (
-          <div className="space-y-2">
-            {/* Search */}
-            <div className="relative">
-              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-              <input type="text" value={searchText} onChange={e => setSearchText(e.target.value)} placeholder={vi ? 'Tìm tên, vị trí, ID...' : 'Search name, location, ID...'}
-                className="w-full pl-9 pr-3 py-2 bg-secondary rounded-lg text-sm focus:outline-none" />
-            </div>
-
-            {/* Pipeline filter */}
-            <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-hide">
-              {pipelineFilters.map(f => (
-                <button key={f.key} onClick={() => setPipelineFilter(f.key)} className={`px-2.5 py-1 rounded-lg text-[11px] font-medium whitespace-nowrap transition-all ${pipelineFilter === f.key ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground'}`}>
-                  {vi ? f.vi : f.en}
-                </button>
-              ))}
-            </div>
-
-            {/* Relative (remote) SOS reports inbox */}
-            <div className="tactical-card p-3 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-warning/20 flex items-center justify-center shrink-0">
-                <PhoneCall className="w-4 h-4 text-warning" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-bold text-sm">{vi ? 'Hồ sơ báo SOS hộ người thân' : 'Relative SOS Reports'}</p>
-                <p className="text-[11px] text-muted-foreground">
-                  {pendingRelReports.length > 0
-                    ? (vi ? `${pendingRelReports.length} hồ sơ chờ xác minh` : `${pendingRelReports.length} awaiting review`)
-                    : (vi ? 'Không có hồ sơ chờ xử lý' : 'No pending reports')}
-                </p>
-              </div>
-              <button onClick={() => { setRelativeReports(getRelativeReports()); setTab('relatives'); }}
-                className="relative px-2.5 py-1.5 rounded-lg bg-warning text-warning-foreground text-xs font-bold whitespace-nowrap">
-                {vi ? 'Xử lý' : 'Review'}
-                {pendingRelReports.length > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-[9px] font-bold px-1 rounded-full">{pendingRelReports.length}</span>
-                )}
-              </button>
-            </div>
-
-
-
-            {/* Case list */}
-            {filteredCases.length === 0 ? (
-              <div className="tactical-card p-8 text-center">
-                <Inbox className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                <p className="text-muted-foreground text-sm">{vi ? 'Không có case nào phù hợp' : 'No matching cases'}</p>
-              </div>
-            ) : (
-              filteredCases.map((c, i) => {
-                const sev = severityMeta[c.severity];
-                const st = caseStatusMeta[c.status];
-                const team = teams.find(t => t.id === c.assignedTeamId);
-                return (
-                  <motion.button key={c.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.015 }}
-                    onClick={() => setSelectedCaseId(c.id)} className="tactical-card p-3 w-full text-left space-y-1.5 hover:border-primary/40 transition-colors">
-                    {/* Row 1: severity + source + time */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-1.5">
-                        <div className={`w-3 h-3 rounded-full ${sev.color}`} />
-                        <span className={`text-xs font-bold ${c.severity === 'RED' ? 'text-destructive' : c.severity === 'ORANGE' ? 'text-warning' : 'text-success'}`}>{c.severity === 'RED' ? (vi ? 'Cần cứu ngay' : 'Critical') : c.severity === 'ORANGE' ? (vi ? 'Nguy cơ cao' : 'High Risk') : (vi ? 'Tạm ổn' : 'Stable')}</span>
-                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${c.sourceType === 'citizen' ? 'bg-accent/20 text-accent' : 'bg-warning/20 text-warning'}`}>
-                          {c.sourceType === 'citizen' ? (vi ? 'Dân' : 'Citizen') : (vi ? 'Thân' : 'Relative')}
-                        </span>
-                      </div>
-                      <span className="text-[10px] text-muted-foreground font-mono">{timeAgo(c.createdAt, vi)}</span>
-                    </div>
-                    {/* Row 2: name, phone, people */}
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-medium text-sm">{c.reporterName}{c.victimName ? ` → ${c.victimName}` : ''}</p>
-                        <p className="text-[10px] text-muted-foreground flex items-center gap-1"><Phone className="w-2.5 h-2.5" />{c.reporterPhone}</p>
-                      </div>
-                      <p className="text-lg font-bold">{c.peopleCount}<span className="text-[10px] text-muted-foreground ml-0.5">{vi ? 'người' : 'ppl'}</span></p>
-                    </div>
-                    {/* Row 3: location */}
-                    <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3 flex-shrink-0" />{c.locationText}</p>
-                    {/* Row 4: status + team */}
-                    <div className="flex items-center justify-between">
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${st.color}`}>{st[vi ? 'vi' : 'en']}</span>
-                      {team && <span className="text-[10px] text-accent">🚤 {team.name}</span>}
-                    </div>
-                    {/* Quick actions */}
-                    <div className="flex gap-1 pt-1 border-t border-border">
-                      <button onClick={e => { e.stopPropagation(); window.open(`tel:${c.reporterPhone}`); }} className="px-2 py-1 bg-secondary rounded text-[10px] flex items-center gap-1"><PhoneCall className="w-3 h-3" />{vi ? 'Gọi' : 'Call'}</button>
-                      {c.lat && <button onClick={e => { e.stopPropagation(); window.open(`https://www.google.com/maps?q=${c.lat},${c.lng}`); }} className="px-2 py-1 bg-secondary rounded text-[10px] flex items-center gap-1"><MapIcon className="w-3 h-3" />{vi ? 'Map' : 'Map'}</button>}
-                      {!c.assignedTeamId && c.status !== 'CLOSED' && c.status !== 'RESCUED' && (
-                        <button onClick={e => { e.stopPropagation(); setSelectedCaseId(c.id); }} className="px-2 py-1 bg-accent/20 text-accent rounded text-[10px] flex items-center gap-1"><Users2 className="w-3 h-3" />{vi ? 'Gán đội' : 'Assign'}</button>
-                      )}
-                    </div>
-                  </motion.button>
-                );
-              })
-            )}
-          </div>
-        )}
-
-        {/* ===== TAB: RELATIVE SOS REPORTS (full page) ===== */}
-        {tab === 'relatives' && (
-          <div className="space-y-3">
-            <div className="tactical-card p-3">
-              <p className="font-bold text-sm">{vi ? 'Hồ sơ báo SOS hộ người thân' : 'Relative SOS Reports'}</p>
-              <p className="text-[11px] text-muted-foreground">{vi ? 'Xác minh → tạo ca SOS chính thức' : 'Verify → create official SOS case'}</p>
-              <div className="mt-2 flex items-center justify-between gap-2">
-                <button onClick={() => { setRelativeReports(getRelativeReports()); toast.success(vi ? 'Đã cập nhật hồ sơ mới nhất' : 'Refreshed'); }}
-                  className="flex-1 py-2 rounded-lg bg-secondary text-xs font-bold flex items-center justify-center gap-1.5">
-                  <RefreshCw className="w-3.5 h-3.5" />{vi ? 'Cập nhật mới nhất' : 'Refresh latest'}
-                </button>
-              </div>
-              <button onClick={doSimulateRelative} className="mt-2 text-[10px] text-muted-foreground underline underline-offset-2">
-                {vi ? 'Mô phỏng hồ sơ báo hộ mới (demo)' : 'Simulate a new relative report (demo)'}
-              </button>
-            </div>
-
-            <div className="flex gap-1">
-              {([
-                { k: 'PENDING' as const, vi: 'Chờ xác minh', en: 'Pending' },
-                { k: 'ACCEPTED' as const, vi: 'Đã tạo ca', en: 'Accepted' },
-                { k: 'REJECTED' as const, vi: 'Không duyệt', en: 'Rejected' },
-              ]).map(f => (
-                <button key={f.k} onClick={() => setRelFilter(f.k)}
-                  className={`flex-1 py-1.5 rounded-lg text-[11px] font-bold ${relFilter === f.k ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground'}`}>
-                  {vi ? f.vi : f.en} ({relativeReports.filter(r => (r.review ?? 'PENDING') === f.k).length})
-                </button>
-              ))}
-            </div>
-
-            {filteredRelReports.length === 0 ? (
-              <div className="tactical-card p-8 text-center">
-                <Inbox className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                <p className="text-muted-foreground text-sm">{vi ? 'Không có hồ sơ nào' : 'No reports'}</p>
-              </div>
-            ) : (
-              ([
-                { sev: 'RED' as const, vi: 'Cần cứu ngay', en: 'Critical' },
-                { sev: 'ORANGE' as const, vi: 'Nguy cơ cao', en: 'High Risk' },
-                { sev: 'GREEN' as const, vi: 'Tạm ổn', en: 'Stable' },
-              ]).map(g => {
-                const group = filteredRelReports.filter(r => urgencyToSeverity(r.urgency) === g.sev);
-                if (group.length === 0) return null;
-                return (
-                  <div key={g.sev} className="space-y-2">
-                    <div className="flex items-center gap-2 pt-1">
-                      <div className={`w-3 h-3 rounded-full ${severityMeta[g.sev].color}`} />
-                      <p className={`text-xs font-bold ${g.sev === 'RED' ? 'text-destructive' : g.sev === 'ORANGE' ? 'text-warning' : 'text-success'}`}>
-                        {vi ? g.vi : g.en}
-                      </p>
-                      <span className="text-[10px] text-muted-foreground">({group.length})</span>
-                      <div className="flex-1 h-px bg-border" />
-                    </div>
-                    {group.map(r => (
-                      <div key={r.id} className="tactical-card p-3 space-y-2">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-1.5">
-                            <div className={`w-3 h-3 rounded-full ${severityMeta[urgencyToSeverity(r.urgency)].color}`} />
-                            <span className="text-xs font-bold">{vi ? urgencyLabels[r.urgency].vi : urgencyLabels[r.urgency].en}</span>
-                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-warning/20 text-warning">{vi ? 'Báo hộ' : 'Relative'}</span>
-                          </div>
-                          <span className="text-[10px] text-muted-foreground font-mono">{timeAgo(r.createdAt, vi)}</span>
-                        </div>
-
-                        <div>
-                          <p className="font-bold text-sm">{r.personName}</p>
-                          <p className="text-xs text-muted-foreground flex items-center gap-1"><Phone className="w-3 h-3" />{r.personPhone || '—'}</p>
-                          <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" />{[r.address, r.province].filter(Boolean).join(', ') || (vi ? 'Chưa rõ' : 'Unknown')}</p>
-                          {r.location && <p className="text-[10px] font-mono text-muted-foreground">{r.location.lat.toFixed(5)}, {r.location.lng.toFixed(5)}</p>}
-                        </div>
-
-                        {r.needs && r.needs.length > 0 && (
-                          <div className="flex flex-wrap gap-1">
-                            {r.needs.map(n => <span key={n} className="px-1.5 py-0.5 rounded bg-secondary text-[10px]">{n}</span>)}
-                          </div>
-                        )}
-                        {r.note && <p className="text-xs">{r.note}</p>}
-                        <p className="text-[10px] text-muted-foreground font-mono">ID: {r.id.slice(0, 8).toUpperCase()}</p>
-
-                        {(r.review ?? 'PENDING') === 'PENDING' ? (
-                          relRejectId === r.id ? (
-                            <div className="space-y-2">
-                              <input type="text" value={relRejectReason} onChange={e => setRelRejectReason(e.target.value)}
-                                placeholder={vi ? 'Lý do không duyệt...' : 'Rejection reason...'}
-                                className="w-full px-3 py-2 bg-secondary rounded-lg text-sm focus:outline-none" />
-                              <div className="flex gap-2">
-                                <button onClick={() => { setRelRejectId(null); setRelRejectReason(''); }} className="flex-1 py-2 bg-secondary rounded-lg text-xs font-bold">{vi ? 'Huỷ' : 'Cancel'}</button>
-                                <button onClick={doRejectRelative} className="flex-1 py-2 bg-destructive text-destructive-foreground rounded-lg text-xs font-bold">{vi ? 'Xác nhận' : 'Confirm'}</button>
-                              </div>
-                            </div>
-                          ) : (
-                            <div className="flex gap-2">
-                              <button onClick={() => setConfirmAction({
-                                label: vi ? 'Tạo ca SOS?' : 'Create SOS case?',
-                                description: vi ? `Hồ sơ báo hộ cho "${r.personName}" sẽ trở thành ca SOS chính thức để phân công đội.` : `Report for "${r.personName}" becomes an official SOS case.`,
-                                onConfirm: () => doAcceptRelative(r.id),
-                              })} className="flex-1 py-2 bg-success text-success-foreground rounded-lg text-xs font-bold flex items-center justify-center gap-1">
-                                <CheckCircle2 className="w-3.5 h-3.5" />{vi ? 'Duyệt & tạo ca' : 'Accept'}
-                              </button>
-                              <button onClick={() => { setRelRejectId(r.id); setRelRejectReason(''); }}
-                                className="flex-1 py-2 bg-destructive/20 text-destructive rounded-lg text-xs font-bold flex items-center justify-center gap-1">
-                                <Ban className="w-3.5 h-3.5" />{vi ? 'Không duyệt' : 'Reject'}
-                              </button>
-                            </div>
-                          )
-                        ) : (
-                          <div className="flex items-center gap-2">
-                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${r.review === 'ACCEPTED' ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'}`}>
-                              {r.review === 'ACCEPTED' ? (vi ? 'Đã tạo ca SOS' : 'Case created') : (vi ? 'Không duyệt' : 'Rejected')}
-                            </span>
-                            {r.reviewNote && <span className="text-[10px] text-muted-foreground flex-1 truncate">{r.reviewNote}</span>}
-                            {r.review === 'ACCEPTED' && r.linkedCaseId && (
-                              <button onClick={() => { setTab('cases'); setSelectedCaseId(r.linkedCaseId!); }}
-                                className="px-2 py-1 rounded bg-secondary text-[10px] font-bold">{vi ? 'Xem ca' : 'View case'}</button>
-                            )}
-                            {r.review === 'REJECTED' && (
-                              <button onClick={() => { resetRelativeReview(r.id); refresh(); }}
-                                className="px-2 py-1 rounded bg-secondary text-[10px] font-bold">{vi ? 'Mở lại' : 'Reopen'}</button>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                );
-              })
-            )}
-          </div>
-        )}
-
-
-
-        {/* ===== TAB: MAP ===== */}
-        {tab === 'map' && (
-          <div className="space-y-3">
-            <div className="tactical-card p-2 flex items-center gap-2">
-              <AlertTriangle className="w-3 h-3 text-warning" />
-              <p className="text-[10px] text-muted-foreground">{vi ? 'Mô phỏng — Vị trí ước lượng' : 'Simulation — Estimated positions'}</p>
-            </div>
-
-            {/* Legend */}
-            <div className="flex flex-wrap gap-3 text-[10px]">
-              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-status-critical" />SOS RED</span>
-              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-status-injured" />SOS ORANGE</span>
-              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-status-ok" />SOS GREEN</span>
-              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-accent ring-2 ring-accent" />{vi ? 'Đội cứu hộ' : 'Team'}</span>
-              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-destructive/30 border border-destructive" />{vi ? 'Vùng bão' : 'Storm Zone'}</span>
-            </div>
-
-            <div className="tactical-card p-0 relative overflow-hidden">
-              <RescueMap cases={cases} teams={teams} stormZones={stormZones} onCaseClick={setSelectedCaseId} vi={vi} />
-            </div>
-
-            {/* Storm Zone Management */}
-            <div className="tactical-card p-3 space-y-2">
-              <div className="flex items-center justify-between">
-                <p className="font-bold text-sm">{vi ? '⚠ Vùng bão' : '⚠ Storm Zones'}</p>
-                <button onClick={() => setShowStormEditor(!showStormEditor)} className="px-2 py-1 bg-primary/20 text-primary rounded text-[10px] font-bold">
-                  <Plus className="w-3 h-3 inline mr-1" />{vi ? 'Thêm' : 'Add'}
-                </button>
-              </div>
-
-              {showStormEditor && (
-                <div className="space-y-2 p-2 bg-secondary rounded-lg">
-                  <input type="text" value={newStormName} onChange={e => setNewStormName(e.target.value)} placeholder={vi ? 'Tên vùng bão...' : 'Storm zone name...'}
-                    className="w-full px-3 py-2 bg-card rounded-lg text-sm focus:outline-none" />
-                  <textarea value={newStormCoords} onChange={e => setNewStormCoords(e.target.value)}
-                    placeholder="[[16.55,107.45],[16.55,107.80],[16.20,107.90],[16.10,107.50]]"
-                    className="w-full h-20 px-3 py-2 bg-card rounded-lg text-xs font-mono resize-none focus:outline-none" />
-                  <div className="flex gap-2">
-                    <button onClick={() => setShowStormEditor(false)} className="flex-1 py-2 bg-card rounded-lg text-sm">{vi ? 'Huỷ' : 'Cancel'}</button>
-                    <button onClick={() => {
-                      try {
-                        const coords = JSON.parse(newStormCoords);
-                        if (!Array.isArray(coords) || coords.length < 3) throw new Error('invalid');
-                        addStormZone(newStormName || 'Vùng bão mới', coords);
-                        refresh();
-                        setShowStormEditor(false);
-                        setNewStormName('');
-                        setNewStormCoords('');
-                        toast.success(vi ? 'Đã thêm vùng bão' : 'Storm zone added');
-                      } catch { toast.error(vi ? 'Toạ độ không hợp lệ (JSON array)' : 'Invalid coords (JSON array)'); }
-                    }} className="flex-1 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-bold">{vi ? 'Tạo' : 'Create'}</button>
-                  </div>
-                </div>
-              )}
-
-              {stormZones.length === 0 ? (
-                <p className="text-xs text-muted-foreground">{vi ? 'Chưa có vùng bão' : 'No storm zones'}</p>
-              ) : (
-                stormZones.map(sz => (
-                  <div key={sz.id} className="flex items-center justify-between p-2 bg-secondary/50 rounded-lg">
-                    <div>
-                      <p className="text-sm font-medium">{sz.name}</p>
-                      <p className="text-[10px] text-muted-foreground">{sz.polygonCoords.length} {vi ? 'điểm' : 'points'} • {sz.active ? (vi ? 'Đang hiển thị' : 'Active') : (vi ? 'Ẩn' : 'Hidden')}</p>
-                    </div>
-                    <div className="flex gap-1">
-                      <button onClick={() => { updateStormZone(sz.id, { active: !sz.active }); refresh(); }}
-                        className={`px-2 py-1 rounded text-[10px] font-bold ${sz.active ? 'bg-success/20 text-success' : 'bg-muted text-muted-foreground'}`}>
-                        {sz.active ? (vi ? 'Ẩn' : 'Hide') : (vi ? 'Hiện' : 'Show')}
-                      </button>
-                      <button onClick={() => { deleteStormZone(sz.id); refresh(); toast.success(vi ? 'Đã xoá' : 'Deleted'); }}
-                        className="px-2 py-1 rounded bg-destructive/20 text-destructive text-[10px] font-bold">{vi ? 'Xoá' : 'Del'}</button>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        )}
-
-        {/* ===== TAB: TEAMS ===== */}
-        {tab === 'teams' && (
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <h2 className="font-bold text-sm">{vi ? 'Đội cứu hộ' : 'Rescue Teams'} ({teams.length})</h2>
-                <button onClick={() => { setShowRegistrations(true); setRegistrations(getRegistrations()); }}
-                  className="relative p-1.5 rounded-lg bg-warning/20 text-warning" title={vi ? 'Hồ sơ đăng ký' : 'Registrations'}>
-                  <FileWarning className="w-4 h-4" />
-                  {pendingRegs.length > 0 && <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-[9px] font-bold px-1 rounded-full">{pendingRegs.length}</span>}
-                </button>
-              </div>
-              <button onClick={() => { setShowCoordination(true); setRegistrations(getRegistrations()); }}
-                className="px-3 py-1.5 rounded-lg bg-destructive text-destructive-foreground text-xs font-bold" title={vi ? 'Điều phối cứu hộ' : 'Coordination'}>
-                {vi ? 'Điều phối cứu hộ' : 'Coordination'}
-              </button>
-            </div>
-
-            <p className="text-[10px] text-muted-foreground flex items-center gap-1">
-              <AlertTriangle className="w-3 h-3" />{vi ? 'Đội cứu hộ đăng ký → Command xác minh & duyệt → Vào danh sách phân công.' : 'Teams register → Command verifies & approves → Added to assignment list.'}
-            </p>
-
-            {/* Team list */}
-            {teams.length === 0 ? (
-              <div className="tactical-card p-8 text-center">
-                <Users2 className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                <p className="text-muted-foreground text-sm">{vi ? 'Chưa có đội nào' : 'No teams yet'}</p>
-              </div>
-            ) : (
-              teams.map(t => {
-                const assigned = cases.find(c => c.id === t.assignedCaseId);
-                const stMeta = teamStatusMeta[t.status];
-                return (
-                  <div key={t.id} className="tactical-card p-3 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-bold text-sm">{t.name}</p>
-                        <p className="text-xs text-muted-foreground">{t.leaderName} • {t.leaderPhone}</p>
-                      </div>
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${stMeta.color}`}>{stMeta[vi ? 'vi' : 'en']}</span>
-                    </div>
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                      <span>{t.membersCount} {vi ? 'người' : 'ppl'}</span>
-                      <span>{t.vehicleType}</span>
-                      <span className="font-mono">@{t.username}</span>
-                    </div>
-                    {t.currentLocation && (
-                      <p className="text-[10px] font-mono text-muted-foreground">📍 {t.currentLocation.lat.toFixed(4)}, {t.currentLocation.lng.toFixed(4)} • {timeAgo(t.lastUpdated, vi)}</p>
-                    )}
-                    {assigned && (
-                      <div className="p-2 rounded bg-warning/10 text-xs">
-                        <span className="font-bold text-warning">{vi ? 'Nhiệm vụ:' : 'Mission:'}</span> {assigned.reporterName} — {assigned.locationText.slice(0, 30)}
-                        {assigned.lat && t.currentLocation && (
-                          <span className="text-accent ml-2">
-                            {haversineKm(t.currentLocation.lat, t.currentLocation.lng, assigned.lat, assigned.lng!).toFixed(1)} km — ETA: {estimateETA(haversineKm(t.currentLocation.lat, t.currentLocation.lng, assigned.lat, assigned.lng!))}
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    {/* Status controls */}
-                    <div className="flex gap-1 border-t border-border pt-2">
-                      {(['AVAILABLE', 'BUSY', 'RETURNING', 'OFFLINE'] as TeamStatus[]).map(s => (
-                        <button key={s} onClick={() => doTeamStatus(t.id, s)}
-                          className={`px-2 py-1 rounded text-[10px] font-medium ${t.status === s ? teamStatusMeta[s].color : 'bg-secondary text-muted-foreground'}`}>
-                          {teamStatusMeta[s][vi ? 'vi' : 'en']}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                );
-              })
-            )}
-          </div>
-        )}
-
-        {/* ===== TAB: ZONES ===== */}
-        {tab === 'zones' && (
-          <div className="space-y-3">
-            <h2 className="font-bold text-sm">{vi ? 'Khu vực điều phối' : 'Zone Coordination'}</h2>
-            <p className="text-[10px] text-muted-foreground">
-              {vi ? 'Phát hiện trùng lặp cứu trợ • Tránh bỏ sót khu vực' : 'Detect overlapping rescue • Avoid missing zones'}
-            </p>
-
-            {zones.length === 0 ? (
-              <div className="tactical-card p-8 text-center">
-                <Layers className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                <p className="text-muted-foreground text-sm">{vi ? 'Chưa có khu vực' : 'No zones'}</p>
-              </div>
-            ) : (
-              zones.map(z => {
-                const zStats = getZoneStats(z.id);
-                const zoneCases = cases.filter(c => c.zoneId === z.id && !['CLOSED', 'RESCUED', 'DUPLICATE', 'FALSE_REPORT'].includes(c.status));
-                const zoneTeams = teams.filter(t => {
-                  const ac = cases.find(c => c.id === t.assignedCaseId);
-                  return ac && ac.zoneId === z.id && t.status === 'BUSY';
-                });
-
-                // Detect overlap: > 1 team on same zone or > 2 teams
-                const hasOverlap = zoneTeams.length > 1;
-                const noTeam = zoneCases.length > 0 && zoneTeams.length === 0 && zoneCases.some(c => !c.assignedTeamId);
-
-                return (
-                  <div key={z.id} className={`tactical-card p-3 space-y-2 ${noTeam ? 'border-destructive/50' : hasOverlap ? 'border-warning/50' : ''}`}>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-bold text-sm">{z.name}</p>
-                        <p className="text-xs text-muted-foreground">{z.province}</p>
-                      </div>
-                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${noTeam ? 'bg-destructive/20 text-destructive' : hasOverlap ? 'bg-warning/20 text-warning' : 'bg-success/20 text-success'}`}>
-                        {noTeam ? (vi ? 'KHÔNG CÓ ĐỘI' : 'NO TEAM') : hasOverlap ? (vi ? 'TRÙNG LẶP' : 'OVERLAP') : 'OK'}
-                      </span>
-                    </div>
-
-                    <div className="grid grid-cols-4 gap-2 text-center">
-                      <div className="p-1.5 rounded bg-secondary">
-                        <p className="text-lg font-bold">{zStats.active}</p>
-                        <p className="text-[9px] text-muted-foreground">{vi ? 'SOS' : 'SOS'}</p>
-                      </div>
-                      <div className="p-1.5 rounded bg-destructive/10">
-                        <p className="text-lg font-bold text-destructive">{zStats.unassigned}</p>
-                        <p className="text-[9px] text-muted-foreground">{vi ? 'Chưa GĐ' : 'No team'}</p>
-                      </div>
-                      <div className="p-1.5 rounded bg-accent/10">
-                        <p className="text-lg font-bold text-accent">{zoneTeams.length}</p>
-                        <p className="text-[9px] text-muted-foreground">{vi ? 'Đội' : 'Teams'}</p>
-                      </div>
-                      <div className="p-1.5 rounded bg-secondary">
-                        <p className="text-lg font-bold">{zStats.total}</p>
-                        <p className="text-[9px] text-muted-foreground">{vi ? 'Tổng' : 'Total'}</p>
-                      </div>
-                    </div>
-
-                    {hasOverlap && (
-                      <div className="p-2 rounded bg-warning/10 text-xs text-warning flex items-center gap-1">
-                        <AlertTriangle className="w-3 h-3" />{vi ? `Cảnh báo: ${zoneTeams.length} đội đang hoạt động cùng khu vực` : `Warning: ${zoneTeams.length} teams in same zone`}
-                      </div>
-                    )}
-
-                    {/* Cases in zone */}
-                    {zoneCases.length > 0 && (
-                      <div className="space-y-1 max-h-32 overflow-y-auto">
-                        {zoneCases.map(c => (
-                          <button key={c.id} onClick={() => { setSelectedCaseId(c.id); setTab('cases'); }}
-                            className="w-full flex items-center gap-2 p-1.5 rounded bg-secondary/50 text-left hover:bg-secondary">
-                            <div className={`w-2.5 h-2.5 rounded-full ${severityMeta[c.severity].color}`} />
-                            <span className="text-xs flex-1 truncate">{c.reporterName} — {c.locationText.slice(0, 20)}</span>
-                            <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${caseStatusMeta[c.status].color}`}>{caseStatusMeta[c.status][vi ? 'vi' : 'en']}</span>
-                          </button>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Teams in zone */}
-                    {zoneTeams.length > 0 && (
-                      <div className="space-y-1">
-                        <p className="text-[10px] text-muted-foreground uppercase">{vi ? 'Đội trong khu vực' : 'Teams in zone'}</p>
-                        {zoneTeams.map(t => (
-                          <div key={t.id} className="flex items-center gap-2 p-1.5 rounded bg-accent/10 text-xs">
-                            <Truck className="w-3 h-3 text-accent" />
-                            <span className="font-medium">{t.name}</span>
-                            <span className="text-muted-foreground">{t.vehicleType}</span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Assign available team to zone */}
-                    {noTeam && (
-                      <div>
-                        <p className="text-[10px] text-destructive font-bold mb-1">{vi ? 'Gán đội cho khu vực này:' : 'Assign team to this zone:'}</p>
-                        <div className="flex flex-wrap gap-1">
-                          {teams.filter(t => t.status === 'AVAILABLE').map(t => (
-                            <button key={t.id} onClick={() => {
-                              const unassignedCase = zoneCases.find(c => !c.assignedTeamId);
-                              if (unassignedCase) doAssign(unassignedCase.id, t.id);
-                            }} className="px-2 py-1 rounded bg-accent/20 text-accent text-[10px] font-bold">
-                              {t.name}
-                            </button>
-                          ))}
-                          {teams.filter(t => t.status === 'AVAILABLE').length === 0 && (
-                            <span className="text-[10px] text-muted-foreground">{vi ? 'Không có đội sẵn sàng' : 'No available teams'}</span>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })
-            )}
-          </div>
-        )}
-      </main>
-
-      {/* Case Detail Drawer */}
-      <AnimatePresence>{selectedCaseId && renderCaseDrawer()}</AnimatePresence>
-
-      {/* Confirmation Dialog */}
-      <AnimatePresence>
-        {confirmAction && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/70 z-[60] flex items-center justify-center p-6" onClick={() => setConfirmAction(null)}>
-            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-card w-full max-w-sm rounded-2xl p-5 space-y-4" onClick={e => e.stopPropagation()}>
-              <div className="text-center space-y-2">
-                <AlertTriangle className="w-10 h-10 text-warning mx-auto" />
-                <h3 className="font-bold text-lg">{vi ? 'Xác nhận hành động' : 'Confirm Action'}</h3>
-                <p className="text-sm text-muted-foreground">{confirmAction.description}</p>
-              </div>
-              <div className="flex gap-2">
-                <button onClick={() => setConfirmAction(null)} className="flex-1 py-2.5 bg-secondary rounded-xl text-sm font-medium">{vi ? 'Huỷ' : 'Cancel'}</button>
-                <button onClick={confirmAction.onConfirm} className="flex-1 py-2.5 bg-primary text-primary-foreground rounded-xl text-sm font-bold">{confirmAction.label}</button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Registration Review Modal (Yellow - Pending) */}
-      <AnimatePresence>
-        {showRegistrations && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 z-50 flex items-end sm:items-center justify-center" onClick={() => { setShowRegistrations(false); setSelectedRegId(null); setApprovedCreds(null); }}>
-            <motion.div initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }}
-              className="bg-card w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl p-4 space-y-3" onClick={e => e.stopPropagation()}>
-              <div className="flex items-center justify-between">
-                <h2 className="font-bold">{vi ? 'Hồ sơ đăng ký đội cứu hộ' : 'Team Registration Review'}</h2>
-                <button onClick={() => { setShowRegistrations(false); setSelectedRegId(null); setApprovedCreds(null); }} className="p-1.5 rounded-lg bg-secondary"><X className="w-4 h-4" /></button>
-              </div>
-
-              {/* Filter tabs */}
-              <div className="flex gap-1">
-                {(['PENDING', 'APPROVED', 'REJECTED'] as RegistrationStatus[]).map(s => (
-                  <button key={s} className={`px-3 py-1 rounded-lg text-xs font-medium ${s === 'PENDING' ? 'bg-warning/20 text-warning' : s === 'APPROVED' ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'}`}>
-                    {s === 'PENDING' ? (vi ? `Chờ xác minh (${registrations.filter(r => r.status === 'PENDING').length})` : `Pending (${registrations.filter(r => r.status === 'PENDING').length})`) : s === 'APPROVED' ? (vi ? 'Đã duyệt' : 'Approved') : (vi ? 'Không duyệt' : 'Rejected')}
-                  </button>
-                ))}
-              </div>
-
-              {/* Approved credentials popup */}
-              {approvedCreds && (
-                <div className="p-4 bg-success/10 border-2 border-success/30 rounded-xl space-y-2">
-                  <p className="font-bold text-success text-sm">✅ {vi ? 'MÃ ĐỘI ĐÃ CẤP' : 'TEAM CODE ISSUED'}</p>
-                  <div className="p-3 bg-secondary rounded-lg font-mono text-sm space-y-1">
-                    <p>{vi ? 'Tên đội:' : 'Team:'} <span className="font-bold text-primary">{approvedCreds.teamName}</span></p>
-                    <p>{vi ? 'Mã đội:' : 'Code:'} <span className="font-bold text-primary">{approvedCreds.teamCode}</span></p>
-                  </div>
-                  <button onClick={() => { navigator.clipboard.writeText(`Tên đội: ${approvedCreds.teamName}\nMã đội: ${approvedCreds.teamCode}`); toast.success(vi ? 'Đã sao chép' : 'Copied'); }}
-                    className="w-full py-2 bg-success/20 text-success rounded-lg text-sm font-medium flex items-center justify-center gap-1">
-                    <Copy className="w-4 h-4" />{vi ? 'Sao chép thông tin' : 'Copy credentials'}
-                  </button>
-                  <p className="text-[10px] text-muted-foreground text-center">{vi ? 'Gửi thông tin này cho đội trưởng qua Zalo/SMS' : 'Send this to the team leader via Zalo/SMS'}</p>
-                </div>
-              )}
-
-              {/* Registration list - FULL DETAILS */}
-              {registrations.filter(r => r.status === 'PENDING').length === 0 && !approvedCreds ? (
-                <div className="p-8 text-center">
-                  <Shield className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                  <p className="text-muted-foreground text-sm">{vi ? 'Không có hồ sơ chờ xác minh' : 'No pending registrations'}</p>
-                </div>
-              ) : (
-                registrations.filter(r => r.status === 'PENDING').map(r => (
-                  <div key={r.id} className="tactical-card p-3 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-bold text-sm">{r.teamName}</p>
-                        <p className="text-xs text-muted-foreground">{r.leaderName} • {r.leaderPhone}</p>
-                      </div>
-                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-warning/20 text-warning">PENDING</span>
-                    </div>
-
-                    {/* Full registration details */}
-                    <div className="space-y-1.5 text-xs border-t border-border pt-2">
-                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Loại đội' : 'Team type'}</span><span className="font-medium">{teamTypeLabels[r.teamType]}</span></div>
-                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Tỉnh/TP' : 'Province'}</span><span className="font-medium">{r.province}</span></div>
-                      {r.district && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Quận/Huyện' : 'District'}</span><span className="font-medium">{r.district}</span></div>}
-                      {r.ward && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Phường/Xã' : 'Ward'}</span><span className="font-medium">{r.ward}</span></div>}
-                      {r.email && <div className="flex justify-between"><span className="text-muted-foreground">Email</span><span className="font-medium">{r.email}</span></div>}
-                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Số thành viên' : 'Members'}</span><span className="font-medium">{r.membersCount}</span></div>
-                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Phương tiện' : 'Vehicles'}</span><span className="font-medium">{r.vehicleTypes.map(v => vehicleTypeLabels[v]).join(', ')}</span></div>
-                      {r.vehicleOtherText && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'PT khác' : 'Other vehicle'}</span><span className="font-medium">{r.vehicleOtherText}</span></div>}
-                      {r.licensePlate && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Biển số' : 'License plate'}</span><span className="font-medium">{r.licensePlate}</span></div>}
-                      {r.capacityNote && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Năng lực' : 'Capacity'}</span><span className="font-medium">{r.capacityNote}</span></div>}
-                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Thời gian hoạt động' : 'Availability'}</span><span className="font-medium">{r.availability.map(a => availabilityLabels[a]).join(', ')}</span></div>
-                      {r.verificationFileNames.length > 0 && (
-                        <div>
-                          <p className="text-muted-foreground mb-1">{vi ? '📎 File xác minh (CCCD/Giấy tờ):' : '📎 Verification files:'}</p>
-                          <div className="flex flex-wrap gap-1">
-                            {r.verificationFileNames.map((f, i) => (
-                              <span key={i} className="px-2 py-0.5 rounded bg-accent/20 text-accent text-[10px] font-medium">{f}</span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Ngày gửi' : 'Submitted'}</span><span className="font-medium">{new Date(r.createdAt).toLocaleString('vi-VN')}</span></div>
-                    </div>
-
-                    {/* Actions: DUYỆT / CHỜ / KHÔNG DUYỆT */}
-                    {selectedRegId === r.id && showRejectForm ? (
-                      <div className="space-y-2">
-                        <textarea value={rejectReason} onChange={e => setRejectReason(e.target.value)} placeholder={vi ? 'Lý do không duyệt *' : 'Rejection reason *'}
-                          className="w-full h-16 px-3 py-2 bg-secondary rounded-lg text-sm resize-none focus:outline-none" />
-                        <div className="flex gap-2">
-                          <button onClick={() => { setShowRejectForm(false); setSelectedRegId(null); }} className="flex-1 py-2 bg-secondary rounded-lg text-sm">{vi ? 'Huỷ' : 'Cancel'}</button>
-                          <button onClick={() => doRejectRegistration(r.id)} className="flex-1 py-2 bg-destructive text-destructive-foreground rounded-lg font-bold text-sm">{vi ? 'Xác nhận không duyệt' : 'Confirm Reject'}</button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex gap-1.5">
-                        <button onClick={() => setConfirmAction({
-                          label: vi ? 'Duyệt' : 'Approve',
-                          description: vi ? `Duyệt đội "${r.teamName}" và thêm vào danh sách phân công?` : `Approve team "${r.teamName}" and add to assignment list?`,
-                          onConfirm: () => { doApproveRegistration(r.id); setConfirmAction(null); }
-                        })} className="flex-1 py-2 bg-success/20 text-success rounded-lg text-xs font-bold flex items-center justify-center gap-1">
-                          <CheckCircle2 className="w-3 h-3" />{vi ? 'DUYỆT' : 'APPROVE'}
-                        </button>
-                        <button className="flex-1 py-2 bg-secondary text-muted-foreground rounded-lg text-xs font-bold flex items-center justify-center gap-1">
-                          <Clock className="w-3 h-3" />{vi ? 'CHỜ' : 'HOLD'}
-                        </button>
-                        <button onClick={() => { setSelectedRegId(r.id); setShowRejectForm(true); setRejectReason(''); }}
-                          className="flex-1 py-2 bg-destructive/20 text-destructive rounded-lg text-xs font-bold flex items-center justify-center gap-1">
-                          <XCircle className="w-3 h-3" />{vi ? 'KHÔNG DUYỆT' : 'REJECT'}
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ))
-              )}
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Coordination Modal (Red - Approved teams ready to dispatch) */}
-      <AnimatePresence>
-        {showCoordination && (() => {
-          // Show APPROVED registrations that are NOT yet in teams list
-          const approvedRegs = registrations.filter(r => r.status === 'APPROVED');
-          const notDispatched = approvedRegs.filter(r => !teams.find(t => t.name === r.teamName && t.leaderPhone === r.leaderPhone));
-          return (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 z-50 flex items-end sm:items-center justify-center" onClick={() => setShowCoordination(false)}>
-            <motion.div initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }}
-              className="bg-card w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl p-4 space-y-3" onClick={e => e.stopPropagation()}>
-              <div className="flex items-center justify-between">
-                <h2 className="font-bold">{vi ? 'Điều phối cứu hộ' : 'Rescue Coordination'}</h2>
-                <button onClick={() => setShowCoordination(false)} className="p-1.5 rounded-lg bg-secondary"><X className="w-4 h-4" /></button>
-              </div>
-
-              <p className="text-[10px] text-muted-foreground">{vi ? 'Các đội đã được duyệt và sẵn sàng phân công nhiệm vụ.' : 'Approved teams ready for mission assignment.'}</p>
-
-              {notDispatched.length === 0 ? (
-                <div className="p-8 text-center">
-                  <Users2 className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
-                  <p className="text-muted-foreground text-sm">{vi ? 'Không có đội nào chờ điều phối' : 'No teams awaiting dispatch'}</p>
-                  <p className="text-[10px] text-muted-foreground mt-1">{vi ? 'Duyệt hồ sơ từ mục vàng trước' : 'Approve registrations from yellow section first'}</p>
-                </div>
-              ) : (
-                notDispatched.map(r => (
-                  <div key={r.id} className="tactical-card p-3 space-y-2">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-bold text-sm">{r.teamName}</p>
-                        <p className="text-xs text-muted-foreground">{r.leaderName} • {r.leaderPhone}</p>
-                      </div>
-                      <button onClick={() => setConfirmAction({
-                        label: vi ? 'Điều phối' : 'Dispatch',
-                        description: vi ? `Thêm đội "${r.teamName}" vào danh sách điều phối cứu hộ?` : `Add "${r.teamName}" to active rescue list?`,
-                        onConfirm: () => { doDispatchTeam(r); setConfirmAction(null); }
-                      })} className="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold">
-                        {vi ? 'Điều phối' : 'Dispatch'}
-                      </button>
-                    </div>
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                      <span>{r.membersCount} {vi ? 'người' : 'ppl'}</span>
-                      <span>{r.vehicleTypes.map(v => vehicleTypeLabels[v]).join(', ')}</span>
-                    </div>
-                    {r.province && <p className="text-[10px] text-muted-foreground">{r.province}{r.district ? ` • ${r.district}` : ''}</p>}
-                  </div>
-                ))
-              )}
-            </motion.div>
-          </motion.div>
-          );
-        })()}
-      </AnimatePresence>
-
-
-
-
-
-      {/* Bottom Nav - Command Center specific */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-primary/30 safe-bottom z-40">
-        <div className="flex items-center justify-around py-2">
-          {tabs.map(t => {
-            const isActive = tab === t.id;
-            const handleClick = () => {
-              if (t.id === 'relatives') {
-                setRelativeReports(getRelativeReports());
-              }
-              setTab(t.id);
-            };
-
-            return (
-              <button key={t.id} onClick={handleClick}
-                className={`flex flex-col items-center justify-center p-2 min-w-[56px] transition-colors relative ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
-
-                <t.icon className="w-6 h-6" />
-                <span className="text-[10px] font-medium mt-0.5">{vi ? t.vi : t.en}</span>
-                {t.badge !== undefined && t.badge > 0 && (
-                  <span className="absolute -top-0.5 right-1 bg-primary text-primary-foreground text-[9px] font-bold px-1.5 rounded-full">{t.badge}</span>
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </nav>
     </div>
   );
 }
@@ -21859,34 +19966,6 @@ export interface MissingPersonRequest {
 /// <reference types="vite/client" />
 ````
 
-## File: .gitignore
-````
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-````
-
 ## File: capacitor.config.ts
 ````typescript
 import type { CapacitorConfig } from '@capacitor/cli';
@@ -21954,37 +20033,6 @@ export default tseslint.config(
 );
 ````
 
-## File: index.html
-````html
-<!doctype html>
- <html lang="vi">
-   <head>
-     <meta charset="UTF-8" />
-     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-     <title>FLOODED - Hệ thống cứu hộ</title>
-     <meta name="description" content="Hệ thống sinh tồn & cứu hộ ngoại tuyến - Offline survival & rescue system" />
-     <meta name="author" content="FLOODED" />
-     <meta name="theme-color" content="#0a0a0a" />
-     <meta name="apple-mobile-web-app-capable" content="yes" />
-     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-     <meta name="apple-mobile-web-app-title" content="FLOODED" />
-     <meta property="og:title" content="FLOODED - Survival & Rescue System" />
-     <meta property="og:description" content="Offline-first emergency survival and rescue system" />
-     <meta property="og:type" content="website" />
-     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-     <meta name="twitter:card" content="summary_large_image" />
-     <meta name="twitter:site" content="@Lovable" />
-     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-     <link rel="manifest" href="/manifest.json" />
-   </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
-````
-
 ## File: postcss.config.js
 ````javascript
 export default {
@@ -21993,6 +20041,15 @@ export default {
     autoprefixer: {},
   },
 };
+````
+
+## File: start-dashboard.bat
+````batch
+@echo off
+cd /d "%~dp0"
+start "" cmd /k "npm run serve:dashboard"
+timeout /t 3 >nul
+start "" "http://localhost:5050/rescue"
 ````
 
 ## File: tailwind.config.ts
@@ -22257,6 +20314,157 @@ export default defineConfig({
     alias: { "@": path.resolve(__dirname, "./src") },
   },
 });
+````
+
+## File: android/app/src/main/res/drawable/ic_launcher_background.xml
+````xml
+<?xml version="1.0" encoding="utf-8"?>
+<vector
+    android:height="108dp"
+    android:width="108dp"
+    android:viewportHeight="108"
+    android:viewportWidth="108"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#3DDC84"
+          android:pathData="M0,0h108v108h-108z"/>
+    <path android:fillColor="#00000000" android:pathData="M9,0L9,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,0L19,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M29,0L29,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M39,0L39,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M49,0L49,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M59,0L59,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M69,0L69,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M79,0L79,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M89,0L89,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M99,0L99,108"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,9L108,9"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,19L108,19"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,29L108,29"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,39L108,39"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,49L108,49"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,59L108,59"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,69L108,69"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,79L108,79"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,89L108,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M0,99L108,99"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,29L89,29"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,39L89,39"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,49L89,49"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,59L89,59"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,69L89,69"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M19,79L89,79"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M29,19L29,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M39,19L39,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M49,19L49,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M59,19L59,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M69,19L69,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+    <path android:fillColor="#00000000" android:pathData="M79,19L79,89"
+          android:strokeColor="#33FFFFFF" android:strokeWidth="0.8"/>
+</vector>
+````
+
+## File: android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
+````xml
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <monochrome android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>
+````
+
+## File: android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml
+````xml
+<?xml version="1.0" encoding="utf-8"?>
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+    <background android:drawable="@drawable/ic_launcher_background"/>
+    <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <monochrome android:drawable="@mipmap/ic_launcher_foreground"/>
+</adaptive-icon>
+````
+
+## File: android/app/src/main/AndroidManifest.xml
+````xml
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Tất cả các quyền (Permissions) được gom hết lên trên này -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+    android:name="android.permission.BLUETOOTH_SCAN"
+    android:usesPermissionFlags="neverForLocation"
+  />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <application
+    android:allowBackup="true"
+    android:usesCleartextTraffic="true"
+    android:icon="@mipmap/ic_launcher"
+    android:label="@string/app_name"
+    android:roundIcon="@mipmap/ic_launcher_round"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme"
+  >
+
+        <activity
+      android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode|navigation|density"
+      android:name=".MainActivity"
+      android:label="@string/title_activity_main"
+      android:theme="@style/AppTheme.NoActionBarLaunch"
+      android:launchMode="singleTask"
+      android:exported="true"
+    >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+      android:name="androidx.core.content.FileProvider"
+      android:authorities="${applicationId}.fileprovider"
+      android:exported="false"
+      android:grantUriPermissions="true"
+    >
+            <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/file_paths"
+      />
+        </provider>
+    </application>
+
+</manifest>
 ````
 
 ## File: ios/App/App/Assets.xcassets/AppIcon.appiconset/Contents.json
@@ -22792,37 +21000,325 @@ export function getCommAdapter(): CommAdapter {
 }
 ````
 
-## File: src/lib/comm/NativeBLEAdapter.ts
+## File: src/lib/commandCenter.ts
 ````typescript
-// src/lib/comm/NativeBLEAdapter.ts
-import type { CommAdapter, BroadcastResult, ScanResult, DataMuleResult } from './CommAdapter';
-import { BleClient } from '@capacitor-community/bluetooth-le';
-import { broadcastSOSToNearby } from '@/lib/mesh';
-import type { SOSReport } from '@/types';
+// FLOODED - Command Center Data Layer
+// Types, seed data, and localStorage persistence for Rescue Command Center
+import { v4 as uuidv4 } from 'uuid';
+import { provinces } from './provinces';
 
-export class NativeBLEAdapter implements CommAdapter {
-  readonly type = 'ble_native' as const;
-  readonly label = 'BLE thật (Access Relay T-Beam)';
+// ==================== TYPES ====================
 
-  async broadcastSOS(report: SOSReport): Promise<BroadcastResult> {
-    try {
-      await BleClient.initialize();
-    } catch (e) {
-      console.error('[NativeBLEAdapter] initialize() lỗi:', e);
+export type CaseSeverity = 'RED' | 'ORANGE' | 'GREEN';
+
+export type CaseStatus =
+  | 'NEW'
+  | 'VERIFYING'
+  | 'VERIFIED'
+  | 'WAITING_FOR_ASSIGNMENT'
+  | 'ASSIGNED'
+  | 'TEAM_ACCEPTED'
+  | 'IN_PROGRESS'
+  | 'RESCUED'
+  | 'CLOSED'
+  | 'DUPLICATE'
+  | 'FALSE_REPORT'
+  | 'WAITING_SAFE_CONDITIONS';
+
+export type TeamStatus = 'AVAILABLE' | 'BUSY' | 'OFFLINE' | 'RETURNING';
+export type ZoneStatus = 'OK' | 'NEED_SUPPORT' | 'NO_TEAM';
+export type SourceType = 'citizen' | 'relative';
+
+export interface RescueTeamAccount {
+  id: string;
+  name: string;
+  leaderName: string;
+  leaderPhone: string;
+  membersCount: number;
+  vehicleType: string;
+  username: string;
+  password: string; // plain for demo
+  status: TeamStatus;
+  currentLocation?: { lat: number; lng: number };
+  lastUpdated: number;
+  assignedCaseId?: string;
+}
+
+export interface Zone {
+  id: string;
+  name: string;
+  province: string;
+  status: ZoneStatus;
+}
+
+export interface SOSCase {
+  id: string;
+  sourceType: SourceType;
+  reporterName: string;
+  reporterPhone: string;
+  victimName?: string;
+  locationText: string;
+  lat?: number;
+  lng?: number;
+  zoneId?: string;
+  severity: CaseSeverity;
+  status: CaseStatus;
+  assignedTeamId?: string;
+  peopleCount: number;
+  vulnerableGroups?: string; // children, elderly, disabled
+  description?: string;
+  needTags?: string[];
+  createdAt: number;
+  updatedAt: number;
+  // ---- Gateway / local data-layer fields (see src/lib/gatewayCases.ts) ----
+  /** Duplicate key coming from the Gateway (LoRa/mesh message id). */
+  messageId?: string;
+  /** Transport source of the case: GATEWAY or COMMAND_MANUAL. */
+  origin?: 'GATEWAY' | 'COMMAND_MANUAL';
+  /** Command-owned verification state (preserved across polls). */
+  verifyStatus?: 'UNVERIFIED' | 'VERIFYING' | 'VERIFIED' | 'REJECTED';
+  /** Command-owned assigned team (preserved across polls). */
+  assignedTeam?: string;
+  /** Command-owned audit trail (preserved across polls). */
+  auditLog?: { id: string; timestamp: number; actor: string; action: string; note?: string }[];
+  gatewayUpdatedAt?: number;
+}
+
+
+export interface CaseLog {
+  id: string;
+  caseId: string;
+  actorRole: 'operator' | 'system';
+  actorName: string;
+  action: string;
+  note?: string;
+  timestamp: number;
+}
+
+// ==================== STATUS METADATA ====================
+
+export const caseStatusMeta: Record<CaseStatus, { vi: string; en: string; color: string }> = {
+  NEW: { vi: 'Mới', en: 'New', color: 'bg-destructive text-destructive-foreground' },
+  VERIFYING: { vi: 'Đang xác minh', en: 'Verifying', color: 'bg-warning text-warning-foreground' },
+  VERIFIED: { vi: 'Đã xác minh', en: 'Verified', color: 'bg-accent text-accent-foreground' },
+  WAITING_FOR_ASSIGNMENT: { vi: 'Chờ phân công', en: 'Waiting', color: 'bg-warning text-warning-foreground' },
+  ASSIGNED: { vi: 'Đã phân công', en: 'Assigned', color: 'bg-accent text-accent-foreground' },
+  TEAM_ACCEPTED: { vi: 'Đội đã nhận', en: 'Accepted', color: 'bg-accent text-accent-foreground' },
+  IN_PROGRESS: { vi: 'Đang xử lý', en: 'In Progress', color: 'bg-warning text-warning-foreground' },
+  RESCUED: { vi: 'Đã cứu', en: 'Rescued', color: 'bg-success text-success-foreground' },
+  CLOSED: { vi: 'Đóng', en: 'Closed', color: 'bg-muted text-muted-foreground' },
+  DUPLICATE: { vi: 'Trùng', en: 'Duplicate', color: 'bg-muted text-muted-foreground' },
+  FALSE_REPORT: { vi: 'Báo giả', en: 'False', color: 'bg-muted text-muted-foreground' },
+  WAITING_SAFE_CONDITIONS: { vi: 'Chờ an toàn', en: 'Wait Safe', color: 'bg-secondary text-secondary-foreground' },
+};
+
+export const severityMeta: Record<CaseSeverity, { vi: string; en: string; color: string; bgClass: string }> = {
+  RED: { vi: 'Đỏ – Nguy hiểm', en: 'RED – Critical', color: 'bg-status-critical', bgClass: 'bg-destructive/20 text-destructive' },
+  ORANGE: { vi: 'Cam – Khẩn', en: 'ORANGE – Urgent', color: 'bg-status-injured', bgClass: 'bg-warning/20 text-warning' },
+  GREEN: { vi: 'Xanh – Theo dõi', en: 'GREEN – Monitor', color: 'bg-status-ok', bgClass: 'bg-success/20 text-success' },
+};
+
+export const teamStatusMeta: Record<TeamStatus, { vi: string; en: string; color: string }> = {
+  AVAILABLE: { vi: 'Sẵn sàng', en: 'Available', color: 'bg-success/20 text-success' },
+  BUSY: { vi: 'Đang làm', en: 'Busy', color: 'bg-warning/20 text-warning' },
+  OFFLINE: { vi: 'Offline', en: 'Offline', color: 'bg-muted text-muted-foreground' },
+  RETURNING: { vi: 'Đang về', en: 'Returning', color: 'bg-accent/20 text-accent' },
+};
+
+// Pipeline filter groups for COMMAND workflow
+export type PipelineFilterKey = 'ALL' | 'VERIFYING_GROUP' | 'IN_PROGRESS' | 'ASSIGNED_GROUP' | 'COMPLETED_GROUP';
+
+export const pipelineFilters: { key: PipelineFilterKey; vi: string; en: string }[] = [
+  { key: 'ALL', vi: 'Tất cả', en: 'All' },
+  { key: 'VERIFYING_GROUP', vi: 'Đang xác minh', en: 'Verifying' },
+  { key: 'IN_PROGRESS', vi: 'Điều hướng', en: 'En Route' },
+  { key: 'ASSIGNED_GROUP', vi: 'Đã phân công', en: 'Assigned' },
+  { key: 'COMPLETED_GROUP', vi: 'Hoàn thành', en: 'Completed' },
+];
+
+// Map pipeline filter keys to actual case statuses
+export function filterCasesByPipeline(cases: SOSCase[], filter: PipelineFilterKey): SOSCase[] {
+  if (filter === 'ALL') return cases;
+  if (filter === 'VERIFYING_GROUP') return cases.filter(c => ['NEW', 'VERIFYING', 'VERIFIED', 'WAITING_FOR_ASSIGNMENT', 'WAITING_SAFE_CONDITIONS'].includes(c.status));
+  if (filter === 'IN_PROGRESS') return cases.filter(c => c.status === 'IN_PROGRESS');
+  if (filter === 'ASSIGNED_GROUP') return cases.filter(c => ['ASSIGNED', 'TEAM_ACCEPTED'].includes(c.status));
+  if (filter === 'COMPLETED_GROUP') return cases.filter(c => ['RESCUED', 'CLOSED', 'DUPLICATE', 'FALSE_REPORT'].includes(c.status));
+  return cases;
+}
+
+// ==================== STORAGE KEYS ====================
+const KEYS = {
+  cases: 'cc_sos_cases',
+  teams: 'cc_rescue_teams',
+  zones: 'cc_zones',
+  logs: 'cc_case_logs',
+  seeded: 'cc_seeded_v3',
+};
+
+// ==================== PERSISTENCE ====================
+function load<T>(key: string, fallback: T[]): T[] {
+  try { const d = localStorage.getItem(key); return d ? JSON.parse(d) : fallback; }
+  catch { return fallback; }
+}
+function save<T>(key: string, data: T[]) { localStorage.setItem(key, JSON.stringify(data)); }
+
+// ==================== ACCESSORS ====================
+export function getCases(): SOSCase[] { return load<SOSCase>(KEYS.cases, []); }
+export function saveCases(c: SOSCase[]) { save(KEYS.cases, c); }
+
+export function getTeams(): RescueTeamAccount[] { return load<RescueTeamAccount>(KEYS.teams, []); }
+export function saveTeams(t: RescueTeamAccount[]) { save(KEYS.teams, t); }
+
+export function getZones(): Zone[] { return load<Zone>(KEYS.zones, []); }
+export function saveZones(z: Zone[]) { save(KEYS.zones, z); }
+
+export function getLogs(): CaseLog[] { return load<CaseLog>(KEYS.logs, []); }
+export function saveLogs(l: CaseLog[]) { save(KEYS.logs, l); }
+
+export function addLog(caseId: string, action: string, note?: string) {
+  const logs = getLogs();
+  logs.push({ id: uuidv4(), caseId, actorRole: 'operator', actorName: 'Command', action, note, timestamp: Date.now() });
+  saveLogs(logs);
+}
+
+export function updateCaseStatus(caseId: string, status: CaseStatus, note?: string) {
+  const cases = getCases();
+  const idx = cases.findIndex(c => c.id === caseId);
+  if (idx === -1) return;
+  cases[idx].status = status;
+  cases[idx].updatedAt = Date.now();
+  saveCases(cases);
+  addLog(caseId, `Status → ${status}`, note);
+}
+
+export function assignTeamToCase(caseId: string, teamId: string) {
+  const cases = getCases();
+  const teams = getTeams();
+  const ci = cases.findIndex(c => c.id === caseId);
+  const ti = teams.findIndex(t => t.id === teamId);
+  if (ci === -1 || ti === -1) return;
+  cases[ci].assignedTeamId = teamId;
+  cases[ci].status = 'ASSIGNED';
+  cases[ci].updatedAt = Date.now();
+  teams[ti].status = 'BUSY';
+  teams[ti].assignedCaseId = caseId;
+  teams[ti].lastUpdated = Date.now();
+  saveCases(cases);
+  saveTeams(teams);
+  addLog(caseId, `Phân công đội: ${teams[ti].name}`);
+}
+
+// Zone stats helper
+export function getZoneStats(zoneId: string) {
+  const cases = getCases().filter(c => c.zoneId === zoneId);
+  const active = cases.filter(c => !['CLOSED', 'RESCUED', 'DUPLICATE', 'FALSE_REPORT'].includes(c.status));
+  const unassigned = active.filter(c => !c.assignedTeamId);
+  const teams = getTeams().filter(t => {
+    const tc = getCases().find(c => c.id === t.assignedCaseId);
+    return tc && tc.zoneId === zoneId && t.status === 'BUSY';
+  });
+  return { total: cases.length, active: active.length, unassigned: unassigned.length, teamsInZone: teams.length };
+}
+
+// ==================== SEED DATA ====================
+export function seedDemoData() {
+
+  // chỉ nạp data sample khi dùng npm run dev chạy thử
+  if (import.meta.env.PROD) return;
+  
+  if (localStorage.getItem(KEYS.seeded)) return;
+
+  // Zones
+  const zones: Zone[] = [
+    { id: 'z1', name: 'Q. Hải Châu', province: 'Đà Nẵng', status: 'NEED_SUPPORT' },
+    { id: 'z2', name: 'H. Hòa Vang', province: 'Đà Nẵng', status: 'NO_TEAM' },
+    { id: 'z3', name: 'Q. Sơn Trà', province: 'Đà Nẵng', status: 'OK' },
+    { id: 'z4', name: 'TX. Điện Bàn', province: 'Quảng Ngãi', status: 'NEED_SUPPORT' },
+    { id: 'z5', name: 'TP. Huế', province: 'Huế', status: 'OK' },
+    { id: 'z6', name: 'H. Phú Lộc', province: 'Huế', status: 'NO_TEAM' },
+  ];
+
+  // Teams
+  const teams: RescueTeamAccount[] = [
+    { id: 't1', name: 'Đội Rồng Xanh', leaderName: 'Nguyễn Văn Hùng', leaderPhone: '0901234567', membersCount: 6, vehicleType: 'Thuyền máy', username: 'rongxanh', password: 'demo1234', status: 'AVAILABLE', currentLocation: { lat: 16.054, lng: 108.202 }, lastUpdated: Date.now() },
+    { id: 't2', name: 'Đội Sấm Sét', leaderName: 'Trần Minh Đức', leaderPhone: '0909876543', membersCount: 5, vehicleType: 'Xe tải + canô', username: 'samset', password: 'demo1234', status: 'BUSY', currentLocation: { lat: 16.060, lng: 108.215 }, lastUpdated: Date.now(), assignedCaseId: 'c3' },
+    { id: 't3', name: 'Đội Phượng Hoàng', leaderName: 'Lê Thị Mai', leaderPhone: '0912345678', membersCount: 4, vehicleType: 'Thuyền cao su', username: 'phuonghoang', password: 'demo1234', status: 'AVAILABLE', currentLocation: { lat: 16.048, lng: 108.198 }, lastUpdated: Date.now() },
+    { id: 't4', name: 'Đội Bão Táp', leaderName: 'Phạm Quốc Tuấn', leaderPhone: '0923456789', membersCount: 7, vehicleType: 'Xe cứu hộ', username: 'baotap', password: 'demo1234', status: 'RETURNING', currentLocation: { lat: 16.070, lng: 108.220 }, lastUpdated: Date.now() },
+    { id: 't5', name: 'Đội Thần Tốc', leaderName: 'Hoàng Anh Kiệt', leaderPhone: '0934567890', membersCount: 5, vehicleType: 'Thuyền máy', username: 'thantoc', password: 'demo1234', status: 'OFFLINE', currentLocation: { lat: 16.045, lng: 108.180 }, lastUpdated: Date.now() - 3600000 },
+    { id: 't6', name: 'Đội Lũ Quét', leaderName: 'Vũ Đình Hải', leaderPhone: '0945678901', membersCount: 4, vehicleType: 'Canô', username: 'luquet', password: 'demo1234', status: 'AVAILABLE', currentLocation: { lat: 16.462, lng: 107.590 }, lastUpdated: Date.now() },
+    { id: 't7', name: 'Đội Sao Biển', leaderName: 'Đặng Thanh Sơn', leaderPhone: '0956789012', membersCount: 3, vehicleType: 'Thuyền nhỏ', username: 'saobien', password: 'demo1234', status: 'BUSY', currentLocation: { lat: 16.465, lng: 107.595 }, lastUpdated: Date.now(), assignedCaseId: 'c8' },
+  ];
+
+  // Cases
+  const now = Date.now();
+  const cases: SOSCase[] = [
+    { id: 'c1', sourceType: 'citizen', reporterName: 'Nguyễn Thị Hoa', reporterPhone: '0911111111', locationText: '45 Trần Phú, Q. Hải Châu', lat: 16.054, lng: 108.202, zoneId: 'z1', severity: 'RED', status: 'NEW', peopleCount: 5, vulnerableGroups: '2 trẻ em, 1 người già', description: 'Nước ngập tầng 1, gia đình mắc kẹt trên tầng 2', needTags: ['Áo phao', 'Thuyền'], createdAt: now - 600000, updatedAt: now - 600000 },
+    { id: 'c2', sourceType: 'relative', reporterName: 'Phạm Minh Tuấn', reporterPhone: '0922222222', victimName: 'Phạm Văn Tám', locationText: 'Thôn 3, xã Hòa Phong, H. Hòa Vang', lat: 16.010, lng: 108.140, zoneId: 'z2', severity: 'RED', status: 'VERIFYING', peopleCount: 3, vulnerableGroups: '1 người già bệnh nền', description: 'Mất liên lạc 2 tiếng, vùng ngập sâu', needTags: ['Thuốc', 'Nước sạch', 'Di chuyển'], createdAt: now - 1200000, updatedAt: now - 900000 },
+    { id: 'c3', sourceType: 'citizen', reporterName: 'Lê Quang Vinh', reporterPhone: '0933333333', locationText: '12 Ngô Quyền, Q. Sơn Trà', lat: 16.072, lng: 108.225, zoneId: 'z3', severity: 'ORANGE', status: 'IN_PROGRESS', assignedTeamId: 't2', peopleCount: 2, description: 'Xe ô tô chết máy giữa đường ngập, cần kéo ra', needTags: ['Di chuyển'], createdAt: now - 2400000, updatedAt: now - 1800000 },
+    { id: 'c4', sourceType: 'citizen', reporterName: 'Trương Thị Lan', reporterPhone: '0944444444', locationText: '78 Lê Duẩn, Q. Hải Châu', lat: 16.056, lng: 108.210, zoneId: 'z1', severity: 'ORANGE', status: 'VERIFIED', peopleCount: 8, vulnerableGroups: '3 trẻ em', description: 'Nhà trọ 8 người, nước ngập gần 1m, cần di tản', needTags: ['Áo phao', 'Đồ ăn', 'Nước sạch'], createdAt: now - 1800000, updatedAt: now - 1200000 },
+    { id: 'c5', sourceType: 'citizen', reporterName: 'Hồ Văn Nam', reporterPhone: '0955555555', locationText: '23 Bạch Đằng, Q. Hải Châu', lat: 16.052, lng: 108.200, zoneId: 'z1', severity: 'GREEN', status: 'WAITING_FOR_ASSIGNMENT', peopleCount: 2, description: 'Cần nước sạch và lương thực, nhà ngập nhẹ', needTags: ['Nước sạch', 'Đồ ăn'], createdAt: now - 3600000, updatedAt: now - 3000000 },
+    { id: 'c6', sourceType: 'relative', reporterName: 'Đỗ Thị Thanh', reporterPhone: '0966666666', victimName: 'Đỗ Minh Quân', locationText: 'Xã Hòa Nhơn, H. Hòa Vang', lat: 16.020, lng: 108.150, zoneId: 'z2', severity: 'RED', status: 'NEW', peopleCount: 4, vulnerableGroups: '1 phụ nữ mang thai', description: 'Mắc kẹt trong nhà, nước dâng nhanh, có thai phụ', needTags: ['Di chuyển', 'Y tế', 'Áo phao'], createdAt: now - 300000, updatedAt: now - 300000 },
+    { id: 'c7', sourceType: 'citizen', reporterName: 'Bùi Xuân Trường', reporterPhone: '0977777777', locationText: '156 Điện Biên Phủ, TX. Điện Bàn', lat: 15.890, lng: 108.260, zoneId: 'z4', severity: 'ORANGE', status: 'WAITING_SAFE_CONDITIONS', peopleCount: 6, description: 'Khu vực nước xiết, chờ nước rút mới tiếp cận được', needTags: ['Đồ ăn', 'Pin/Sạc'], createdAt: now - 5400000, updatedAt: now - 3600000 },
+    { id: 'c8', sourceType: 'citizen', reporterName: 'Phan Thị Ngọc', reporterPhone: '0988888888', locationText: '34 Lê Lợi, TP. Huế', lat: 16.463, lng: 107.592, zoneId: 'z5', severity: 'ORANGE', status: 'ASSIGNED', assignedTeamId: 't7', peopleCount: 3, description: 'Ông bà cần thuốc huyết áp, nước ngập không ra ngoài được', needTags: ['Thuốc', 'Nước sạch'], createdAt: now - 4200000, updatedAt: now - 2400000 },
+    { id: 'c9', sourceType: 'citizen', reporterName: 'Võ Thanh Hải', reporterPhone: '0999999999', locationText: '89 Hùng Vương, Q. Sơn Trà', lat: 16.068, lng: 108.218, zoneId: 'z3', severity: 'GREEN', status: 'RESCUED', peopleCount: 2, description: 'Đã được đưa lên cao, an toàn', createdAt: now - 7200000, updatedAt: now - 3600000 },
+    { id: 'c10', sourceType: 'relative', reporterName: 'Mai Thị Hồng', reporterPhone: '0900000001', victimName: 'Mai Văn Đức', locationText: 'Thôn Phú Lộc, H. Phú Lộc', lat: 16.300, lng: 107.880, zoneId: 'z6', severity: 'RED', status: 'NEW', peopleCount: 7, vulnerableGroups: '2 trẻ em, 1 người già, 1 người khuyết tật', description: 'Mất liên lạc hoàn toàn, vùng sạt lở', needTags: ['Di chuyển', 'Y tế', 'Đèn pin'], createdAt: now - 180000, updatedAt: now - 180000 },
+    { id: 'c11', sourceType: 'citizen', reporterName: 'Ngô Văn Thành', reporterPhone: '0900000002', locationText: '67 Phan Châu Trinh, Q. Hải Châu', lat: 16.058, lng: 108.208, zoneId: 'z1', severity: 'GREEN', status: 'CLOSED', peopleCount: 1, description: 'Tự di chuyển được, đã an toàn', createdAt: now - 10800000, updatedAt: now - 7200000 },
+    { id: 'c12', sourceType: 'citizen', reporterName: 'Đặng Thị Vân', reporterPhone: '0900000003', locationText: '90 Nguyễn Tri Phương, Q. Hải Châu', lat: 16.050, lng: 108.206, zoneId: 'z1', severity: 'ORANGE', status: 'DUPLICATE', peopleCount: 5, description: 'Trùng với case c4 - cùng khu nhà trọ', createdAt: now - 1500000, updatedAt: now - 1200000 },
+  ];
+
+  // Logs
+  const logs: CaseLog[] = [
+    { id: 'l1', caseId: 'c2', actorRole: 'operator', actorName: 'Command', action: 'Status → VERIFYING', note: 'Đang gọi xác minh', timestamp: now - 900000 },
+    { id: 'l2', caseId: 'c3', actorRole: 'operator', actorName: 'Command', action: 'Phân công đội: Đội Sấm Sét', timestamp: now - 1800000 },
+    { id: 'l3', caseId: 'c3', actorRole: 'operator', actorName: 'Command', action: 'Status → IN_PROGRESS', timestamp: now - 1800000 },
+    { id: 'l4', caseId: 'c9', actorRole: 'operator', actorName: 'Command', action: 'Status → RESCUED', note: 'Đã cứu thành công', timestamp: now - 3600000 },
+    { id: 'l5', caseId: 'c12', actorRole: 'operator', actorName: 'Command', action: 'Status → DUPLICATE', note: 'Trùng c4', timestamp: now - 1200000 },
+    { id: 'l6', caseId: 'c4', actorRole: 'operator', actorName: 'Command', action: 'Status → VERIFIED', note: 'Đã xác minh, nhà trọ 8 người', timestamp: now - 1200000 },
+  ];
+
+  saveZones(zones);
+  saveTeams(teams);
+  saveCases(cases);
+  saveLogs(logs);
+  localStorage.setItem(KEYS.seeded, 'true');
+}
+
+// Utility: distance between two coords (km)
+export function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371;
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLng = (lng2 - lng1) * Math.PI / 180;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
+// ETA estimate (rough: 15 km/h in flood)
+export function estimateETA(distKm: number): string {
+  const mins = Math.round(distKm / 15 * 60);
+  if (mins < 1) return '< 1 phút';
+  if (mins < 60) return `~${mins} phút`;
+  return `~${Math.round(mins / 60 * 10) / 10}h`;
+}
+
+// Simulate team movement toward assigned case
+export function simulateTeamMovement() {
+  const teams = getTeams();
+  const cases = getCases();
+  let changed = false;
+  teams.forEach(t => {
+    if (t.status === 'BUSY' && t.assignedCaseId && t.currentLocation) {
+      const c = cases.find(cs => cs.id === t.assignedCaseId);
+      if (c && c.lat && c.lng) {
+        const dLat = (c.lat - t.currentLocation.lat) * 0.08;
+        const dLng = (c.lng - t.currentLocation.lng) * 0.08;
+        t.currentLocation.lat += dLat + (Math.random() - 0.5) * 0.001;
+        t.currentLocation.lng += dLng + (Math.random() - 0.5) * 0.001;
+        t.lastUpdated = Date.now();
+        changed = true;
+      }
     }
-    const result = await broadcastSOSToNearby(report); // gọi ĐÚNG hàm đã viết, dùng sendPacketViaBle bên dưới
-    return { success: result.success, reachedCount: result.reachedCount, hopsAdded: 0 };
-  }
-
-  async scanNearby(): Promise<ScanResult> {
-    return { devices: [], timestamp: Date.now() };
-  }
-
-  async dataMulePickup(): Promise<DataMuleResult> {
-    return { success: false, pickedUpCount: 0, forwardedCount: 0, dataMuleId: '' };
-  }
-
-  dispose(): void {}
+  });
+  if (changed) saveTeams(teams);
 }
 ````
 
@@ -22986,6 +21482,28 @@ export async function broadcastSOSToNearby(report: SOSReport): Promise<{
 }
 ````
 
+## File: src/lib/supabaseClient.ts
+````typescript
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+let client: SupabaseClient | null = null;
+
+if (supabaseUrl && supabaseAnonKey) {
+  try {
+    client = createClient(supabaseUrl, supabaseAnonKey);
+  } catch (e) {
+    console.error('[Supabase] Khoi tao that bai:', e);
+  }
+} else {
+  console.warn('[Supabase] Thieu VITE_SUPABASE_URL/VITE_SUPABASE_ANON_KEY - tinh nang Bao ho qua Internet tam thoi tat, app van chay binh thuong.');
+}
+
+export const supabase = client;
+````
+
 ## File: src/main.tsx
 ````typescript
 import { Buffer } from 'buffer';
@@ -22995,6 +21513,82 @@ import App from "./App.tsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(<App />);
+````
+
+## File: .gitignore
+````
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.env
+````
+
+## File: index.html
+````html
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- Tiêu đề App chính thức -->
+    <title>FLOODED - Survival & Rescue System</title>
+    
+    <!-- Favicon & Icon ứng dụng trỏ về icon.png -->
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    
+
+    <meta name="description" content="Hệ thống sinh tồn & cứu hộ ngoại tuyến - Offline survival & rescue system" />
+    <meta name="author" content="FLOODED" />
+    <meta name="theme-color" content="#0a0a0a" />
+    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FLOODED" />
+
+    <!-- Open Graph (Facebook / Zalo / Preview link) -->
+    <meta property="og:title" content="FLOODED - Survival & Rescue System" />
+    <meta property="og:description" content="Offline-first emergency survival and rescue system" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/icon.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FLOODED - Survival & Rescue System" />
+    <meta name="twitter:description" content="Offline-first emergency survival and rescue system" />
+    <meta name="twitter:image" content="/icon.png" />
+    
+
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
 ````
 
 ## File: README.md
@@ -23055,6 +21649,55 @@ npm run dev
 📜 License
 This project is licensed under the MIT License.
 ```
+````
+
+## File: src/lib/comm/NativeBLEAdapter.ts
+````typescript
+// src/lib/comm/NativeBLEAdapter.ts
+import type { CommAdapter, BroadcastResult, ScanResult, DataMuleResult } from './CommAdapter';
+import { BleClient } from '@capacitor-community/bluetooth-le';
+import { broadcastSOSToNearby } from '@/lib/mesh';
+import type { SOSReport } from '@/types';
+
+export class NativeBLEAdapter implements CommAdapter {
+  readonly type = 'ble_native' as const;
+  readonly label = 'BLE thật (Access Relay T-Beam)';
+
+  async broadcastSOS(report: SOSReport): Promise<BroadcastResult> {
+    try {
+      await BleClient.initialize();
+
+      // Bọc Timeout 8 giây: Tránh việc iOS bị treo Promise vô tận
+      const timeoutMs = 8000;
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('BLE_TIMEOUT')), timeoutMs)
+      );
+
+      const sendPromise = (async () => {
+        const result = await broadcastSOSToNearby(report);
+        return { success: result.success, reachedCount: result.reachedCount, hopsAdded: 0 };
+      })();
+
+      // Đua giữa việc gửi BLE và thời gian Timeout
+      return await Promise.race([sendPromise, timeoutPromise]);
+
+    } catch (e) {
+      console.error('[NativeBLEAdapter] Lỗi hoặc hết thời gian chờ BLE:', e);
+      // Trả về false để UI biết và dừng spinner
+      return { success: false, reachedCount: 0, hopsAdded: 0 };
+    }
+  }
+
+  async scanNearby(): Promise<ScanResult> {
+    return { devices: [], timestamp: Date.now() };
+  }
+
+  async dataMulePickup(): Promise<DataMuleResult> {
+    return { success: false, pickedUpCount: 0, forwardedCount: 0, dataMuleId: '' };
+  }
+
+  dispose(): void {}
+}
 ````
 
 ## File: src/lib/flooded/bleRelay.ts
@@ -23266,186 +21909,1817 @@ export async function sendPacketViaBle(
 //nah
 ````
 
-## File: src/App.tsx
+## File: src/pages/RemoteSOS.tsx
 ````typescript
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AppProvider } from "@/contexts/AppContext";
+import { useState } from 'react';
+import { supabase } from '@/lib/supabaseClient';
+import { motion } from 'framer-motion';
+import { 
+  ArrowLeft, Phone, MapPin, Send, User, AlertTriangle,
+  Copy, Info, Loader2, CheckCircle, Home
+} from 'lucide-react';
+import { useApp } from '@/contexts/AppContext';
+import { useGeolocation } from '@/hooks/useGeolocation';
+import { Link } from 'react-router-dom';
+import { NeedTags } from '@/components/NeedTags';
+import { toast } from 'sonner';
+import { v4 as uuidv4 } from 'uuid';
+import { provinces } from '@/lib/provinces';
 
-import Home from "./pages/Home";
-import Guides from "./pages/Guides";
-import CommunityBoard from "./pages/CommunityBoard";
-import Admin from "./pages/Admin";
-import Settings from "./pages/Settings";
-import Profile from "./pages/Profile";
-import Compass from "./pages/Compass";
-import Checklist from "./pages/Checklist";
-import More from "./pages/More";
-import QuotesPage from "./pages/QuotesPage";
-import RemoteSOS from "./pages/RemoteSOS";
-import RescueMode from "./pages/RescueMode";
-import RegisterRescue from "./pages/RegisterRescue";
-import RegisterRescueSuccess from "./pages/RegisterRescueSuccess";
-import RegisterRescueStatus from "./pages/RegisterRescueStatus";
-import AdminRescueRegistrations from "./pages/AdminRescueRegistrations";
-import RescueLogin from "./pages/RescueLogin";
-import RescueDashboard from "./pages/RescueDashboard";
-import RescueTeamDashboard from "./pages/RescueTeamDashboard";
-import CommandLogin from "./pages/CommandLogin";
-import NotFound from "./pages/NotFound";
+const urgencyLevels = [
+  { id: 'low', labelVi: 'Thấp', labelEn: 'Low', color: 'bg-accent' },
+  { id: 'medium', labelVi: 'Trung bình', labelEn: 'Medium', color: 'bg-warning' },
+  { id: 'high', labelVi: 'Cao', labelEn: 'High', color: 'bg-[hsl(var(--status-injured))]' },
+  { id: 'critical', labelVi: 'Nguy kịch', labelEn: 'Critical', color: 'bg-destructive' },
+];
 
-const queryClient = new QueryClient();
+type PageView = 'form' | 'success';
 
-const App = () => {
+export default function RemoteSOS() {
+  const { language, isOnline } = useApp();
+  const { getLocation, isLoading: geoLoading } = useGeolocation();
+  const [personName, setPersonName] = useState('');
+  const [personPhone, setPersonPhone] = useState('');
+  const [address, setAddress] = useState('');
+  const [province, setProvince] = useState('');
+  const [provinceSearch, setProvinceSearch] = useState('');
+  const [showProvinceDropdown, setShowProvinceDropdown] = useState(false);
+  const [urgency, setUrgency] = useState('medium');
+  const [selectedNeeds, setSelectedNeeds] = useState<string[]>([]);
+  const [note, setNote] = useState('');
+  const [showExport, setShowExport] = useState(false);
+  const [victimLocation, setVictimLocation] = useState<{ lat: number; lng: number } | null>(null);
+  const [pageView, setPageView] = useState<PageView>('form');
+  const [submittedReportId, setSubmittedReportId] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const maxNoteLength = 120;
+  const filteredProvinces = provinces.filter(p => p.toLowerCase().includes(provinceSearch.toLowerCase()));
+
+  const handleGetLocation = async () => {
+    const loc = await getLocation();
+    if (loc) {
+      setVictimLocation({ lat: loc.latitude, lng: loc.longitude });
+      toast.success(language === 'vi' ? 'Đã lấy vị trí' : 'Location obtained');
+    } else {
+      toast.error(language === 'vi' ? 'Không lấy được vị trí' : 'Cannot get location');
+    }
+  };
+
+  const generateReportText = () => {
+    const urgencyLabel = urgencyLevels.find(u => u.id === urgency);
+    const needs = selectedNeeds.join(', ');
+    const locationText = victimLocation ? `\n📍 Tọa độ: ${victimLocation.lat.toFixed(5)}, ${victimLocation.lng.toFixed(5)}` : '';
+    
+    return `🆘 BÁO CỨU HỘ
+━━━━━━━━━━━━━━
+👤 Người cần cứu: ${personName || 'Chưa rõ'}
+📞 SĐT: ${personPhone || 'Chưa rõ'}
+📍 Địa chỉ: ${address || 'Chưa rõ'}
+🏛️ Tỉnh/TP: ${province || 'Chưa chọn'}${locationText}
+⚠️ Mức độ: ${urgencyLabel?.labelVi || 'Trung bình'}
+📋 Nhu cầu: ${needs || 'Chưa chọn'}
+📝 Ghi chú: ${note || 'Không có'}
+━━━━━━━━━━━━━━
+Gửi từ app FLOODED
+Thời gian: ${new Date().toLocaleString('vi-VN')}`;
+  };
+
+  const handleCopyReport = () => {
+    navigator.clipboard.writeText(generateReportText());
+    toast.success(language === 'vi' ? 'Đã sao chép báo cáo' : 'Report copied');
+  };
+
+  const patchLocalSyncStatus = (reportId: string, status: string) => {
+    const list = JSON.parse(localStorage.getItem('flooded_remote_sos') || '[]');
+    const updated = list.map((r: any) => (r.id === reportId ? { ...r, syncStatus: status } : r));
+    localStorage.setItem('flooded_remote_sos', JSON.stringify(updated));
+  };
+
+  const handleSubmit = async () => {
+    if (!personName.trim()) {
+      toast.error(language === 'vi' ? 'Vui lòng nhập tên người cần cứu' : 'Please enter person name');
+      return;
+    }
+    if (!province) {
+      toast.error(language === 'vi' ? 'Vui lòng chọn tỉnh/thành phố' : 'Please select province');
+      return;
+    }
+
+    const reportId = uuidv4();
+    const report = {
+      id: reportId, personName, personPhone, address, province, urgency,
+      needs: selectedNeeds, note, createdAt: Date.now(),
+      location: victimLocation,
+      syncStatus: 'pending' as string,
+    };
+
+    // Store-before-ACK: luon luu local truoc, du co mang hay khong
+    const existing = JSON.parse(localStorage.getItem('flooded_remote_sos') || '[]');
+    localStorage.setItem('flooded_remote_sos', JSON.stringify([...existing, report]));
+    setSubmittedReportId(reportId);
+
+    if (!isOnline) {
+      setShowExport(true);
+      setPageView('success');
+
+
+    if (!supabase) {
+      patchLocalSyncStatus(reportId, 'offline');
+      setShowExport(true);
+      setPageView('success');
+  return;
+}
+      return;
+    }
+
+    // Co "isOnline" khong co nghia server chac chan nhan duoc - phai thu gui that
+    setIsSubmitting(true);
+    const { error } = await supabase.from('remote_sos_reports').insert({
+      id: reportId,
+      person_name: personName,
+      person_phone: personPhone || null,
+      address: address || null,
+      province,
+      urgency,
+      needs: selectedNeeds,
+      note: note || null,
+      location_lat: victimLocation?.lat ?? null,
+      location_lng: victimLocation?.lng ?? null,
+      created_at: report.createdAt,
+    });
+    setIsSubmitting(false);
+
+    if (error) {
+      // Bao co mang nhung gui that su fail - khong duoc hien banner "da gui truc tuyen"
+      console.error('[RemoteSOS] Loi gui Supabase:', error.message);
+      patchLocalSyncStatus(reportId, 'offline');
+      toast.error(language === 'vi'
+        ? 'Không gửi được lên hệ thống — đã lưu để sao chép gửi tay'
+        : 'Could not reach server — saved for manual copy');
+      setShowExport(true);
+      setPageView('success');
+      return;
+    }
+
+    patchLocalSyncStatus(reportId, 'synced');
+    setShowExport(false);
+    setPageView('success');
+  };
+
+  // ===== SUCCESS SCREEN =====
+  if (pageView === 'success') {
+    return (
+      <div className="min-h-screen bg-background flex flex-col items-center justify-center p-6">
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.1 }} className="mb-6">
+          <CheckCircle className="w-24 h-24 text-[hsl(var(--success))]" />
+        </motion.div>
+        <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-2xl font-bold text-[hsl(var(--success))] text-center mb-2">
+          {language === 'vi' ? 'ĐÃ GỬI BÁO CÁO THÀNH CÔNG' : 'REPORT SENT SUCCESSFULLY'}
+        </motion.h1>
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="text-muted-foreground text-center mb-4">
+          {language === 'vi' ? 'Báo cáo cứu hộ cho người thân đã được ghi nhận' : 'Remote rescue report has been recorded'}
+        </motion.p>
+        
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="w-full max-w-sm space-y-3">
+          <div className="tactical-card p-4 space-y-2 text-center">
+            <p className="text-xs text-muted-foreground">{language === 'vi' ? 'Mã báo cáo' : 'Report ID'}</p>
+            <p className="font-mono font-bold text-primary">{submittedReportId.slice(0, 12).toUpperCase()}</p>
+            <p className="text-xs text-muted-foreground">{language === 'vi' ? `Người cần cứu: ${personName}` : `Person: ${personName}`}</p>
+            <p className="text-xs text-muted-foreground">{province}</p>
+          </div>
+
+          <div className={`text-center text-xs py-2 rounded-lg ${!showExport ? 'bg-[hsl(var(--success))]/20 text-[hsl(var(--success))]' : 'bg-warning/20 text-warning'}`}>
+            {!showExport
+              ? (language === 'vi' ? '🟢 Đã gửi trực tuyến' : '🟢 Sent online')
+              : (language === 'vi' ? '🟡 Chưa gửi được — Hãy sao chép gửi qua Zalo/SMS' : '🟡 Not sent — Copy and send via messaging')}
+          </div>
+
+          {showExport && (
+            <div className="tactical-card space-y-3 p-4">
+              <pre className="p-3 bg-secondary rounded-lg text-xs overflow-x-auto whitespace-pre-wrap">{generateReportText()}</pre>
+              <button onClick={handleCopyReport} className="w-full py-3 bg-accent text-accent-foreground rounded-xl font-medium flex items-center justify-center gap-2">
+                <Copy className="w-5 h-5" />{language === 'vi' ? 'SAO CHÉP BÁO CÁO' : 'COPY REPORT'}
+              </button>
+            </div>
+          )}
+
+          <div className="flex gap-3 pt-2">
+            <button onClick={() => {
+              setPageView('form');
+              setPersonName(''); setPersonPhone(''); setAddress(''); setProvince(''); setProvinceSearch('');
+              setUrgency('medium'); setSelectedNeeds([]); setNote(''); setVictimLocation(null); setShowExport(false);
+            }} className="flex-1 py-3 bg-secondary rounded-xl font-medium text-sm">
+              {language === 'vi' ? 'Báo thêm người' : 'Report Another'}
+            </button>
+            <Link to="/" className="flex-1 py-3 bg-primary text-primary-foreground rounded-xl font-bold text-sm flex items-center justify-center gap-1">
+              <Home className="w-4 h-4" />{language === 'vi' ? 'Về trang chủ' : 'Go Home'}
+            </Link>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // ===== FORM =====
   return (
-    <QueryClientProvider client={queryClient}>
-      <AppProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/guides" element={<Guides />} />
-              <Route path="/nearby" element={<CommunityBoard />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/compass" element={<Compass />} />
-              <Route path="/checklist" element={<Checklist />} />
-              <Route path="/more" element={<More />} />
-              <Route path="/quotes" element={<QuotesPage />} />
-              <Route path="/remote-sos" element={<RemoteSOS />} />
-              <Route path="/rescue" element={<RescueMode />} />
-              <Route path="/register-rescue" element={<RegisterRescue />} />
-              <Route path="/register-rescue/success" element={<RegisterRescueSuccess />} />
-              <Route path="/register-rescue/status" element={<RegisterRescueStatus />} />
-              <Route path="/admin/rescue-registrations" element={<AdminRescueRegistrations />} />
-              <Route path="/rescue-login" element={<RescueLogin />} />
-              <Route path="/rescue-dashboard" element={<RescueDashboard />} />
-              <Route path="/rescue-team" element={<RescueTeamDashboard />} />
-              <Route path="/command-login" element={<CommandLogin />} />
-              
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </AppProvider>
-    </QueryClientProvider>
-  );
-};
+    <div className="min-h-screen bg-background pb-8">
+      <header className="sticky top-0 bg-background/95 backdrop-blur border-b border-border z-10">
+        <div className="flex items-center gap-4 p-4">
+          <Link to="/more" className="p-2 rounded-lg bg-secondary">
+            <ArrowLeft className="w-5 h-5" />
+          </Link>
+          <div className="flex-1">
+            <h1 className="font-bold text-lg">{language === 'vi' ? 'Báo SOS hộ người thân' : 'Remote SOS for Family'}</h1>
+            <p className="text-xs text-muted-foreground">{language === 'vi' ? 'Gửi từ nơi an toàn' : 'Send from safe location'}</p>
+          </div>
+        </div>
+      </header>
 
-export default App;
+      <main className="p-4 space-y-4">
+        <div className="p-3 rounded-xl bg-warning/10 border border-warning/30">
+          <div className="flex items-start gap-2">
+            <Info className="w-5 h-5 text-warning mt-0.5 flex-shrink-0" />
+            <p className="text-sm text-warning">
+              {language === 'vi'
+                ? 'Đây là báo cáo hỗ trợ, không thay thế cứu hộ chính thức (113/114/115).'
+                : 'This is a support report, not a replacement for official rescue (113/114/115).'}
+            </p>
+          </div>
+        </div>
+
+        {/* Person Info */}
+        <div className="tactical-card space-y-4">
+          <div className="flex items-center gap-2 text-sm font-medium">
+            <User className="w-4 h-4 text-primary" />
+            {language === 'vi' ? 'Thông tin người cần cứu' : 'Person Information'}
+          </div>
+          <input type="text" value={personName} onChange={(e) => setPersonName(e.target.value)}
+            placeholder={language === 'vi' ? 'Họ tên *' : 'Full name *'}
+            className="w-full px-3 py-3 bg-secondary rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary" />
+          <input type="tel" value={personPhone} onChange={(e) => setPersonPhone(e.target.value)}
+            placeholder={language === 'vi' ? 'Số điện thoại' : 'Phone number'}
+            className="w-full px-3 py-2 bg-secondary rounded-lg text-base focus:outline-none focus:ring-2 focus:ring-primary" />
+        </div>
+
+        {/* Address + Province + Location */}
+        <div className="tactical-card space-y-3">
+          <div className="flex items-center gap-2 text-sm font-medium">
+            <MapPin className="w-4 h-4 text-destructive" />
+            {language === 'vi' ? 'Địa chỉ / vị trí nạn nhân' : 'Victim address / location'}
+          </div>
+          <textarea value={address} onChange={(e) => setAddress(e.target.value)}
+            placeholder={language === 'vi' ? 'Địa chỉ chi tiết hoặc mô tả vị trí...' : 'Detailed address or location description...'}
+            className="w-full h-16 px-3 py-2 bg-secondary rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary" />
+
+          {/* Province dropdown */}
+          <div className="relative">
+            <input type="text" value={provinceSearch} onChange={(e) => { setProvinceSearch(e.target.value); setShowProvinceDropdown(true); }} onFocus={() => setShowProvinceDropdown(true)}
+              placeholder={language === 'vi' ? 'Tỉnh/Thành phố * (bắt buộc)' : 'Province * (required)'}
+              className="w-full px-3 py-2 bg-secondary rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+            {showProvinceDropdown && (
+              <div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded-lg shadow-lg max-h-40 overflow-y-auto z-30">
+                {filteredProvinces.slice(0, 15).map(p => (
+                  <button key={p} onClick={() => { setProvince(p); setProvinceSearch(p); setShowProvinceDropdown(false); }}
+                    className={`w-full text-left px-3 py-2 text-sm hover:bg-secondary ${province === p ? 'bg-primary/10 font-medium' : ''}`}>{p}</button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Get Location button */}
+          <div className="flex items-center gap-2">
+            <button onClick={handleGetLocation} disabled={geoLoading}
+              className="flex items-center gap-2 px-4 py-2.5 bg-accent/20 text-accent rounded-lg text-sm font-medium disabled:opacity-50">
+              {geoLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <MapPin className="w-4 h-4" />}
+              {language === 'vi' ? 'Lấy vị trí GPS' : 'Get GPS Location'}
+            </button>
+            {victimLocation && (
+              <span className="text-xs font-mono text-muted-foreground">
+                {victimLocation.lat.toFixed(4)}, {victimLocation.lng.toFixed(4)}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Urgency */}
+        <div className="tactical-card space-y-3">
+          <div className="flex items-center gap-2 text-sm font-medium">
+            <AlertTriangle className="w-4 h-4 text-warning" />
+            {language === 'vi' ? 'Mức độ khẩn cấp' : 'Urgency Level'}
+          </div>
+          <div className="grid grid-cols-4 gap-2">
+            {urgencyLevels.map((level) => (
+              <button key={level.id} onClick={() => setUrgency(level.id)}
+                className={`py-2 px-1 rounded-lg text-xs font-bold transition-all ${urgency === level.id ? `${level.color} text-white` : 'bg-secondary text-muted-foreground'}`}>
+                {language === 'vi' ? level.labelVi : level.labelEn}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Needs */}
+        <div className="tactical-card">
+          <NeedTags selectedTags={selectedNeeds} onTagsChange={setSelectedNeeds} otherNote="" onOtherNoteChange={() => {}} />
+        </div>
+
+        {/* Note */}
+        <div className="tactical-card space-y-3">
+          <label className="text-sm font-medium">{language === 'vi' ? 'Ghi chú ngắn' : 'Short note'}</label>
+          <div className="relative">
+            <textarea value={note} onChange={(e) => setNote(e.target.value.slice(0, maxNoteLength))}
+              placeholder={language === 'vi' ? 'Mô tả ngắn tình huống...' : 'Brief description...'}
+              className="w-full h-16 px-3 py-2 bg-secondary rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary" />
+            <span className="absolute bottom-2 right-2 text-xs text-muted-foreground">{note.length}/{maxNoteLength}</span>
+          </div>
+        </div>
+
+        {/* Submit */}
+        <motion.button onClick={handleSubmit} disabled={isSubmitting} whileTap={{ scale: 0.98 }}
+          className="w-full py-4 bg-primary text-primary-foreground rounded-xl font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-60">
+          {isSubmitting ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
+          {isSubmitting
+            ? (language === 'vi' ? 'ĐANG GỬI...' : 'SENDING...')
+            : (isOnline ? (language === 'vi' ? 'GỬI BÁO CÁO' : 'SEND REPORT') : (language === 'vi' ? 'TẠO BÁO CÁO' : 'CREATE REPORT'))}
+        </motion.button>
+
+        <div className={`text-center text-xs py-2 rounded-lg ${isOnline ? 'bg-[hsl(var(--success))]/20 text-[hsl(var(--success))]' : 'bg-warning/20 text-warning'}`}>
+          {isOnline
+            ? (language === 'vi' ? '🟢 Có mạng - Báo cáo sẽ được gửi ngay' : '🟢 Online - Report will be sent immediately')
+            : (language === 'vi' ? '🟡 Ngoại tuyến - Sao chép gửi qua Zalo/SMS' : '🟡 Offline - Copy and send via messaging')}
+        </div>
+      </main>
+    </div>
+  );
+}
 ````
 
-## File: package.json
-````json
-{
-  "name": "vite_react_shadcn_ts",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest"
-  },
-  "dependencies": {
-    "@capacitor-community/bluetooth-le": "^8.2.0",
-    "@capacitor/android": "^8.5.0",
-    "@capacitor/cli": "^8.5.0",
-    "@capacitor/core": "^8.5.0",
-    "@capacitor/ios": "^8.5.0",
-    "@capacitor/preferences": "^8.0.1",
-    "@hookform/resolvers": "^3.10.0",
-    "@radix-ui/react-accordion": "^1.2.11",
-    "@radix-ui/react-alert-dialog": "^1.1.14",
-    "@radix-ui/react-aspect-ratio": "^1.1.7",
-    "@radix-ui/react-avatar": "^1.1.10",
-    "@radix-ui/react-checkbox": "^1.3.2",
-    "@radix-ui/react-collapsible": "^1.1.11",
-    "@radix-ui/react-context-menu": "^2.2.15",
-    "@radix-ui/react-dialog": "^1.1.14",
-    "@radix-ui/react-dropdown-menu": "^2.1.15",
-    "@radix-ui/react-hover-card": "^1.1.14",
-    "@radix-ui/react-label": "^2.1.7",
-    "@radix-ui/react-menubar": "^1.1.15",
-    "@radix-ui/react-navigation-menu": "^1.2.13",
-    "@radix-ui/react-popover": "^1.1.14",
-    "@radix-ui/react-progress": "^1.1.7",
-    "@radix-ui/react-radio-group": "^1.3.7",
-    "@radix-ui/react-scroll-area": "^1.2.9",
-    "@radix-ui/react-select": "^2.2.5",
-    "@radix-ui/react-separator": "^1.1.7",
-    "@radix-ui/react-slider": "^1.3.5",
-    "@radix-ui/react-slot": "^1.2.3",
-    "@radix-ui/react-switch": "^1.2.5",
-    "@radix-ui/react-tabs": "^1.1.12",
-    "@radix-ui/react-toast": "^1.2.14",
-    "@radix-ui/react-toggle": "^1.1.9",
-    "@radix-ui/react-toggle-group": "^1.1.10",
-    "@radix-ui/react-tooltip": "^1.2.7",
-    "@tanstack/react-query": "^5.83.0",
-    "@types/leaflet": "^1.9.21",
-    "@types/uuid": "^10.0.0",
-    "buffer": "^6.0.3",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "cmdk": "^1.1.1",
-    "date-fns": "^3.6.0",
-    "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^11.15.0",
-    "idb": "^8.0.0",
-    "input-otp": "^1.4.2",
-    "leaflet": "^1.9.4",
-    "lucide-react": "^0.462.0",
-    "next-themes": "^0.3.0",
-    "react": "^18.3.1",
-    "react-day-picker": "^8.10.1",
-    "react-dom": "^18.3.1",
-    "react-hook-form": "^7.61.1",
-    "react-resizable-panels": "^2.1.9",
-    "react-router-dom": "^6.30.1",
-    "recharts": "^2.15.4",
-    "sonner": "^1.7.4",
-    "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7",
-    "uuid": "^10.0.0",
-    "vaul": "^0.9.9",
-    "zod": "^3.25.76"
-  },
-  "devDependencies": {
-    "@capacitor/assets": "^3.0.5",
-    "@eslint/js": "^9.32.0",
-    "@tailwindcss/typography": "^0.5.16",
-    "@testing-library/jest-dom": "^6.6.0",
-    "@testing-library/react": "^16.0.0",
-    "@types/node": "^22.16.5",
-    "@types/react": "^18.3.23",
-    "@types/react-dom": "^18.3.7",
-    "@vitejs/plugin-react-swc": "^3.11.0",
-    "autoprefixer": "^10.4.21",
-    "eslint": "^9.32.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^15.15.0",
-    "jsdom": "^20.0.3",
-    "lovable-tagger": "^1.1.13",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.38.0",
-    "vite": "^5.4.19",
-    "vitest": "^3.2.4"
+## File: src/lib/relativeReports.ts
+````typescript
+import { supabase } from './supabaseClient';
+import { v4 as uuidv4 } from 'uuid';
+import { createManualCase } from './gatewayCases';
+import { getCases, saveCases, addLog, type SOSCase, type CaseSeverity } from './commandCenter';
+
+const KEY = 'flooded_remote_sos';
+
+export type RelativeReportReview = 'PENDING' | 'ACCEPTED' | 'REJECTED';
+
+export interface RelativeReport {
+  id: string;
+  personName: string;
+  personPhone?: string;
+  address?: string;
+  province?: string;
+  urgency: 'low' | 'medium' | 'high' | 'critical';
+  needs?: string[];
+  note?: string;
+  createdAt: number;
+  location?: { lat: number; lng: number } | null;
+  syncStatus?: string;
+  // Command review fields
+  review?: RelativeReportReview;
+  reviewNote?: string;
+  reviewedAt?: number;
+  linkedCaseId?: string;
+  reporterName?: string;
+  reporterPhone?: string;
+}
+
+export function getRelativeReports(): RelativeReport[] {
+  try {
+    const raw = JSON.parse(localStorage.getItem(KEY) || '[]') as RelativeReport[];
+    return Array.isArray(raw) ? raw.sort((a, b) => b.createdAt - a.createdAt) : [];
+  } catch {
+    return [];
   }
+}
+
+export function saveRelativeReports(list: RelativeReport[]) {
+  localStorage.setItem(KEY, JSON.stringify(list));
+}
+
+function patch(id: string, updates: Partial<RelativeReport>) {
+  const list = getRelativeReports();
+  const i = list.findIndex(r => r.id === id);
+  if (i === -1) return null;
+  list[i] = { ...list[i], ...updates };
+  saveRelativeReports(list);
+  return list[i];
+}
+
+export function urgencyToSeverity(u: RelativeReport['urgency']): CaseSeverity {
+  if (u === 'critical' || u === 'high') return 'RED';
+  if (u === 'medium') return 'ORANGE';
+  return 'GREEN';
+}
+
+export const urgencyLabels: Record<RelativeReport['urgency'], { vi: string; en: string }> = {
+  low: { vi: 'Thấp', en: 'Low' },
+  medium: { vi: 'Trung bình', en: 'Medium' },
+  high: { vi: 'Cao', en: 'High' },
+  critical: { vi: 'Nguy kịch', en: 'Critical' },
+};
+
+/** Approve a relative report → create an official SOS case (source: relative). */
+export function acceptRelativeReport(id: string): SOSCase | null {
+  const rep = getRelativeReports().find(r => r.id === id);
+  if (!rep || rep.review === 'ACCEPTED') return null;
+
+  const now = Date.now();
+  const newCase: SOSCase = {
+    id: uuidv4(),
+    sourceType: 'relative',
+    reporterName: rep.reporterName || (rep.personName ? `Người thân của ${rep.personName}` : 'Người thân'),
+    reporterPhone: rep.reporterPhone || rep.personPhone || '—',
+    victimName: rep.personName,
+    locationText: [rep.address, rep.province].filter(Boolean).join(', ') || 'Chưa rõ',
+    lat: rep.location?.lat,
+    lng: rep.location?.lng,
+    severity: urgencyToSeverity(rep.urgency),
+    status: 'VERIFYING',
+    peopleCount: 1,
+    description: rep.note,
+    needTags: rep.needs || [],
+    createdAt: rep.createdAt || now,
+    updatedAt: now,
+    messageId: `manual-${rep.id}`,
+    origin: 'COMMAND_MANUAL',
+    verifyStatus: 'UNVERIFIED',
+    auditLog: [],
+  };
+
+  const cases = getCases();
+  cases.push(newCase);
+  saveCases(cases);
+  // Persist into the Dexie data layer as a COMMAND_MANUAL case (deduped by messageId)
+  void createManualCase(newCase);
+  addLog(newCase.id, 'CREATED_FROM_RELATIVE_REPORT', `Hồ sơ báo hộ ${rep.id.slice(0, 8).toUpperCase()}`);
+
+  patch(id, { review: 'ACCEPTED', reviewedAt: now, linkedCaseId: newCase.id });
+  return newCase;
+}
+
+export function rejectRelativeReport(id: string, note: string) {
+  return patch(id, { review: 'REJECTED', reviewNote: note, reviewedAt: Date.now() });
+}
+
+export function resetRelativeReview(id: string) {
+  return patch(id, { review: 'PENDING', reviewNote: undefined, reviewedAt: undefined });
+}
+
+// ==================== SIMULATION ====================
+
+const SIM_PEOPLE = [
+  { name: 'Bà Nguyễn Thị Lan', phone: '0912345678', addr: 'Tổ 4, Phường Vỹ Dạ', province: 'Thừa Thiên Huế' },
+  { name: 'Ông Trần Văn Bảy', phone: '0987654321', addr: 'Thôn Đông, Xã Quảng Phú', province: 'Quảng Trị' },
+  { name: 'Em Lê Minh Khôi', phone: '0933221144', addr: 'Hẻm 12 Lê Lợi', province: 'Đà Nẵng' },
+  { name: 'Chị Phạm Thu Hà', phone: '0977553311', addr: 'Khu tập thể số 3, Phường An Cựu', province: 'Thừa Thiên Huế' },
+  { name: 'Gia đình ông Hồ Văn Sáu', phone: '0905112233', addr: 'Xóm Bãi, Xã Hương Toàn', province: 'Thừa Thiên Huế' },
+];
+const SIM_NEEDS = [['Nước sạch', 'Thực phẩm'], ['Y tế', 'Thuốc'], ['Thuyền cứu hộ'], ['Sơ tán khẩn cấp', 'Y tế']];
+const SIM_NOTES = [
+  'Nước ngập tới tầng 2, người già không di chuyển được.',
+  'Mất liên lạc từ tối qua, nhà ở vùng trũng.',
+  'Có trẻ nhỏ và người bệnh nền, cần hỗ trợ gấp.',
+  'Nhà bị cô lập, hết lương thực 2 ngày.',
+];
+const SIM_URGENCY: RelativeReport['urgency'][] = ['medium', 'high', 'critical', 'high'];
+
+const pick = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
+
+/** Create a fake relative report as if a user submitted it from /remote-sos. */
+export function simulateRelativeReport(): RelativeReport {
+  const p = pick(SIM_PEOPLE);
+  const rep: RelativeReport = {
+    id: uuidv4(),
+    personName: p.name,
+    personPhone: p.phone,
+    address: p.addr,
+    province: p.province,
+    urgency: pick(SIM_URGENCY),
+    needs: pick(SIM_NEEDS),
+    note: pick(SIM_NOTES),
+    createdAt: Date.now(),
+    location: { lat: 16.35 + Math.random() * 0.6, lng: 107.4 + Math.random() * 0.9 },
+    syncStatus: 'pending',
+    review: 'PENDING',
+    reporterName: 'Người thân (mô phỏng)',
+    reporterPhone: '09' + Math.floor(10000000 + Math.random() * 89999999),
+  };
+  const list = getRelativeReports();
+  list.push(rep);
+  saveRelativeReports(list);
+  return rep;
+}
+
+
+
+/** Keo report moi tu Supabase, merge vao local storage. Dedupe theo id (client da sinh uuid san). */
+export async function syncRemoteReportsFromSupabase(): Promise<void> {
+  if (!supabase) return;
+  const { data, error } = await supabase
+    .from('remote_sos_reports')
+    .select('*')
+    .order('inserted_at', { ascending: false })
+    .limit(200);
+
+  if (error) {
+    console.error('[RemoteSync] Loi doc Supabase:', error.message);
+    return;
+  }
+  if (!data || data.length === 0) return;
+
+  const local = getRelativeReports();
+  const localIds = new Set(local.map(r => r.id));
+
+  const incoming: RelativeReport[] = data
+    .filter((row: any) => !localIds.has(row.id))
+    .map((row: any) => ({
+      id: row.id,
+      personName: row.person_name,
+      personPhone: row.person_phone ?? undefined,
+      address: row.address ?? undefined,
+      province: row.province ?? undefined,
+      urgency: row.urgency,
+      needs: row.needs ?? [],
+      note: row.note ?? undefined,
+      createdAt: row.created_at,
+      location: (row.location_lat != null && row.location_lng != null)
+        ? { lat: row.location_lat, lng: row.location_lng } : null,
+      syncStatus: 'synced',
+      review: 'PENDING',
+      reporterName: 'Người thân (qua Internet)',
+      reporterPhone: row.person_phone ?? undefined,
+    }));
+
+  if (incoming.length > 0) saveRelativeReports([...incoming, ...local]);
+}
+````
+
+## File: src/pages/RescueMode.tsx
+````typescript
+import { useState, useMemo, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useRemoteReportsSync } from '@/hooks/useRemoteReportsSync';
+import { GatewayBadge } from '@/components/GatewayBadge';
+import { useGatewayCases } from '@/hooks/useGatewayCases';
+import {
+  Inbox, MapIcon, Users2, Layers, Settings as SettingsIcon,
+  ArrowLeft, RefreshCw, Download, Phone, Navigation, CheckCircle2,
+  AlertTriangle, X, Shield, Send, Plus, MapPin, Loader2,
+  Eye, UserPlus, Clock, ChevronRight, Copy, MoreVertical,
+  XCircle, Flag, Truck, Target, Search, PhoneCall, FileWarning,
+  Timer, Ban, LogOut, HeartHandshake
+} from 'lucide-react';
+import commandMapImg from '@/assets/command-map.jpg';
+import RescueMap from '@/components/RescueMap';
+import { useApp } from '@/contexts/AppContext';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
+import { v4 as uuidv4 } from 'uuid';
+import { provinces } from '@/lib/provinces';
+import {
+  seedDemoData, getCases, saveCases, getTeams, saveTeams, getZones, saveZones,
+  getLogs, addLog, updateCaseStatus, assignTeamToCase, getZoneStats,
+  haversineKm, estimateETA, simulateTeamMovement,
+  caseStatusMeta, severityMeta, teamStatusMeta, pipelineFilters, filterCasesByPipeline,
+  type SOSCase, type CaseStatus, type CaseSeverity, type RescueTeamAccount,
+  type Zone, type TeamStatus, type CaseLog, type PipelineFilterKey,
+} from '@/lib/commandCenter';
+import {
+  getRegistrations, approveRegistration, rejectRegistration,
+  teamTypeLabels, vehicleTypeLabels, availabilityLabels,
+  type RescueTeamRegistration, type RegistrationStatus,
+} from '@/lib/rescueRegistration';
+import {
+  getStormZones, seedStormZones, addStormZone, updateStormZone, deleteStormZone,
+  type StormZone,
+} from '@/lib/stormZones';
+import {
+  getRelativeReports, acceptRelativeReport, rejectRelativeReport, resetRelativeReview,
+  simulateRelativeReport, urgencyLabels, urgencyToSeverity,
+  type RelativeReport,
+} from '@/lib/relativeReports';
+
+type CCTab = 'cases' | 'map' | 'teams' | 'zones' | 'relatives';
+
+function timeAgo(ts: number, vi: boolean): string {
+  const diff = (Date.now() - ts) / 60000;
+  if (diff < 1) return vi ? 'vừa xong' : 'just now';
+  if (diff < 60) return `${Math.floor(diff)} ${vi ? 'phút trước' : 'min ago'}`;
+  if (diff < 1440) return `${Math.floor(diff / 60)}h ${vi ? 'trước' : 'ago'}`;
+  return `${Math.floor(diff / 1440)}d`;
+}
+
+export default function RescueMode() {
+  const { language, updateAppSettings } = useApp();
+  const navigate = useNavigate();
+  const vi = language === 'vi';
+
+  // Auth guard: require COMMAND login
+  useEffect(() => {
+    const authed = sessionStorage.getItem('flooded_command_auth');
+    if (!authed) { navigate('/command-login'); return; }
+  }, [navigate]);
+
+  // Seed on mount
+  useEffect(() => { seedDemoData(); seedStormZones(); }, []);
+
+  // Simulate team movement
+  useEffect(() => {
+    const iv = setInterval(simulateTeamMovement, 5000);
+    return () => clearInterval(iv);
+  }, []);
+
+  const [tab, setTab] = useState<CCTab>('cases');
+  const [cases, setCases] = useState<SOSCase[]>(getCases);
+  const [teams, setTeamsState] = useState<RescueTeamAccount[]>(getTeams);
+  const [zones, setZonesState] = useState<Zone[]>(getZones);
+  const [logs, setLogs] = useState<CaseLog[]>(getLogs);
+  const [stormZones, setStormZonesState] = useState<StormZone[]>(getStormZones);
+  const [relativeReports, setRelativeReports] = useState<RelativeReport[]>(getRelativeReports);
+
+  // Refresh from storage
+  const refresh = useCallback(() => {
+    setCases(getCases());
+    setTeamsState(getTeams());
+    setZonesState(getZones());
+    setLogs(getLogs());
+    setStormZonesState(getStormZones());
+    setRelativeReports(getRelativeReports());
+  }, []);
+
+  // Auto-refresh every 5s
+  useEffect(() => { const iv = setInterval(refresh, 5000); return () => clearInterval(iv); }, [refresh]);
+
+  // Gateway (SoftAP LoRa) live cases - overrides local/demo cases once real data arrives
+  const { status: gatewayStatus, cases: gatewayCases } = useGatewayCases();
+  useEffect(() => { if (gatewayCases.length) setCases(gatewayCases); }, [gatewayCases]);
+
+  // Relative (Internet/Supabase) reports - auto-sync every 8s
+  useRemoteReportsSync(() => setRelativeReports(getRelativeReports()));
+
+  // Filters
+  const [pipelineFilter, setPipelineFilter] = useState<PipelineFilterKey>('ALL');
+  const [severityFilter, setSeverityFilter] = useState<CaseSeverity | 'ALL'>('ALL');
+  const [searchText, setSearchText] = useState('');
+
+  // Detail drawer
+  const [selectedCaseId, setSelectedCaseId] = useState<string | null>(null);
+  const [showTeamForm, setShowTeamForm] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [confirmAction, setConfirmAction] = useState<{ label: string; description: string; onConfirm: () => void } | null>(null);
+  const [showRegistrations, setShowRegistrations] = useState(false);
+  const [registrations, setRegistrations] = useState<RescueTeamRegistration[]>(getRegistrations);
+  const [selectedRegId, setSelectedRegId] = useState<string | null>(null);
+  const [rejectReason, setRejectReason] = useState('');
+  const [showRejectForm, setShowRejectForm] = useState(false);
+  const [approvedCreds, setApprovedCreds] = useState<{ teamCode: string; teamName: string } | null>(null);
+  // Storm zone management
+  const [showStormEditor, setShowStormEditor] = useState(false);
+  const [newStormName, setNewStormName] = useState('');
+  const [newStormCoords, setNewStormCoords] = useState('');
+  // Coordination modal (approved teams)
+  const [showCoordination, setShowCoordination] = useState(false);
+  // Relative (remote) SOS reports review
+  const [showRelativeReports, setShowRelativeReports] = useState(false);
+  const [relFilter, setRelFilter] = useState<'PENDING' | 'ACCEPTED' | 'REJECTED'>('PENDING');
+  const [relRejectId, setRelRejectId] = useState<string | null>(null);
+  const [relRejectReason, setRelRejectReason] = useState('');
+
+  // Filtered & sorted cases: RED first, then oldest first
+  const filteredCases = useMemo(() => {
+    let r = [...cases];
+    r = filterCasesByPipeline(r, pipelineFilter);
+    if (severityFilter !== 'ALL') r = r.filter(c => c.severity === severityFilter);
+    if (searchText) {
+      const q = searchText.toLowerCase();
+      r = r.filter(c => c.reporterName.toLowerCase().includes(q) || c.locationText.toLowerCase().includes(q) || (c.victimName || '').toLowerCase().includes(q) || c.id.includes(q));
+    }
+    const sev = { RED: 0, ORANGE: 1, GREEN: 2 };
+    r.sort((a, b) => sev[a.severity] - sev[b.severity] || a.createdAt - b.createdAt);
+    return r;
+  }, [cases, pipelineFilter, severityFilter, searchText]);
+
+  // Stats
+  const stats = useMemo(() => ({
+    total: cases.length,
+    red: cases.filter(c => c.severity === 'RED').length,
+    orange: cases.filter(c => c.severity === 'ORANGE').length,
+    green: cases.filter(c => c.severity === 'GREEN').length,
+    waitSafe: cases.filter(c => c.status === 'WAITING_SAFE_CONDITIONS').length,
+    active: cases.filter(c => !['CLOSED', 'RESCUED', 'DUPLICATE', 'FALSE_REPORT'].includes(c.status)).length,
+  }), [cases]);
+
+  // Actions
+  const doUpdateStatus = (caseId: string, status: CaseStatus, note?: string) => {
+    updateCaseStatus(caseId, status, note);
+    refresh();
+    toast.success(`${caseStatusMeta[status][vi ? 'vi' : 'en']}`);
+  };
+
+  const doAssign = (caseId: string, teamId: string) => {
+    assignTeamToCase(caseId, teamId);
+    refresh();
+    toast.success(vi ? 'Đã phân công' : 'Assigned');
+  };
+
+  const doApproveRegistration = (id: string) => {
+    const creds = approveRegistration(id);
+    if (creds) {
+      setApprovedCreds(creds);
+      setRegistrations(getRegistrations());
+      refresh();
+      toast.success(vi ? 'Đã duyệt — chuyển sang Điều phối cứu hộ để triển khai' : 'Approved — go to Coordination to dispatch');
+    }
+  };
+
+  // Dispatch approved team into active teams list
+  const doDispatchTeam = (reg: RescueTeamRegistration) => {
+    const t = getTeams();
+    // Check if already dispatched
+    if (t.find(x => x.name === reg.teamName && x.leaderPhone === reg.leaderPhone)) {
+      toast.error(vi ? 'Đội này đã được điều phối rồi' : 'Team already dispatched');
+      return;
+    }
+    const nt: RescueTeamAccount = {
+      id: uuidv4(), name: reg.teamName, leaderName: reg.leaderName, leaderPhone: reg.leaderPhone,
+      membersCount: reg.membersCount, vehicleType: reg.vehicleTypes.map(v => vehicleTypeLabels[v]).join(', '),
+      username: reg.leaderName, password: reg.leaderPhone,
+      status: 'AVAILABLE', lastUpdated: Date.now(),
+    };
+    t.push(nt);
+    saveTeams(t);
+    refresh();
+    toast.success(vi ? `Đã điều phối đội "${reg.teamName}" vào danh sách` : `Dispatched "${reg.teamName}"`);
+  };
+
+  const doRejectRegistration = (id: string) => {
+    if (!rejectReason.trim()) { toast.error(vi ? 'Vui lòng nhập lý do' : 'Please enter reason'); return; }
+    rejectRegistration(id, rejectReason.trim());
+    setRegistrations(getRegistrations());
+    setShowRejectForm(false);
+    setRejectReason('');
+    toast.success(vi ? 'Đã từ chối hồ sơ' : 'Registration rejected');
+  };
+
+  const pendingRegs = useMemo(() => registrations.filter(r => r.status === 'PENDING'), [registrations]);
+
+  // ===== Relative (remote) SOS reports =====
+  const pendingRelReports = useMemo(() => relativeReports.filter(r => (r.review ?? 'PENDING') === 'PENDING'), [relativeReports]);
+  const filteredRelReports = useMemo(
+    () => relativeReports.filter(r => (r.review ?? 'PENDING') === relFilter),
+    [relativeReports, relFilter]
+  );
+
+  const doAcceptRelative = (id: string) => {
+    const created = acceptRelativeReport(id);
+    setConfirmAction(null);
+    refresh();
+    if (created) {
+      // Move the approved report straight into SOS Cases for dispatching
+      setShowRelativeReports(false);
+      setRelRejectId(null);
+      setPipelineFilter('ALL');
+      setSeverityFilter('ALL');
+      setSearchText('');
+      setTab('cases');
+      setSelectedCaseId(created.id);
+      toast.success(vi ? 'Đã tạo ca SOS từ hồ sơ báo hộ — sẵn sàng phân công đội' : 'SOS case created — ready to assign a team');
+    } else {
+      toast.error(vi ? 'Không thể xử lý hồ sơ này' : 'Cannot process this report');
+    }
+  };
+
+
+  const doRejectRelative = () => {
+    if (!relRejectId) return;
+    if (!relRejectReason.trim()) { toast.error(vi ? 'Vui lòng nhập lý do' : 'Please enter a reason'); return; }
+    rejectRelativeReport(relRejectId, relRejectReason.trim());
+    setRelRejectId(null);
+    setRelRejectReason('');
+    refresh();
+    toast.success(vi ? 'Đã từ chối hồ sơ' : 'Report rejected');
+  };
+
+  const doSimulateRelative = () => {
+    const r = simulateRelativeReport();
+    refresh();
+    setRelFilter('PENDING');
+    toast.success(vi ? `Mô phỏng: hồ sơ báo hộ "${r.personName}"` : `Simulated relative report: ${r.personName}`);
+  };
+
+  const doTeamStatus = (teamId: string, status: TeamStatus) => {
+    const t = getTeams();
+    const i = t.findIndex(x => x.id === teamId);
+    if (i === -1) return;
+    t[i].status = status;
+    t[i].lastUpdated = Date.now();
+    if (status === 'AVAILABLE' || status === 'OFFLINE') { t[i].assignedCaseId = undefined; }
+    saveTeams(t);
+    refresh();
+  };
+
+  const exportData = (fmt: 'csv' | 'json') => {
+    const data = { cases, teams, zones, logs };
+    let content: string, filename: string, mime: string;
+    if (fmt === 'json') {
+      content = JSON.stringify(data, null, 2); filename = 'command-center-export.json'; mime = 'application/json';
+    } else {
+      const h = ['ID', 'Severity', 'Status', 'Reporter', 'Phone', 'Location', 'People', 'Team', 'Created'];
+      const rows = cases.map(c => [c.id.slice(0, 8), c.severity, c.status, c.reporterName, c.reporterPhone, `"${c.locationText}"`, c.peopleCount, teams.find(t => t.id === c.assignedTeamId)?.name || '', new Date(c.createdAt).toISOString()]);
+      content = [h.join(','), ...rows.map(r => r.join(','))].join('\n'); filename = 'command-center-export.csv'; mime = 'text/csv';
+    }
+    const blob = new Blob([content], { type: mime }); const url = URL.createObjectURL(blob);
+    const a = document.createElement('a'); a.href = url; a.download = filename; a.click(); URL.revokeObjectURL(url);
+  };
+
+  const handleDisable = () => { sessionStorage.removeItem('flooded_command_auth'); updateAppSettings({ rescueMode: false }); navigate('/settings'); };
+  const handleCommandLogout = () => { sessionStorage.removeItem('flooded_command_auth'); navigate('/command-login'); };
+
+  const selectedCase = cases.find(c => c.id === selectedCaseId);
+  const caseLogs = selectedCaseId ? logs.filter(l => l.caseId === selectedCaseId).sort((a, b) => b.timestamp - a.timestamp) : [];
+
+  const tabs: { id: CCTab; icon: typeof Inbox; vi: string; en: string; badge?: number }[] = [
+    { id: 'cases', icon: Inbox, vi: 'SOS Cases', en: 'SOS Cases', badge: stats.active },
+    { id: 'map', icon: MapIcon, vi: 'Bản đồ', en: 'Map' },
+    { id: 'relatives', icon: HeartHandshake, vi: 'Báo hộ', en: 'Relatives', badge: pendingRelReports.length },
+    { id: 'teams', icon: Users2, vi: 'Đội', en: 'Teams', badge: teams.filter(t => t.status === 'AVAILABLE').length },
+    { id: 'zones', icon: Layers, vi: 'Khu vực', en: 'Zones' },
+  ];
+
+
+  // ========== CASE DETAIL DRAWER ==========
+  const renderCaseDrawer = () => {
+    if (!selectedCase) return null;
+    const sev = severityMeta[selectedCase.severity];
+    const st = caseStatusMeta[selectedCase.status];
+    const assignedTeam = teams.find(t => t.id === selectedCase.assignedTeamId);
+    const availableTeams = teams.filter(t => t.status === 'AVAILABLE');
+    const zone = zones.find(z => z.id === selectedCase.zoneId);
+
+    return (
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 z-50 flex items-end sm:items-center justify-center" onClick={() => setSelectedCaseId(null)}>
+        <motion.div initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }} className="bg-card w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl" onClick={e => e.stopPropagation()}>
+          {/* Header */}
+          <div className="sticky top-0 bg-card border-b border-border p-4 flex items-center justify-between z-10 rounded-t-2xl">
+            <div className="flex items-center gap-2">
+              <div className={`w-4 h-4 rounded-full ${sev.color}`} />
+              <span className="font-bold text-sm">{selectedCase.severity === 'RED' ? (vi ? 'Cần cứu ngay' : 'Critical') : selectedCase.severity === 'ORANGE' ? (vi ? 'Nguy cơ cao' : 'High Risk') : (vi ? 'Tạm ổn' : 'Stable')}</span>
+              <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${st.color}`}>{st[vi ? 'vi' : 'en']}</span>
+            </div>
+            <button onClick={() => setSelectedCaseId(null)} className="p-1.5 rounded-lg bg-secondary"><X className="w-4 h-4" /></button>
+          </div>
+
+          <div className="p-4 space-y-4">
+            {/* Basic info */}
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Người báo' : 'Reporter'}</p>
+                <p className="font-bold">{selectedCase.reporterName}</p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1"><Phone className="w-3 h-3" />{selectedCase.reporterPhone}</p>
+              </div>
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Nguồn' : 'Source'}</p>
+                <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${selectedCase.sourceType === 'citizen' ? 'bg-accent/20 text-accent' : 'bg-warning/20 text-warning'}`}>
+                  {selectedCase.sourceType === 'citizen' ? (vi ? 'Người dân' : 'Citizen') : (vi ? 'Người thân' : 'Relative')}
+                </span>
+              </div>
+              {selectedCase.victimName && (
+                <div className="col-span-2">
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Nạn nhân' : 'Victim'}</p>
+                  <p className="font-bold">{selectedCase.victimName}</p>
+                </div>
+              )}
+              <div className="col-span-2">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Vị trí' : 'Location'}</p>
+                <p className="font-medium text-sm">{selectedCase.locationText}</p>
+                {zone && <p className="text-xs text-muted-foreground">{zone.name}, {zone.province}</p>}
+                {selectedCase.lat && <p className="text-[10px] font-mono text-muted-foreground">{selectedCase.lat.toFixed(5)}, {selectedCase.lng?.toFixed(5)}</p>}
+              </div>
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Số người' : 'People'}</p>
+                <p className="text-2xl font-bold">{selectedCase.peopleCount}</p>
+              </div>
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{vi ? 'Thời gian' : 'Time'}</p>
+                <p className="text-xs font-mono">{timeAgo(selectedCase.createdAt, vi)}</p>
+                <p className="text-[10px] text-muted-foreground">{new Date(selectedCase.createdAt).toLocaleString()}</p>
+              </div>
+            </div>
+
+            {selectedCase.vulnerableGroups && (
+              <div className="p-2.5 rounded-lg bg-destructive/10 border border-destructive/30">
+                <p className="text-[10px] text-destructive uppercase tracking-wider font-bold mb-1">{vi ? 'Nhóm dễ tổn thương' : 'Vulnerable Groups'}</p>
+                <p className="text-sm text-destructive">{selectedCase.vulnerableGroups}</p>
+              </div>
+            )}
+
+            {selectedCase.description && (
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{vi ? 'Mô tả' : 'Description'}</p>
+                <p className="text-sm">{selectedCase.description}</p>
+              </div>
+            )}
+
+            {selectedCase.needTags && selectedCase.needTags.length > 0 && (
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{vi ? 'Nhu cầu' : 'Needs'}</p>
+                <div className="flex flex-wrap gap-1">{selectedCase.needTags.map((t, i) => <span key={i} className="px-2 py-0.5 rounded bg-secondary text-xs">{t}</span>)}</div>
+              </div>
+            )}
+
+            {/* Assigned team */}
+            {assignedTeam && (
+              <div className="p-3 rounded-lg border border-accent/30 bg-accent/5">
+                <p className="text-[10px] text-accent uppercase tracking-wider font-bold mb-1">{vi ? 'Đội được phân công' : 'Assigned Team'}</p>
+                <p className="font-bold text-sm">{assignedTeam.name}</p>
+                <p className="text-xs text-muted-foreground">{assignedTeam.leaderName} • {assignedTeam.vehicleType}</p>
+                {assignedTeam.currentLocation && selectedCase.lat && (
+                  <p className="text-xs text-accent mt-1">
+                    📍 {haversineKm(assignedTeam.currentLocation.lat, assignedTeam.currentLocation.lng, selectedCase.lat, selectedCase.lng!).toFixed(1)} km
+                    — ETA: {estimateETA(haversineKm(assignedTeam.currentLocation.lat, assignedTeam.currentLocation.lng, selectedCase.lat, selectedCase.lng!))}
+                  </p>
+                )}
+              </div>
+            )}
+
+            {/* Quick status actions */}
+            <div>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">{vi ? 'Cập nhật trạng thái' : 'Update Status'}</p>
+              <div className="grid grid-cols-3 gap-1.5">
+                {selectedCase.status === 'NEW' && (
+                  <button onClick={() => setConfirmAction({ label: vi ? 'Xác minh' : 'Verify', description: vi ? 'Bắt đầu xác minh ca SOS này?' : 'Start verifying this SOS case?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'VERIFYING', vi ? 'Bắt đầu xác minh' : 'Start verifying'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-warning/20 text-warning text-xs font-bold flex items-center justify-center gap-1"><Eye className="w-3 h-3" />{vi ? 'Xác minh' : 'Verify'}</button>
+                )}
+                {(selectedCase.status === 'VERIFYING') && (
+                  <button onClick={() => setConfirmAction({ label: vi ? 'Đã xác minh' : 'Verified', description: vi ? 'Xác nhận ca này đã được xác minh?' : 'Confirm this case is verified?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'VERIFIED'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-accent/20 text-accent text-xs font-bold flex items-center justify-center gap-1"><CheckCircle2 className="w-3 h-3" />{vi ? 'Đã xác minh' : 'Verified'}</button>
+                )}
+                {(['NEW', 'VERIFIED', 'WAITING_FOR_ASSIGNMENT'] as CaseStatus[]).includes(selectedCase.status) && (
+                  <button onClick={() => setConfirmAction({ label: vi ? 'Chờ an toàn' : 'Wait Safe', description: vi ? 'Chuyển ca sang trạng thái chờ điều kiện an toàn?' : 'Set case to waiting for safe conditions?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'WAITING_SAFE_CONDITIONS'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-secondary text-muted-foreground text-xs font-bold flex items-center justify-center gap-1"><Timer className="w-3 h-3" />{vi ? 'Chờ an toàn' : 'Wait Safe'}</button>
+                )}
+                {(['ASSIGNED', 'TEAM_ACCEPTED'] as CaseStatus[]).includes(selectedCase.status) && (
+                  <button onClick={() => setConfirmAction({ label: vi ? 'Đang đến' : 'En Route', description: vi ? 'Xác nhận đội đang trên đường đến?' : 'Confirm team is en route?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'IN_PROGRESS'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-warning/20 text-warning text-xs font-bold flex items-center justify-center gap-1"><Truck className="w-3 h-3" />{vi ? 'Đang đến' : 'En Route'}</button>
+                )}
+                {(['IN_PROGRESS'] as CaseStatus[]).includes(selectedCase.status) && (
+                  <button onClick={() => setConfirmAction({ label: vi ? 'Đã cứu' : 'Rescued', description: vi ? 'Xác nhận ca này đã được cứu thành công?' : 'Confirm this case has been rescued?', onConfirm: () => { doUpdateStatus(selectedCase.id, 'RESCUED'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-success/20 text-success text-xs font-bold flex items-center justify-center gap-1"><CheckCircle2 className="w-3 h-3" />{vi ? 'Đã cứu' : 'Rescued'}</button>
+                )}
+                <button onClick={() => setConfirmAction({ label: vi ? 'Báo trùng' : 'Duplicate', description: vi ? 'Đánh dấu ca này là TRÙNG LẶP? Hành động không thể hoàn tác.' : 'Mark this case as DUPLICATE? This cannot be undone.', onConfirm: () => { doUpdateStatus(selectedCase.id, 'DUPLICATE'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center gap-1"><Copy className="w-3 h-3" />{vi ? 'Trùng' : 'Dup'}</button>
+                <button onClick={() => setConfirmAction({ label: vi ? 'Báo giả' : 'False Report', description: vi ? 'Đánh dấu ca này là BÁO GIẢ? Hành động không thể hoàn tác.' : 'Mark this case as FALSE REPORT? This cannot be undone.', onConfirm: () => { doUpdateStatus(selectedCase.id, 'FALSE_REPORT'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center gap-1"><Ban className="w-3 h-3" />{vi ? 'Báo giả' : 'False'}</button>
+                <button onClick={() => setConfirmAction({ label: vi ? 'Đóng ca' : 'Close Case', description: vi ? 'Đóng ca SOS này? Hành động không thể hoàn tác.' : 'Close this SOS case? This cannot be undone.', onConfirm: () => { doUpdateStatus(selectedCase.id, 'CLOSED'); setConfirmAction(null); } })} className="py-2 rounded-lg bg-muted text-muted-foreground text-xs font-bold flex items-center justify-center gap-1"><XCircle className="w-3 h-3" />{vi ? 'Đóng' : 'Close'}</button>
+              </div>
+            </div>
+
+            {/* Assign team */}
+            {!assignedTeam && availableTeams.length > 0 && (
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">{vi ? 'Phân công đội' : 'Assign Team'}</p>
+                <div className="space-y-1.5">
+                  {availableTeams.map(t => {
+                    const dist = t.currentLocation && selectedCase.lat ? haversineKm(t.currentLocation.lat, t.currentLocation.lng, selectedCase.lat, selectedCase.lng!) : null;
+                    return (
+                      <button key={t.id} onClick={() => setConfirmAction({ label: vi ? `Phân công ${t.name}` : `Assign ${t.name}`, description: vi ? `Phân công đội "${t.name}" cho ca SOS này?` : `Assign team "${t.name}" to this SOS case?`, onConfirm: () => { doAssign(selectedCase.id, t.id); setConfirmAction(null); setSelectedCaseId(null); } })}
+                        className="w-full p-2.5 rounded-lg bg-secondary flex items-center justify-between hover:bg-accent/10 transition-colors">
+                        <div className="text-left">
+                          <p className="font-medium text-sm">{t.name}</p>
+                          <p className="text-[10px] text-muted-foreground">{t.leaderName} • {t.vehicleType} • {t.membersCount}{vi ? ' người' : ' ppl'}</p>
+                        </div>
+                        <div className="text-right">
+                          {dist !== null && (
+                            <>
+                              <p className="text-xs font-mono text-accent">{dist.toFixed(1)} km</p>
+                              <p className="text-[10px] text-muted-foreground">ETA: {estimateETA(dist)}</p>
+                            </>
+                          )}
+                          <ChevronRight className="w-4 h-4 text-muted-foreground inline" />
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Directions */}
+            {selectedCase.lat && (
+              <button onClick={() => window.open(`https://www.google.com/maps/dir/?api=1&destination=${selectedCase.lat},${selectedCase.lng}`, '_blank')}
+                className="w-full py-2.5 bg-accent/20 text-accent rounded-xl text-sm font-bold flex items-center justify-center gap-1">
+                <Navigation className="w-4 h-4" />{vi ? 'Mở bản đồ / Chỉ đường' : 'Open Map / Directions'}
+              </button>
+            )}
+
+            {/* Timeline log */}
+            <div>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-2">{vi ? 'Nhật ký' : 'Timeline'}</p>
+              {caseLogs.length === 0 ? (
+                <p className="text-xs text-muted-foreground">{vi ? 'Chưa có thao tác' : 'No actions yet'}</p>
+              ) : (
+                <div className="space-y-1 max-h-40 overflow-y-auto">
+                  {caseLogs.map(l => (
+                    <div key={l.id} className="flex items-start gap-2 text-xs p-1.5 rounded bg-secondary/50">
+                      <Clock className="w-3 h-3 text-muted-foreground mt-0.5 flex-shrink-0" />
+                      <div className="flex-1">
+                        <span className="font-medium">{l.action}</span>
+                        {l.note && <span className="text-muted-foreground"> — {l.note}</span>}
+                        <p className="text-[10px] text-muted-foreground font-mono">{new Date(l.timestamp).toLocaleString()}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    );
+  };
+
+  // ========== RENDER ==========
+  return (
+    <div className="min-h-screen bg-background pb-20">
+      {/* Top bar */}
+      <header className="sticky top-0 bg-background/95 backdrop-blur border-b border-primary/30 z-10">
+        <div className="flex items-center gap-3 p-3">
+          <div className="w-9 h-9 rounded-xl bg-primary/20 flex items-center justify-center">
+            <Shield className="w-5 h-5 text-primary" />
+          </div>
+          <div className="flex-1">
+            <h1 className="font-bold text-sm tracking-wider">{vi ? 'TRUNG TÂM ĐIỀU PHỐI' : 'COMMAND CENTER'}</h1>
+            <p className="text-[10px] text-muted-foreground">{vi ? 'COMMAND Dashboard • Bảng điều phối cứu hộ' : 'COMMAND Dashboard • Rescue Coordination'}</p>
+          </div>
+          <button onClick={() => setShowSettings(!showSettings)} className="p-2 rounded-lg bg-secondary">
+            <SettingsIcon className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Stats bar */}
+        <div className="grid grid-cols-5 gap-1 px-3 pb-2">
+          {[
+            { label: vi ? 'Tổng' : 'Total', val: stats.total, bg: 'bg-secondary', sev: 'ALL' as const },
+            { label: vi ? 'Cần cứu ngay' : 'Critical', val: stats.red, bg: 'bg-destructive/20', sev: 'RED' as const },
+            { label: vi ? 'Nguy cơ cao' : 'High Risk', val: stats.orange, bg: 'bg-warning/20', sev: 'ORANGE' as const },
+            { label: vi ? 'Tạm ổn' : 'Stable', val: stats.green, bg: 'bg-success/20', sev: 'GREEN' as const },
+            { label: vi ? 'Chờ AT' : 'Wait', val: stats.waitSafe, bg: 'bg-secondary', sev: 'ALL' as const },
+          ].map(s => (
+            <button key={s.label} onClick={() => s.label !== (vi ? 'Chờ AT' : 'Wait') ? setSeverityFilter(s.sev === severityFilter ? 'ALL' : s.sev) : null}
+              className={`p-1.5 rounded-lg ${s.bg} text-center transition-all ${severityFilter === s.sev && s.sev !== 'ALL' ? 'ring-2 ring-primary' : ''}`}>
+              <p className="text-lg font-bold leading-none">{s.val}</p>
+              <p className="text-[9px] text-muted-foreground">{s.label}</p>
+            </button>
+          ))}
+        </div>
+
+        {/* Gateway (SoftAP LoRa) connection status */}
+        <GatewayBadge status={gatewayStatus} />
+      </header>
+
+      {/* Settings panel */}
+      <AnimatePresence>
+        {showSettings && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden bg-card border-b border-border">
+            <div className="p-4 space-y-3">
+              <div className="flex gap-2">
+                <button onClick={() => exportData('csv')} className="flex-1 py-2 bg-secondary rounded-lg text-sm font-medium flex items-center justify-center gap-1"><Download className="w-4 h-4" />CSV</button>
+                <button onClick={() => exportData('json')} className="flex-1 py-2 bg-secondary rounded-lg text-sm font-medium flex items-center justify-center gap-1"><Download className="w-4 h-4" />JSON</button>
+              </div>
+              <p className="text-xs text-muted-foreground">{vi ? `Nhật ký: ${logs.length} thao tác` : `Logs: ${logs.length} actions`}</p>
+              <button onClick={handleCommandLogout} className="w-full py-2.5 bg-warning/20 text-warning rounded-lg text-sm font-bold flex items-center justify-center gap-1"><LogOut className="w-4 h-4" />{vi ? 'Đăng xuất COMMAND' : 'Logout COMMAND'}</button>
+              <button onClick={handleDisable} className="w-full py-2.5 bg-destructive/20 text-destructive rounded-lg text-sm font-bold">{vi ? 'Tắt chế độ cứu hộ' : 'Disable Rescue Mode'}</button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Content */}
+      <main className="px-3 pt-2 pb-4">
+        {/* ===== TAB: SOS CASES ===== */}
+        {tab === 'cases' && (
+          <div className="space-y-2">
+            {/* Search */}
+            <div className="relative">
+              <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+              <input type="text" value={searchText} onChange={e => setSearchText(e.target.value)} placeholder={vi ? 'Tìm tên, vị trí, ID...' : 'Search name, location, ID...'}
+                className="w-full pl-9 pr-3 py-2 bg-secondary rounded-lg text-sm focus:outline-none" />
+            </div>
+
+            {/* Pipeline filter */}
+            <div className="flex gap-1 overflow-x-auto pb-1 scrollbar-hide">
+              {pipelineFilters.map(f => (
+                <button key={f.key} onClick={() => setPipelineFilter(f.key)} className={`px-2.5 py-1 rounded-lg text-[11px] font-medium whitespace-nowrap transition-all ${pipelineFilter === f.key ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground'}`}>
+                  {vi ? f.vi : f.en}
+                </button>
+              ))}
+            </div>
+
+            {/* Relative (remote) SOS reports inbox */}
+            <div className="tactical-card p-3 flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg bg-warning/20 flex items-center justify-center shrink-0">
+                <PhoneCall className="w-4 h-4 text-warning" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-bold text-sm">{vi ? 'Hồ sơ báo SOS hộ người thân' : 'Relative SOS Reports'}</p>
+                <p className="text-[11px] text-muted-foreground">
+                  {pendingRelReports.length > 0
+                    ? (vi ? `${pendingRelReports.length} hồ sơ chờ xác minh` : `${pendingRelReports.length} awaiting review`)
+                    : (vi ? 'Không có hồ sơ chờ xử lý' : 'No pending reports')}
+                </p>
+              </div>
+              <button onClick={() => { setRelativeReports(getRelativeReports()); setTab('relatives'); }}
+                className="relative px-2.5 py-1.5 rounded-lg bg-warning text-warning-foreground text-xs font-bold whitespace-nowrap">
+                {vi ? 'Xử lý' : 'Review'}
+                {pendingRelReports.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-[9px] font-bold px-1 rounded-full">{pendingRelReports.length}</span>
+                )}
+              </button>
+            </div>
+
+
+
+            {/* Case list */}
+            {filteredCases.length === 0 ? (
+              <div className="tactical-card p-8 text-center">
+                <Inbox className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                <p className="text-muted-foreground text-sm">{vi ? 'Không có case nào phù hợp' : 'No matching cases'}</p>
+              </div>
+            ) : (
+              filteredCases.map((c, i) => {
+                const sev = severityMeta[c.severity];
+                const st = caseStatusMeta[c.status];
+                const team = teams.find(t => t.id === c.assignedTeamId);
+                return (
+                  <motion.button key={c.id} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.015 }}
+                    onClick={() => setSelectedCaseId(c.id)} className="tactical-card p-3 w-full text-left space-y-1.5 hover:border-primary/40 transition-colors">
+                    {/* Row 1: severity + source + time */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <div className={`w-3 h-3 rounded-full ${sev.color}`} />
+                        <span className={`text-xs font-bold ${c.severity === 'RED' ? 'text-destructive' : c.severity === 'ORANGE' ? 'text-warning' : 'text-success'}`}>{c.severity === 'RED' ? (vi ? 'Cần cứu ngay' : 'Critical') : c.severity === 'ORANGE' ? (vi ? 'Nguy cơ cao' : 'High Risk') : (vi ? 'Tạm ổn' : 'Stable')}</span>
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${c.sourceType === 'citizen' ? 'bg-accent/20 text-accent' : 'bg-warning/20 text-warning'}`}>
+                          {c.sourceType === 'citizen' ? (vi ? 'Dân' : 'Citizen') : (vi ? 'Thân' : 'Relative')}
+                        </span>
+                      </div>
+                      <span className="text-[10px] text-muted-foreground font-mono">{timeAgo(c.createdAt, vi)}</span>
+                    </div>
+                    {/* Row 2: name, phone, people */}
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-medium text-sm">{c.reporterName}{c.victimName ? ` → ${c.victimName}` : ''}</p>
+                        <p className="text-[10px] text-muted-foreground flex items-center gap-1"><Phone className="w-2.5 h-2.5" />{c.reporterPhone}</p>
+                      </div>
+                      <p className="text-lg font-bold">{c.peopleCount}<span className="text-[10px] text-muted-foreground ml-0.5">{vi ? 'người' : 'ppl'}</span></p>
+                    </div>
+                    {/* Row 3: location */}
+                    <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3 flex-shrink-0" />{c.locationText}</p>
+                    {/* Row 4: status + team */}
+                    <div className="flex items-center justify-between">
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${st.color}`}>{st[vi ? 'vi' : 'en']}</span>
+                      {team && <span className="text-[10px] text-accent">🚤 {team.name}</span>}
+                    </div>
+                    {/* Quick actions */}
+                    <div className="flex gap-1 pt-1 border-t border-border">
+                      <button onClick={e => { e.stopPropagation(); window.open(`tel:${c.reporterPhone}`); }} className="px-2 py-1 bg-secondary rounded text-[10px] flex items-center gap-1"><PhoneCall className="w-3 h-3" />{vi ? 'Gọi' : 'Call'}</button>
+                      {c.lat && <button onClick={e => { e.stopPropagation(); window.open(`https://www.google.com/maps?q=${c.lat},${c.lng}`); }} className="px-2 py-1 bg-secondary rounded text-[10px] flex items-center gap-1"><MapIcon className="w-3 h-3" />{vi ? 'Map' : 'Map'}</button>}
+                      {!c.assignedTeamId && c.status !== 'CLOSED' && c.status !== 'RESCUED' && (
+                        <button onClick={e => { e.stopPropagation(); setSelectedCaseId(c.id); }} className="px-2 py-1 bg-accent/20 text-accent rounded text-[10px] flex items-center gap-1"><Users2 className="w-3 h-3" />{vi ? 'Gán đội' : 'Assign'}</button>
+                      )}
+                    </div>
+                  </motion.button>
+                );
+              })
+            )}
+          </div>
+        )}
+
+        {/* ===== TAB: RELATIVE SOS REPORTS (full page) ===== */}
+        {tab === 'relatives' && (
+          <div className="space-y-3">
+            <div className="tactical-card p-3">
+              <p className="font-bold text-sm">{vi ? 'Hồ sơ báo SOS hộ người thân' : 'Relative SOS Reports'}</p>
+              <p className="text-[11px] text-muted-foreground">{vi ? 'Xác minh → tạo ca SOS chính thức' : 'Verify → create official SOS case'}</p>
+              <div className="mt-2 flex items-center justify-between gap-2">
+                <button onClick={() => { setRelativeReports(getRelativeReports()); toast.success(vi ? 'Đã cập nhật hồ sơ mới nhất' : 'Refreshed'); }}
+                  className="flex-1 py-2 rounded-lg bg-secondary text-xs font-bold flex items-center justify-center gap-1.5">
+                  <RefreshCw className="w-3.5 h-3.5" />{vi ? 'Cập nhật mới nhất' : 'Refresh latest'}
+                </button>
+              </div>
+              <button onClick={doSimulateRelative} className="mt-2 text-[10px] text-muted-foreground underline underline-offset-2">
+                {vi ? 'Mô phỏng hồ sơ báo hộ mới (demo)' : 'Simulate a new relative report (demo)'}
+              </button>
+            </div>
+
+            <div className="flex gap-1">
+              {([
+                { k: 'PENDING' as const, vi: 'Chờ xác minh', en: 'Pending' },
+                { k: 'ACCEPTED' as const, vi: 'Đã tạo ca', en: 'Accepted' },
+                { k: 'REJECTED' as const, vi: 'Không duyệt', en: 'Rejected' },
+              ]).map(f => (
+                <button key={f.k} onClick={() => setRelFilter(f.k)}
+                  className={`flex-1 py-1.5 rounded-lg text-[11px] font-bold ${relFilter === f.k ? 'bg-primary text-primary-foreground' : 'bg-secondary text-muted-foreground'}`}>
+                  {vi ? f.vi : f.en} ({relativeReports.filter(r => (r.review ?? 'PENDING') === f.k).length})
+                </button>
+              ))}
+            </div>
+
+            {filteredRelReports.length === 0 ? (
+              <div className="tactical-card p-8 text-center">
+                <Inbox className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                <p className="text-muted-foreground text-sm">{vi ? 'Không có hồ sơ nào' : 'No reports'}</p>
+              </div>
+            ) : (
+              ([
+                { sev: 'RED' as const, vi: 'Cần cứu ngay', en: 'Critical' },
+                { sev: 'ORANGE' as const, vi: 'Nguy cơ cao', en: 'High Risk' },
+                { sev: 'GREEN' as const, vi: 'Tạm ổn', en: 'Stable' },
+              ]).map(g => {
+                const group = filteredRelReports.filter(r => urgencyToSeverity(r.urgency) === g.sev);
+                if (group.length === 0) return null;
+                return (
+                  <div key={g.sev} className="space-y-2">
+                    <div className="flex items-center gap-2 pt-1">
+                      <div className={`w-3 h-3 rounded-full ${severityMeta[g.sev].color}`} />
+                      <p className={`text-xs font-bold ${g.sev === 'RED' ? 'text-destructive' : g.sev === 'ORANGE' ? 'text-warning' : 'text-success'}`}>
+                        {vi ? g.vi : g.en}
+                      </p>
+                      <span className="text-[10px] text-muted-foreground">({group.length})</span>
+                      <div className="flex-1 h-px bg-border" />
+                    </div>
+                    {group.map(r => (
+                      <div key={r.id} className="tactical-card p-3 space-y-2">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1.5">
+                            <div className={`w-3 h-3 rounded-full ${severityMeta[urgencyToSeverity(r.urgency)].color}`} />
+                            <span className="text-xs font-bold">{vi ? urgencyLabels[r.urgency].vi : urgencyLabels[r.urgency].en}</span>
+                            <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-warning/20 text-warning">{vi ? 'Báo hộ' : 'Relative'}</span>
+                          </div>
+                          <span className="text-[10px] text-muted-foreground font-mono">{timeAgo(r.createdAt, vi)}</span>
+                        </div>
+
+                        <div>
+                          <p className="font-bold text-sm">{r.personName}</p>
+                          <p className="text-xs text-muted-foreground flex items-center gap-1"><Phone className="w-3 h-3" />{r.personPhone || '—'}</p>
+                          <p className="text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" />{[r.address, r.province].filter(Boolean).join(', ') || (vi ? 'Chưa rõ' : 'Unknown')}</p>
+                          {r.location && <p className="text-[10px] font-mono text-muted-foreground">{r.location.lat.toFixed(5)}, {r.location.lng.toFixed(5)}</p>}
+                        </div>
+
+                        {r.needs && r.needs.length > 0 && (
+                          <div className="flex flex-wrap gap-1">
+                            {r.needs.map(n => <span key={n} className="px-1.5 py-0.5 rounded bg-secondary text-[10px]">{n}</span>)}
+                          </div>
+                        )}
+                        {r.note && <p className="text-xs">{r.note}</p>}
+                        <p className="text-[10px] text-muted-foreground font-mono">ID: {r.id.slice(0, 8).toUpperCase()}</p>
+
+                        {(r.review ?? 'PENDING') === 'PENDING' ? (
+                          relRejectId === r.id ? (
+                            <div className="space-y-2">
+                              <input type="text" value={relRejectReason} onChange={e => setRelRejectReason(e.target.value)}
+                                placeholder={vi ? 'Lý do không duyệt...' : 'Rejection reason...'}
+                                className="w-full px-3 py-2 bg-secondary rounded-lg text-sm focus:outline-none" />
+                              <div className="flex gap-2">
+                                <button onClick={() => { setRelRejectId(null); setRelRejectReason(''); }} className="flex-1 py-2 bg-secondary rounded-lg text-xs font-bold">{vi ? 'Huỷ' : 'Cancel'}</button>
+                                <button onClick={doRejectRelative} className="flex-1 py-2 bg-destructive text-destructive-foreground rounded-lg text-xs font-bold">{vi ? 'Xác nhận' : 'Confirm'}</button>
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="flex gap-2">
+                              <button onClick={() => setConfirmAction({
+                                label: vi ? 'Tạo ca SOS?' : 'Create SOS case?',
+                                description: vi ? `Hồ sơ báo hộ cho "${r.personName}" sẽ trở thành ca SOS chính thức để phân công đội.` : `Report for "${r.personName}" becomes an official SOS case.`,
+                                onConfirm: () => doAcceptRelative(r.id),
+                              })} className="flex-1 py-2 bg-success text-success-foreground rounded-lg text-xs font-bold flex items-center justify-center gap-1">
+                                <CheckCircle2 className="w-3.5 h-3.5" />{vi ? 'Duyệt & tạo ca' : 'Accept'}
+                              </button>
+                              <button onClick={() => { setRelRejectId(r.id); setRelRejectReason(''); }}
+                                className="flex-1 py-2 bg-destructive/20 text-destructive rounded-lg text-xs font-bold flex items-center justify-center gap-1">
+                                <Ban className="w-3.5 h-3.5" />{vi ? 'Không duyệt' : 'Reject'}
+                              </button>
+                            </div>
+                          )
+                        ) : (
+                          <div className="flex items-center gap-2">
+                            <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${r.review === 'ACCEPTED' ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'}`}>
+                              {r.review === 'ACCEPTED' ? (vi ? 'Đã tạo ca SOS' : 'Case created') : (vi ? 'Không duyệt' : 'Rejected')}
+                            </span>
+                            {r.reviewNote && <span className="text-[10px] text-muted-foreground flex-1 truncate">{r.reviewNote}</span>}
+                            {r.review === 'ACCEPTED' && r.linkedCaseId && (
+                              <button onClick={() => { setTab('cases'); setSelectedCaseId(r.linkedCaseId!); }}
+                                className="px-2 py-1 rounded bg-secondary text-[10px] font-bold">{vi ? 'Xem ca' : 'View case'}</button>
+                            )}
+                            {r.review === 'REJECTED' && (
+                              <button onClick={() => { resetRelativeReview(r.id); refresh(); }}
+                                className="px-2 py-1 rounded bg-secondary text-[10px] font-bold">{vi ? 'Mở lại' : 'Reopen'}</button>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })
+            )}
+          </div>
+        )}
+
+
+
+        {/* ===== TAB: MAP ===== */}
+        {tab === 'map' && (
+          <div className="space-y-3">
+            <div className="tactical-card p-2 flex items-center gap-2">
+              <AlertTriangle className="w-3 h-3 text-warning" />
+              <p className="text-[10px] text-muted-foreground">{vi ? 'Mô phỏng — Vị trí ước lượng' : 'Simulation — Estimated positions'}</p>
+            </div>
+
+            {/* Legend */}
+            <div className="flex flex-wrap gap-3 text-[10px]">
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-status-critical" />SOS RED</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-status-injured" />SOS ORANGE</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-status-ok" />SOS GREEN</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-accent ring-2 ring-accent" />{vi ? 'Đội cứu hộ' : 'Team'}</span>
+              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-full bg-destructive/30 border border-destructive" />{vi ? 'Vùng bão' : 'Storm Zone'}</span>
+            </div>
+
+            <div className="tactical-card p-0 relative overflow-hidden">
+              <RescueMap cases={cases} teams={teams} stormZones={stormZones} onCaseClick={setSelectedCaseId} vi={vi} />
+            </div>
+
+            {/* Storm Zone Management */}
+            <div className="tactical-card p-3 space-y-2">
+              <div className="flex items-center justify-between">
+                <p className="font-bold text-sm">{vi ? '⚠ Vùng bão' : '⚠ Storm Zones'}</p>
+                <button onClick={() => setShowStormEditor(!showStormEditor)} className="px-2 py-1 bg-primary/20 text-primary rounded text-[10px] font-bold">
+                  <Plus className="w-3 h-3 inline mr-1" />{vi ? 'Thêm' : 'Add'}
+                </button>
+              </div>
+
+              {showStormEditor && (
+                <div className="space-y-2 p-2 bg-secondary rounded-lg">
+                  <input type="text" value={newStormName} onChange={e => setNewStormName(e.target.value)} placeholder={vi ? 'Tên vùng bão...' : 'Storm zone name...'}
+                    className="w-full px-3 py-2 bg-card rounded-lg text-sm focus:outline-none" />
+                  <textarea value={newStormCoords} onChange={e => setNewStormCoords(e.target.value)}
+                    placeholder="[[16.55,107.45],[16.55,107.80],[16.20,107.90],[16.10,107.50]]"
+                    className="w-full h-20 px-3 py-2 bg-card rounded-lg text-xs font-mono resize-none focus:outline-none" />
+                  <div className="flex gap-2">
+                    <button onClick={() => setShowStormEditor(false)} className="flex-1 py-2 bg-card rounded-lg text-sm">{vi ? 'Huỷ' : 'Cancel'}</button>
+                    <button onClick={() => {
+                      try {
+                        const coords = JSON.parse(newStormCoords);
+                        if (!Array.isArray(coords) || coords.length < 3) throw new Error('invalid');
+                        addStormZone(newStormName || 'Vùng bão mới', coords);
+                        refresh();
+                        setShowStormEditor(false);
+                        setNewStormName('');
+                        setNewStormCoords('');
+                        toast.success(vi ? 'Đã thêm vùng bão' : 'Storm zone added');
+                      } catch { toast.error(vi ? 'Toạ độ không hợp lệ (JSON array)' : 'Invalid coords (JSON array)'); }
+                    }} className="flex-1 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-bold">{vi ? 'Tạo' : 'Create'}</button>
+                  </div>
+                </div>
+              )}
+
+              {stormZones.length === 0 ? (
+                <p className="text-xs text-muted-foreground">{vi ? 'Chưa có vùng bão' : 'No storm zones'}</p>
+              ) : (
+                stormZones.map(sz => (
+                  <div key={sz.id} className="flex items-center justify-between p-2 bg-secondary/50 rounded-lg">
+                    <div>
+                      <p className="text-sm font-medium">{sz.name}</p>
+                      <p className="text-[10px] text-muted-foreground">{sz.polygonCoords.length} {vi ? 'điểm' : 'points'} • {sz.active ? (vi ? 'Đang hiển thị' : 'Active') : (vi ? 'Ẩn' : 'Hidden')}</p>
+                    </div>
+                    <div className="flex gap-1">
+                      <button onClick={() => { updateStormZone(sz.id, { active: !sz.active }); refresh(); }}
+                        className={`px-2 py-1 rounded text-[10px] font-bold ${sz.active ? 'bg-success/20 text-success' : 'bg-muted text-muted-foreground'}`}>
+                        {sz.active ? (vi ? 'Ẩn' : 'Hide') : (vi ? 'Hiện' : 'Show')}
+                      </button>
+                      <button onClick={() => { deleteStormZone(sz.id); refresh(); toast.success(vi ? 'Đã xoá' : 'Deleted'); }}
+                        className="px-2 py-1 rounded bg-destructive/20 text-destructive text-[10px] font-bold">{vi ? 'Xoá' : 'Del'}</button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* ===== TAB: TEAMS ===== */}
+        {tab === 'teams' && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <h2 className="font-bold text-sm">{vi ? 'Đội cứu hộ' : 'Rescue Teams'} ({teams.length})</h2>
+                <button onClick={() => { setShowRegistrations(true); setRegistrations(getRegistrations()); }}
+                  className="relative p-1.5 rounded-lg bg-warning/20 text-warning" title={vi ? 'Hồ sơ đăng ký' : 'Registrations'}>
+                  <FileWarning className="w-4 h-4" />
+                  {pendingRegs.length > 0 && <span className="absolute -top-1 -right-1 bg-destructive text-destructive-foreground text-[9px] font-bold px-1 rounded-full">{pendingRegs.length}</span>}
+                </button>
+              </div>
+              <button onClick={() => { setShowCoordination(true); setRegistrations(getRegistrations()); }}
+                className="px-3 py-1.5 rounded-lg bg-destructive text-destructive-foreground text-xs font-bold" title={vi ? 'Điều phối cứu hộ' : 'Coordination'}>
+                {vi ? 'Điều phối cứu hộ' : 'Coordination'}
+              </button>
+            </div>
+
+            <p className="text-[10px] text-muted-foreground flex items-center gap-1">
+              <AlertTriangle className="w-3 h-3" />{vi ? 'Đội cứu hộ đăng ký → Command xác minh & duyệt → Vào danh sách phân công.' : 'Teams register → Command verifies & approves → Added to assignment list.'}
+            </p>
+
+            {/* Team list */}
+            {teams.length === 0 ? (
+              <div className="tactical-card p-8 text-center">
+                <Users2 className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                <p className="text-muted-foreground text-sm">{vi ? 'Chưa có đội nào' : 'No teams yet'}</p>
+              </div>
+            ) : (
+              teams.map(t => {
+                const assigned = cases.find(c => c.id === t.assignedCaseId);
+                const stMeta = teamStatusMeta[t.status];
+                return (
+                  <div key={t.id} className="tactical-card p-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-bold text-sm">{t.name}</p>
+                        <p className="text-xs text-muted-foreground">{t.leaderName} • {t.leaderPhone}</p>
+                      </div>
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${stMeta.color}`}>{stMeta[vi ? 'vi' : 'en']}</span>
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      <span>{t.membersCount} {vi ? 'người' : 'ppl'}</span>
+                      <span>{t.vehicleType}</span>
+                      <span className="font-mono">@{t.username}</span>
+                    </div>
+                    {t.currentLocation && (
+                      <p className="text-[10px] font-mono text-muted-foreground">📍 {t.currentLocation.lat.toFixed(4)}, {t.currentLocation.lng.toFixed(4)} • {timeAgo(t.lastUpdated, vi)}</p>
+                    )}
+                    {assigned && (
+                      <div className="p-2 rounded bg-warning/10 text-xs">
+                        <span className="font-bold text-warning">{vi ? 'Nhiệm vụ:' : 'Mission:'}</span> {assigned.reporterName} — {assigned.locationText.slice(0, 30)}
+                        {assigned.lat && t.currentLocation && (
+                          <span className="text-accent ml-2">
+                            {haversineKm(t.currentLocation.lat, t.currentLocation.lng, assigned.lat, assigned.lng!).toFixed(1)} km — ETA: {estimateETA(haversineKm(t.currentLocation.lat, t.currentLocation.lng, assigned.lat, assigned.lng!))}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    {/* Status controls */}
+                    <div className="flex gap-1 border-t border-border pt-2">
+                      {(['AVAILABLE', 'BUSY', 'RETURNING', 'OFFLINE'] as TeamStatus[]).map(s => (
+                        <button key={s} onClick={() => doTeamStatus(t.id, s)}
+                          className={`px-2 py-1 rounded text-[10px] font-medium ${t.status === s ? teamStatusMeta[s].color : 'bg-secondary text-muted-foreground'}`}>
+                          {teamStatusMeta[s][vi ? 'vi' : 'en']}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })
+            )}
+          </div>
+        )}
+
+        {/* ===== TAB: ZONES ===== */}
+        {tab === 'zones' && (
+          <div className="space-y-3">
+            <h2 className="font-bold text-sm">{vi ? 'Khu vực điều phối' : 'Zone Coordination'}</h2>
+            <p className="text-[10px] text-muted-foreground">
+              {vi ? 'Phát hiện trùng lặp cứu trợ • Tránh bỏ sót khu vực' : 'Detect overlapping rescue • Avoid missing zones'}
+            </p>
+
+            {zones.length === 0 ? (
+              <div className="tactical-card p-8 text-center">
+                <Layers className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                <p className="text-muted-foreground text-sm">{vi ? 'Chưa có khu vực' : 'No zones'}</p>
+              </div>
+            ) : (
+              zones.map(z => {
+                const zStats = getZoneStats(z.id);
+                const zoneCases = cases.filter(c => c.zoneId === z.id && !['CLOSED', 'RESCUED', 'DUPLICATE', 'FALSE_REPORT'].includes(c.status));
+                const zoneTeams = teams.filter(t => {
+                  const ac = cases.find(c => c.id === t.assignedCaseId);
+                  return ac && ac.zoneId === z.id && t.status === 'BUSY';
+                });
+
+                // Detect overlap: > 1 team on same zone or > 2 teams
+                const hasOverlap = zoneTeams.length > 1;
+                const noTeam = zoneCases.length > 0 && zoneTeams.length === 0 && zoneCases.some(c => !c.assignedTeamId);
+
+                return (
+                  <div key={z.id} className={`tactical-card p-3 space-y-2 ${noTeam ? 'border-destructive/50' : hasOverlap ? 'border-warning/50' : ''}`}>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-bold text-sm">{z.name}</p>
+                        <p className="text-xs text-muted-foreground">{z.province}</p>
+                      </div>
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${noTeam ? 'bg-destructive/20 text-destructive' : hasOverlap ? 'bg-warning/20 text-warning' : 'bg-success/20 text-success'}`}>
+                        {noTeam ? (vi ? 'KHÔNG CÓ ĐỘI' : 'NO TEAM') : hasOverlap ? (vi ? 'TRÙNG LẶP' : 'OVERLAP') : 'OK'}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-4 gap-2 text-center">
+                      <div className="p-1.5 rounded bg-secondary">
+                        <p className="text-lg font-bold">{zStats.active}</p>
+                        <p className="text-[9px] text-muted-foreground">{vi ? 'SOS' : 'SOS'}</p>
+                      </div>
+                      <div className="p-1.5 rounded bg-destructive/10">
+                        <p className="text-lg font-bold text-destructive">{zStats.unassigned}</p>
+                        <p className="text-[9px] text-muted-foreground">{vi ? 'Chưa GĐ' : 'No team'}</p>
+                      </div>
+                      <div className="p-1.5 rounded bg-accent/10">
+                        <p className="text-lg font-bold text-accent">{zoneTeams.length}</p>
+                        <p className="text-[9px] text-muted-foreground">{vi ? 'Đội' : 'Teams'}</p>
+                      </div>
+                      <div className="p-1.5 rounded bg-secondary">
+                        <p className="text-lg font-bold">{zStats.total}</p>
+                        <p className="text-[9px] text-muted-foreground">{vi ? 'Tổng' : 'Total'}</p>
+                      </div>
+                    </div>
+
+                    {hasOverlap && (
+                      <div className="p-2 rounded bg-warning/10 text-xs text-warning flex items-center gap-1">
+                        <AlertTriangle className="w-3 h-3" />{vi ? `Cảnh báo: ${zoneTeams.length} đội đang hoạt động cùng khu vực` : `Warning: ${zoneTeams.length} teams in same zone`}
+                      </div>
+                    )}
+
+                    {/* Cases in zone */}
+                    {zoneCases.length > 0 && (
+                      <div className="space-y-1 max-h-32 overflow-y-auto">
+                        {zoneCases.map(c => (
+                          <button key={c.id} onClick={() => { setSelectedCaseId(c.id); setTab('cases'); }}
+                            className="w-full flex items-center gap-2 p-1.5 rounded bg-secondary/50 text-left hover:bg-secondary">
+                            <div className={`w-2.5 h-2.5 rounded-full ${severityMeta[c.severity].color}`} />
+                            <span className="text-xs flex-1 truncate">{c.reporterName} — {c.locationText.slice(0, 20)}</span>
+                            <span className={`px-1.5 py-0.5 rounded text-[9px] font-bold ${caseStatusMeta[c.status].color}`}>{caseStatusMeta[c.status][vi ? 'vi' : 'en']}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Teams in zone */}
+                    {zoneTeams.length > 0 && (
+                      <div className="space-y-1">
+                        <p className="text-[10px] text-muted-foreground uppercase">{vi ? 'Đội trong khu vực' : 'Teams in zone'}</p>
+                        {zoneTeams.map(t => (
+                          <div key={t.id} className="flex items-center gap-2 p-1.5 rounded bg-accent/10 text-xs">
+                            <Truck className="w-3 h-3 text-accent" />
+                            <span className="font-medium">{t.name}</span>
+                            <span className="text-muted-foreground">{t.vehicleType}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Assign available team to zone */}
+                    {noTeam && (
+                      <div>
+                        <p className="text-[10px] text-destructive font-bold mb-1">{vi ? 'Gán đội cho khu vực này:' : 'Assign team to this zone:'}</p>
+                        <div className="flex flex-wrap gap-1">
+                          {teams.filter(t => t.status === 'AVAILABLE').map(t => (
+                            <button key={t.id} onClick={() => {
+                              const unassignedCase = zoneCases.find(c => !c.assignedTeamId);
+                              if (unassignedCase) doAssign(unassignedCase.id, t.id);
+                            }} className="px-2 py-1 rounded bg-accent/20 text-accent text-[10px] font-bold">
+                              {t.name}
+                            </button>
+                          ))}
+                          {teams.filter(t => t.status === 'AVAILABLE').length === 0 && (
+                            <span className="text-[10px] text-muted-foreground">{vi ? 'Không có đội sẵn sàng' : 'No available teams'}</span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
+        )}
+      </main>
+
+      {/* Case Detail Drawer */}
+      <AnimatePresence>{selectedCaseId && renderCaseDrawer()}</AnimatePresence>
+
+      {/* Confirmation Dialog */}
+      <AnimatePresence>
+        {confirmAction && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/70 z-[60] flex items-center justify-center p-6" onClick={() => setConfirmAction(null)}>
+            <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-card w-full max-w-sm rounded-2xl p-5 space-y-4" onClick={e => e.stopPropagation()}>
+              <div className="text-center space-y-2">
+                <AlertTriangle className="w-10 h-10 text-warning mx-auto" />
+                <h3 className="font-bold text-lg">{vi ? 'Xác nhận hành động' : 'Confirm Action'}</h3>
+                <p className="text-sm text-muted-foreground">{confirmAction.description}</p>
+              </div>
+              <div className="flex gap-2">
+                <button onClick={() => setConfirmAction(null)} className="flex-1 py-2.5 bg-secondary rounded-xl text-sm font-medium">{vi ? 'Huỷ' : 'Cancel'}</button>
+                <button onClick={confirmAction.onConfirm} className="flex-1 py-2.5 bg-primary text-primary-foreground rounded-xl text-sm font-bold">{confirmAction.label}</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Registration Review Modal (Yellow - Pending) */}
+      <AnimatePresence>
+        {showRegistrations && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 z-50 flex items-end sm:items-center justify-center" onClick={() => { setShowRegistrations(false); setSelectedRegId(null); setApprovedCreds(null); }}>
+            <motion.div initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }}
+              className="bg-card w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl p-4 space-y-3" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between">
+                <h2 className="font-bold">{vi ? 'Hồ sơ đăng ký đội cứu hộ' : 'Team Registration Review'}</h2>
+                <button onClick={() => { setShowRegistrations(false); setSelectedRegId(null); setApprovedCreds(null); }} className="p-1.5 rounded-lg bg-secondary"><X className="w-4 h-4" /></button>
+              </div>
+
+              {/* Filter tabs */}
+              <div className="flex gap-1">
+                {(['PENDING', 'APPROVED', 'REJECTED'] as RegistrationStatus[]).map(s => (
+                  <button key={s} className={`px-3 py-1 rounded-lg text-xs font-medium ${s === 'PENDING' ? 'bg-warning/20 text-warning' : s === 'APPROVED' ? 'bg-success/20 text-success' : 'bg-destructive/20 text-destructive'}`}>
+                    {s === 'PENDING' ? (vi ? `Chờ xác minh (${registrations.filter(r => r.status === 'PENDING').length})` : `Pending (${registrations.filter(r => r.status === 'PENDING').length})`) : s === 'APPROVED' ? (vi ? 'Đã duyệt' : 'Approved') : (vi ? 'Không duyệt' : 'Rejected')}
+                  </button>
+                ))}
+              </div>
+
+              {/* Approved credentials popup */}
+              {approvedCreds && (
+                <div className="p-4 bg-success/10 border-2 border-success/30 rounded-xl space-y-2">
+                  <p className="font-bold text-success text-sm">✅ {vi ? 'MÃ ĐỘI ĐÃ CẤP' : 'TEAM CODE ISSUED'}</p>
+                  <div className="p-3 bg-secondary rounded-lg font-mono text-sm space-y-1">
+                    <p>{vi ? 'Tên đội:' : 'Team:'} <span className="font-bold text-primary">{approvedCreds.teamName}</span></p>
+                    <p>{vi ? 'Mã đội:' : 'Code:'} <span className="font-bold text-primary">{approvedCreds.teamCode}</span></p>
+                  </div>
+                  <button onClick={() => { navigator.clipboard.writeText(`Tên đội: ${approvedCreds.teamName}\nMã đội: ${approvedCreds.teamCode}`); toast.success(vi ? 'Đã sao chép' : 'Copied'); }}
+                    className="w-full py-2 bg-success/20 text-success rounded-lg text-sm font-medium flex items-center justify-center gap-1">
+                    <Copy className="w-4 h-4" />{vi ? 'Sao chép thông tin' : 'Copy credentials'}
+                  </button>
+                  <p className="text-[10px] text-muted-foreground text-center">{vi ? 'Gửi thông tin này cho đội trưởng qua Zalo/SMS' : 'Send this to the team leader via Zalo/SMS'}</p>
+                </div>
+              )}
+
+              {/* Registration list - FULL DETAILS */}
+              {registrations.filter(r => r.status === 'PENDING').length === 0 && !approvedCreds ? (
+                <div className="p-8 text-center">
+                  <Shield className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                  <p className="text-muted-foreground text-sm">{vi ? 'Không có hồ sơ chờ xác minh' : 'No pending registrations'}</p>
+                </div>
+              ) : (
+                registrations.filter(r => r.status === 'PENDING').map(r => (
+                  <div key={r.id} className="tactical-card p-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-bold text-sm">{r.teamName}</p>
+                        <p className="text-xs text-muted-foreground">{r.leaderName} • {r.leaderPhone}</p>
+                      </div>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-warning/20 text-warning">PENDING</span>
+                    </div>
+
+                    {/* Full registration details */}
+                    <div className="space-y-1.5 text-xs border-t border-border pt-2">
+                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Loại đội' : 'Team type'}</span><span className="font-medium">{teamTypeLabels[r.teamType]}</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Tỉnh/TP' : 'Province'}</span><span className="font-medium">{r.province}</span></div>
+                      {r.district && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Quận/Huyện' : 'District'}</span><span className="font-medium">{r.district}</span></div>}
+                      {r.ward && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Phường/Xã' : 'Ward'}</span><span className="font-medium">{r.ward}</span></div>}
+                      {r.email && <div className="flex justify-between"><span className="text-muted-foreground">Email</span><span className="font-medium">{r.email}</span></div>}
+                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Số thành viên' : 'Members'}</span><span className="font-medium">{r.membersCount}</span></div>
+                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Phương tiện' : 'Vehicles'}</span><span className="font-medium">{r.vehicleTypes.map(v => vehicleTypeLabels[v]).join(', ')}</span></div>
+                      {r.vehicleOtherText && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'PT khác' : 'Other vehicle'}</span><span className="font-medium">{r.vehicleOtherText}</span></div>}
+                      {r.licensePlate && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Biển số' : 'License plate'}</span><span className="font-medium">{r.licensePlate}</span></div>}
+                      {r.capacityNote && <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Năng lực' : 'Capacity'}</span><span className="font-medium">{r.capacityNote}</span></div>}
+                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Thời gian hoạt động' : 'Availability'}</span><span className="font-medium">{r.availability.map(a => availabilityLabels[a]).join(', ')}</span></div>
+                      {r.verificationFileNames.length > 0 && (
+                        <div>
+                          <p className="text-muted-foreground mb-1">{vi ? '📎 File xác minh (CCCD/Giấy tờ):' : '📎 Verification files:'}</p>
+                          <div className="flex flex-wrap gap-1">
+                            {r.verificationFileNames.map((f, i) => (
+                              <span key={i} className="px-2 py-0.5 rounded bg-accent/20 text-accent text-[10px] font-medium">{f}</span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex justify-between"><span className="text-muted-foreground">{vi ? 'Ngày gửi' : 'Submitted'}</span><span className="font-medium">{new Date(r.createdAt).toLocaleString('vi-VN')}</span></div>
+                    </div>
+
+                    {/* Actions: DUYỆT / CHỜ / KHÔNG DUYỆT */}
+                    {selectedRegId === r.id && showRejectForm ? (
+                      <div className="space-y-2">
+                        <textarea value={rejectReason} onChange={e => setRejectReason(e.target.value)} placeholder={vi ? 'Lý do không duyệt *' : 'Rejection reason *'}
+                          className="w-full h-16 px-3 py-2 bg-secondary rounded-lg text-sm resize-none focus:outline-none" />
+                        <div className="flex gap-2">
+                          <button onClick={() => { setShowRejectForm(false); setSelectedRegId(null); }} className="flex-1 py-2 bg-secondary rounded-lg text-sm">{vi ? 'Huỷ' : 'Cancel'}</button>
+                          <button onClick={() => doRejectRegistration(r.id)} className="flex-1 py-2 bg-destructive text-destructive-foreground rounded-lg font-bold text-sm">{vi ? 'Xác nhận không duyệt' : 'Confirm Reject'}</button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex gap-1.5">
+                        <button onClick={() => setConfirmAction({
+                          label: vi ? 'Duyệt' : 'Approve',
+                          description: vi ? `Duyệt đội "${r.teamName}" và thêm vào danh sách phân công?` : `Approve team "${r.teamName}" and add to assignment list?`,
+                          onConfirm: () => { doApproveRegistration(r.id); setConfirmAction(null); }
+                        })} className="flex-1 py-2 bg-success/20 text-success rounded-lg text-xs font-bold flex items-center justify-center gap-1">
+                          <CheckCircle2 className="w-3 h-3" />{vi ? 'DUYỆT' : 'APPROVE'}
+                        </button>
+                        <button className="flex-1 py-2 bg-secondary text-muted-foreground rounded-lg text-xs font-bold flex items-center justify-center gap-1">
+                          <Clock className="w-3 h-3" />{vi ? 'CHỜ' : 'HOLD'}
+                        </button>
+                        <button onClick={() => { setSelectedRegId(r.id); setShowRejectForm(true); setRejectReason(''); }}
+                          className="flex-1 py-2 bg-destructive/20 text-destructive rounded-lg text-xs font-bold flex items-center justify-center gap-1">
+                          <XCircle className="w-3 h-3" />{vi ? 'KHÔNG DUYỆT' : 'REJECT'}
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Coordination Modal (Red - Approved teams ready to dispatch) */}
+      <AnimatePresence>
+        {showCoordination && (() => {
+          // Show APPROVED registrations that are NOT yet in teams list
+          const approvedRegs = registrations.filter(r => r.status === 'APPROVED');
+          const notDispatched = approvedRegs.filter(r => !teams.find(t => t.name === r.teamName && t.leaderPhone === r.leaderPhone));
+          return (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 z-50 flex items-end sm:items-center justify-center" onClick={() => setShowCoordination(false)}>
+            <motion.div initial={{ y: 100 }} animate={{ y: 0 }} exit={{ y: 100 }}
+              className="bg-card w-full max-w-lg max-h-[92vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl p-4 space-y-3" onClick={e => e.stopPropagation()}>
+              <div className="flex items-center justify-between">
+                <h2 className="font-bold">{vi ? 'Điều phối cứu hộ' : 'Rescue Coordination'}</h2>
+                <button onClick={() => setShowCoordination(false)} className="p-1.5 rounded-lg bg-secondary"><X className="w-4 h-4" /></button>
+              </div>
+
+              <p className="text-[10px] text-muted-foreground">{vi ? 'Các đội đã được duyệt và sẵn sàng phân công nhiệm vụ.' : 'Approved teams ready for mission assignment.'}</p>
+
+              {notDispatched.length === 0 ? (
+                <div className="p-8 text-center">
+                  <Users2 className="w-8 h-8 text-muted-foreground mx-auto mb-2" />
+                  <p className="text-muted-foreground text-sm">{vi ? 'Không có đội nào chờ điều phối' : 'No teams awaiting dispatch'}</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">{vi ? 'Duyệt hồ sơ từ mục vàng trước' : 'Approve registrations from yellow section first'}</p>
+                </div>
+              ) : (
+                notDispatched.map(r => (
+                  <div key={r.id} className="tactical-card p-3 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="font-bold text-sm">{r.teamName}</p>
+                        <p className="text-xs text-muted-foreground">{r.leaderName} • {r.leaderPhone}</p>
+                      </div>
+                      <button onClick={() => setConfirmAction({
+                        label: vi ? 'Điều phối' : 'Dispatch',
+                        description: vi ? `Thêm đội "${r.teamName}" vào danh sách điều phối cứu hộ?` : `Add "${r.teamName}" to active rescue list?`,
+                        onConfirm: () => { doDispatchTeam(r); setConfirmAction(null); }
+                      })} className="px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold">
+                        {vi ? 'Điều phối' : 'Dispatch'}
+                      </button>
+                    </div>
+                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                      <span>{r.membersCount} {vi ? 'người' : 'ppl'}</span>
+                      <span>{r.vehicleTypes.map(v => vehicleTypeLabels[v]).join(', ')}</span>
+                    </div>
+                    {r.province && <p className="text-[10px] text-muted-foreground">{r.province}{r.district ? ` • ${r.district}` : ''}</p>}
+                  </div>
+                ))
+              )}
+            </motion.div>
+          </motion.div>
+          );
+        })()}
+      </AnimatePresence>
+
+
+
+
+
+      {/* Bottom Nav - Command Center specific */}
+      <nav className="fixed bottom-0 left-0 right-0 bg-card border-t border-primary/30 safe-bottom z-40">
+        <div className="flex items-center justify-around py-2">
+          {tabs.map(t => {
+            const isActive = tab === t.id;
+            const handleClick = () => {
+              if (t.id === 'relatives') {
+                setRelativeReports(getRelativeReports());
+              }
+              setTab(t.id);
+            };
+
+            return (
+              <button key={t.id} onClick={handleClick}
+                className={`flex flex-col items-center justify-center p-2 min-w-[56px] transition-colors relative ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
+
+                <t.icon className="w-6 h-6" />
+                <span className="text-[10px] font-medium mt-0.5">{vi ? t.vi : t.en}</span>
+                {t.badge !== undefined && t.badge > 0 && (
+                  <span className="absolute -top-0.5 right-1 bg-primary text-primary-foreground text-[9px] font-bold px-1.5 rounded-full">{t.badge}</span>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </div>
+  );
 }
 ````
 
@@ -23538,6 +23812,195 @@ export default App;
     >The app needs continuous GPS background access to maintain and update your survival rescue coordinates.</string>
 </dict>
 </plist>
+````
+
+## File: package.json
+````json
+{
+  "name": "vite_react_shadcn_ts",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve:dashboard": "serve -s dist -l 5050",
+    "build:dev": "vite build --mode development",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@capacitor-community/bluetooth-le": "^8.2.0",
+    "@capacitor/android": "^8.5.0",
+    "@capacitor/cli": "^8.5.0",
+    "@capacitor/core": "^8.5.0",
+    "@capacitor/ios": "^8.5.0",
+    "@capacitor/preferences": "^8.0.1",
+    "@hookform/resolvers": "^3.10.0",
+    "@radix-ui/react-accordion": "^1.2.11",
+    "@radix-ui/react-alert-dialog": "^1.1.14",
+    "@radix-ui/react-aspect-ratio": "^1.1.7",
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-checkbox": "^1.3.2",
+    "@radix-ui/react-collapsible": "^1.1.11",
+    "@radix-ui/react-context-menu": "^2.2.15",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-hover-card": "^1.1.14",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-menubar": "^1.1.15",
+    "@radix-ui/react-navigation-menu": "^1.2.13",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-radio-group": "^1.3.7",
+    "@radix-ui/react-scroll-area": "^1.2.9",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slider": "^1.3.5",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.2.5",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-toast": "^1.2.14",
+    "@radix-ui/react-toggle": "^1.1.9",
+    "@radix-ui/react-toggle-group": "^1.1.10",
+    "@radix-ui/react-tooltip": "^1.2.7",
+    "@supabase/supabase-js": "^2.112.3",
+    "@tanstack/react-query": "^5.83.0",
+    "@types/leaflet": "^1.9.21",
+    "@types/uuid": "^10.0.0",
+    "buffer": "^6.0.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
+    "date-fns": "^3.6.0",
+    "dexie": "^4.4.4",
+    "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^11.15.0",
+    "idb": "^8.0.0",
+    "input-otp": "^1.4.2",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.462.0",
+    "next-themes": "^0.3.0",
+    "react": "^18.3.1",
+    "react-day-picker": "^8.10.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.61.1",
+    "react-resizable-panels": "^2.1.9",
+    "react-router-dom": "^6.30.1",
+    "recharts": "^2.15.4",
+    "sonner": "^1.7.4",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^10.0.0",
+    "vaul": "^0.9.9",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@eslint/js": "^9.32.0",
+    "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/jest-dom": "^6.6.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^22.16.5",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react-swc": "^3.11.0",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^15.15.0",
+    "jsdom": "^20.0.3",
+    "lovable-tagger": "^1.1.13",
+    "postcss": "^8.5.6",
+    "serve": "^14.2.6",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.38.0",
+    "vite": "^5.4.19",
+    "vitest": "^3.2.4"
+  }
+}
+````
+
+## File: src/App.tsx
+````typescript
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppProvider } from "@/contexts/AppContext";
+
+import Home from "./pages/Home";
+import Guides from "./pages/Guides";
+import CommunityBoard from "./pages/CommunityBoard";
+import Admin from "./pages/Admin";
+import Settings from "./pages/Settings";
+import Profile from "./pages/Profile";
+import Compass from "./pages/Compass";
+import Checklist from "./pages/Checklist";
+import More from "./pages/More";
+import QuotesPage from "./pages/QuotesPage";
+import RemoteSOS from "./pages/RemoteSOS";
+import RescueMode from "./pages/RescueMode";
+import RegisterRescue from "./pages/RegisterRescue";
+import RegisterRescueSuccess from "./pages/RegisterRescueSuccess";
+import RegisterRescueStatus from "./pages/RegisterRescueStatus";
+import AdminRescueRegistrations from "./pages/AdminRescueRegistrations";
+import RescueLogin from "./pages/RescueLogin";
+import RescueDashboard from "./pages/RescueDashboard";
+import RescueTeamDashboard from "./pages/RescueTeamDashboard";
+import CommandLogin from "./pages/CommandLogin";
+import NotFound from "./pages/NotFound";
+
+const queryClient = new QueryClient();
+
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AppProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+
+
+              <Route path="/" element={<Home />} />
+              <Route path="/guides" element={<Guides />} />
+              <Route path="/nearby" element={<CommunityBoard />} />
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/compass" element={<Compass />} />
+              <Route path="/checklist" element={<Checklist />} />
+              <Route path="/more" element={<More />} />
+              <Route path="/quotes" element={<QuotesPage />} />
+              <Route path="/remote-sos" element={<RemoteSOS />} />
+              <Route path="/rescue" element={<RescueMode />} />
+              <Route path="/register-rescue" element={<RegisterRescue />} />
+              <Route path="/register-rescue/success" element={<RegisterRescueSuccess />} />
+              <Route path="/register-rescue/status" element={<RegisterRescueStatus />} />
+              <Route path="/admin/rescue-registrations" element={<AdminRescueRegistrations />} />
+              <Route path="/rescue-login" element={<RescueLogin />} />
+              <Route path="/rescue-dashboard" element={<RescueDashboard />} />
+              <Route path="/rescue-team" element={<RescueTeamDashboard />} />
+              <Route path="/command-login" element={<CommandLogin />} />
+              
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AppProvider>
+    </QueryClientProvider>
+  );
+};
+
+export default App;
 ````
 
 ## File: .github/workflows/build-ios.yml
