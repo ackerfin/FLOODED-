@@ -1,3 +1,4 @@
+import { parseSosDescription, hasSeverityMismatch } from '@/lib/gatewayCases';
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRemoteReportsSync } from '@/hooks/useRemoteReportsSync';
@@ -355,12 +356,31 @@ export default function RescueMode() {
               </div>
             )}
 
-            {selectedCase.description && (
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{vi ? 'Mô tả' : 'Description'}</p>
-                <p className="text-sm">{selectedCase.description}</p>
-              </div>
-            )}
+            {selectedCase.description && (() => {
+              const parsed = parseSosDescription(selectedCase.description);
+              const mismatch = hasSeverityMismatch(parsed, selectedCase.severity);
+              return (
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{vi ? 'Mô tả' : 'Description'}</p>
+                 <p className="text-sm">
+                  {parsed ? `${parsed.scenarioLabel}${parsed.healthStatusLabel ? ` — ${parsed.healthStatusLabel}` : ''}` : selectedCase.description}
+                </p>
+                {parsed?.extraNote && (
+                  <p className="text-xs text-muted-foreground mt-1">{parsed.extraNote}</p>
+                )}
+                  {mismatch && (
+                    <div className="mt-1.5 p-2 rounded-lg bg-destructive/10 border border-destructive/30 flex items-start gap-1.5">
+                      <AlertTriangle className="w-3.5 h-3.5 text-destructive flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-destructive">
+                        {vi ? 'Cảnh báo: mức độ trong mô tả không khớp mức ưu tiên hệ thống — cần xác minh thủ công.' : 'Warning: description tag disagrees with system severity.'}
+                      </p>
+                    </div>
+)}
+
+                </div>
+
+              );
+            })()}
 
             {selectedCase.needTags && selectedCase.needTags.length > 0 && (
               <div>

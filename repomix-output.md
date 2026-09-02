@@ -336,6 +336,7 @@ tsconfig.json
 tsconfig.node.json
 vite.config.ts
 vitest.config.ts
+yarn
 ````
 
 # Files
@@ -9074,6 +9075,15 @@ export async function sendSos(input: CreateSosInput): Promise<SendSosResult> {
 // - Persists cases in IndexedDB via Dexie
 // - Command-owned fields (verifyStatus, assignedTeam, auditLog) survive every poll
 // - messageId is the duplicate key: existing messageId => update, never duplicate
+//
+// [FIX] Gateway gui createdAt theo epoch GIAY (unix seconds), nhung toan bo
+// UI (timeAgo(), new Date(...).toLocaleString(), fallback Date.now()) deu
+// gia dinh createdAt la epoch MILI-GIAY. Truoc ban nay, normalizeGatewayItem()
+// giu nguyen so giay roi luu thang vao CommandCase.createdAt - dan den UI
+// hieu nham 1 con so epoch-giay binh thuong (vd 1788058010) thanh mot moc
+// thoi gian chi ~20.7 ngay sau 1/1/1970, hien thi ra "20674d" / nam 1970.
+// Fix: nhan 1000 ngay tai diem normalize, de moi noi phia sau (da gia dinh
+// dung don vi ms) hoat dong dung ma khong can sua rai rac o nhieu cho.
 import Dexie, { type Table } from 'dexie';
 import { v4 as uuidv4 } from 'uuid';
 import { getCases, saveCases, type SOSCase, type CaseSeverity, type CaseStatus } from './commandCenter';
@@ -9155,27 +9165,133 @@ export function toCommandCase(c: SOSCase, origin: CaseOrigin = 'COMMAND_MANUAL')
   };
 }
 
+// [FIX] Parser cho payload thô dang "scenarioType|peopleCount|healthStatus|
+// description-hoac-needTags" (vi du "electrical_leak_water|1|critical|water")
+// - dung KHOP voi reportToPacket() trong lib/mesh.ts ben app di dong (khong
+// phai sendSos.ts, file do la ban khong duoc goi trong luong SOS that su).
+// Day CHI phuc vu hien thi UI - khong dung ket qua nay de GHI DE truong
+// severity chinh thuc cua case (truong do van lay tu raw.severity ma Gateway
+// da tinh theo pkt.priority, di qua healthStatusToPriority() ben app).
+//
+// scenarioType la id lay tu getCasesByCategory() trong survivalData.ts ben
+// app (chua co file nay de doi chieu day du danh sach id that) - tam thoi
+// hien thi nguyen van id neu khong nam trong bang SCENARIO_LABELS ben duoi,
+// thay vi bia ra nhan dich khong chac chan dung.
+const SCENARIO_LABELS: Record<string, string> = {
+  // Bo sung dan khi co day du danh sach id that tu survivalData.ts.
+};
+
+// Khop dung 4 gia tri HealthStatus that trong app (types.ts) va dung cach
+// map cua healthStatusToPriority() trong lib/mesh.ts:
+//   ok -> LOW -> GREEN | injured -> MEDIUM -> ORANGE
+//   critical -> HIGH -> RED | unconscious -> HIGH -> RED
+const HEALTH_STATUS_LABELS: Record<string, string> = {
+  ok: 'An toàn',
+  injured: 'Bị thương',
+  critical: 'Nguy kịch',
+  unconscious: 'Bất tỉnh',
+};
+
+const HEALTH_STATUS_EXPECTED_SEVERITY: Record<string, CaseSeverity> = {
+  ok: 'GREEN',
+  injured: 'ORANGE',
+  critical: 'RED',
+  unconscious: 'RED',
+};
+
+export interface ParsedSosDescription {
+  scenarioLabel: string;
+  healthStatusLabel: string | null;
+  healthStatusRaw: string | null;
+  extraNote: string | null;
+  raw: string;
+}
+
+/** Parse the pipe-delimited raw payload text into a human-readable shape. */
+export function parseSosDescription(raw: string | undefined): ParsedSosDescription | null {
+  if (!raw) return null;
+  const parts = raw.split('|');
+  const [scenarioKey, , healthStatus, ...rest] = parts;
+  return {
+    scenarioLabel: SCENARIO_LABELS[scenarioKey] ?? scenarioKey ?? raw,
+    healthStatusRaw: healthStatus || null,
+    healthStatusLabel: healthStatus ? (HEALTH_STATUS_LABELS[healthStatus] ?? healthStatus) : null,
+    extraNote: rest.length ? rest.join('|') : null,
+    raw,
+  };
+}
+
+/**
+ * True if the healthStatus embedded in the payload text disagrees with the
+ * severity Gateway computed from packet.priority. Surface this in the UI
+ * instead of silently picking one source - a mismatch here is a real safety
+ * concern (wrong triage colour), not just a display quirk. Covers all 4 real
+ * HealthStatus values (ok/injured/critical/unconscious), not just 2 guessed
+ * earlier before mesh.ts was available.
+ */
+export function hasSeverityMismatch(parsed: ParsedSosDescription | null, severity: CaseSeverity): boolean {
+  if (!parsed?.healthStatusRaw) return false;
+  const expected = HEALTH_STATUS_EXPECTED_SEVERITY[parsed.healthStatusRaw];
+  if (!expected) return false; // gia tri la, khong nam trong 4 gia tri biet - khong ket luan mismatch
+  return expected !== severity;
+}
+
 /** Normalize a raw Gateway payload item into a CommandCase shape (gateway-owned fields only). */
 function normalizeGatewayItem(raw: Record<string, unknown>): Partial<CommandCase> & { messageId: string } {
   const num = (v: unknown) => (typeof v === 'number' ? v : typeof v === 'string' && v !== '' ? Number(v) : undefined);
   const sev = String(raw.severity ?? raw.level ?? 'ORANGE').toUpperCase();
   const severity: CaseSeverity = sev === 'RED' || sev === 'GREEN' ? (sev as CaseSeverity) : 'ORANGE';
   const messageId = String(raw.messageId ?? raw.message_id ?? raw.id ?? uuidv4());
+
+  // [FIX-CHINH] raw.createdAt tu Gateway la epoch GIAY - nhan 1000 de ra
+  // epoch MILI-GIAY, dung don vi voi moi noi khac trong app dang dung
+  // Date.now()/new Date(ms). Neu khong co createdAt (hiem, chi khi Gateway
+  // gui thieu field), fallback Date.now() da san la ms roi, KHONG nhan 1000.
+  const rawCreatedAtSec = num(raw.createdAt);
+  const createdAt = rawCreatedAtSec !== undefined ? rawCreatedAtSec * 1000 : Date.now();
+
+  // [FIX-CHINH] Gateway (handleCases() ben C++) KHONG BAO GIO gui field
+  // "peopleCount" rieng trong JSON - no chi gui "description" la nguyen
+  // van chuoi payload tho "scenarioType|peopleCount|healthStatus|note".
+  // Truoc ban nay, num(raw.peopleCount) luon la undefined -> luon fallback
+  // ve 1, du nguoi dung chon 2/3/... nguoi. Fix: tu tach lai peopleCount tu
+  // chinh chuoi description khi Gateway khong co field rieng.
+  const rawDescription = raw.description ? String(raw.description) : undefined;
+  const descParts = rawDescription ? rawDescription.split('|') : [];
+  const peopleCountFromDescription = descParts[1] !== undefined ? Number(descParts[1]) : undefined;
+  const peopleCount =
+    num(raw.peopleCount) ??
+    (Number.isFinite(peopleCountFromDescription) ? peopleCountFromDescription : undefined) ??
+    1;
+
+  // [FIX-CHINH] Gateway khong co reverse-geocoding (dung, vi he thong phai
+  // chay offline) nen khong bao gio gui locationText/address - truoc ban
+  // nay dong nay LUON fallback "Chua ro vi tri" BAT KE lat/lng co ton tai
+  // hay khong, gay hieu lam la chua co GPS trong khi thuc ra van co toa do
+  // (chi hien o drawer chi tiet, khong hien o list). Fix: khi co lat/lng
+  // that, hien thang toa do lam locationText thay vi nhan tinh gay hieu lam.
+  const lat = num(raw.lat);
+  const lng = num(raw.lng);
+  const hasCoords = lat !== undefined && lng !== undefined;
+  const locationText = String(
+    raw.locationText ?? raw.address ?? (hasCoords ? `${lat!.toFixed(5)}, ${lng!.toFixed(5)}` : 'Chưa rõ vị trí'),
+  );
+
   return {
     messageId,
     sourceType: (raw.sourceType === 'relative' ? 'relative' : 'citizen'),
     reporterName: String(raw.reporterName ?? raw.name ?? 'Không rõ'),
     reporterPhone: String(raw.reporterPhone ?? raw.phone ?? '—'),
     victimName: raw.victimName ? String(raw.victimName) : undefined,
-    locationText: String(raw.locationText ?? raw.address ?? 'Chưa rõ vị trí'),
-    lat: num(raw.lat),
-    lng: num(raw.lng),
+    locationText,
+    lat,
+    lng,
     severity,
-    peopleCount: num(raw.peopleCount) ?? 1,
+    peopleCount,
     vulnerableGroups: raw.vulnerableGroups ? String(raw.vulnerableGroups) : undefined,
     description: raw.description ? String(raw.description) : undefined,
     needTags: Array.isArray(raw.needTags) ? (raw.needTags as string[]) : undefined,
-    createdAt: num(raw.createdAt) ?? Date.now(),
+    createdAt,
     gatewayUpdatedAt: num(raw.updatedAt) ?? Date.now(),
     status: (raw.status ? String(raw.status) : 'NEW') as CaseStatus,
   };
@@ -20316,6 +20432,11 @@ export default defineConfig({
 });
 ````
 
+## File: yarn
+````
+
+````
+
 ## File: android/app/src/main/res/drawable/ic_launcher_background.xml
 ````xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -21504,17 +21625,6 @@ if (supabaseUrl && supabaseAnonKey) {
 export const supabase = client;
 ````
 
-## File: src/main.tsx
-````typescript
-import { Buffer } from 'buffer';
-(window as any). Buffer = Buffer; // Polyfill Buffer toàn cục
-import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
-
-createRoot(document.getElementById("root")!).render(<App />);
-````
-
 ## File: .gitignore
 ````
 # Logs
@@ -21542,53 +21652,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
-````
-
-## File: index.html
-````html
-<!doctype html>
-<html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    
-    <!-- Tiêu đề App chính thức -->
-    <title>FLOODED - Survival & Rescue System</title>
-    
-    <!-- Favicon & Icon ứng dụng trỏ về icon.png -->
-    <link rel="icon" type="image/png" href="/icon.png" />
-    <link rel="apple-touch-icon" href="/icon.png" />
-    
-
-    <meta name="description" content="Hệ thống sinh tồn & cứu hộ ngoại tuyến - Offline survival & rescue system" />
-    <meta name="author" content="FLOODED" />
-    <meta name="theme-color" content="#0a0a0a" />
-    
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="FLOODED" />
-
-    <!-- Open Graph (Facebook / Zalo / Preview link) -->
-    <meta property="og:title" content="FLOODED - Survival & Rescue System" />
-    <meta property="og:description" content="Offline-first emergency survival and rescue system" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/icon.png" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="FLOODED - Survival & Rescue System" />
-    <meta name="twitter:description" content="Offline-first emergency survival and rescue system" />
-    <meta name="twitter:image" content="/icon.png" />
-    
-
-    <link rel="manifest" href="/manifest.json" />
-  </head>
-
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
 ````
 
 ## File: README.md
@@ -21649,55 +21712,6 @@ npm run dev
 📜 License
 This project is licensed under the MIT License.
 ```
-````
-
-## File: src/lib/comm/NativeBLEAdapter.ts
-````typescript
-// src/lib/comm/NativeBLEAdapter.ts
-import type { CommAdapter, BroadcastResult, ScanResult, DataMuleResult } from './CommAdapter';
-import { BleClient } from '@capacitor-community/bluetooth-le';
-import { broadcastSOSToNearby } from '@/lib/mesh';
-import type { SOSReport } from '@/types';
-
-export class NativeBLEAdapter implements CommAdapter {
-  readonly type = 'ble_native' as const;
-  readonly label = 'BLE thật (Access Relay T-Beam)';
-
-  async broadcastSOS(report: SOSReport): Promise<BroadcastResult> {
-    try {
-      await BleClient.initialize();
-
-      // Bọc Timeout 8 giây: Tránh việc iOS bị treo Promise vô tận
-      const timeoutMs = 8000;
-      const timeoutPromise = new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('BLE_TIMEOUT')), timeoutMs)
-      );
-
-      const sendPromise = (async () => {
-        const result = await broadcastSOSToNearby(report);
-        return { success: result.success, reachedCount: result.reachedCount, hopsAdded: 0 };
-      })();
-
-      // Đua giữa việc gửi BLE và thời gian Timeout
-      return await Promise.race([sendPromise, timeoutPromise]);
-
-    } catch (e) {
-      console.error('[NativeBLEAdapter] Lỗi hoặc hết thời gian chờ BLE:', e);
-      // Trả về false để UI biết và dừng spinner
-      return { success: false, reachedCount: 0, hopsAdded: 0 };
-    }
-  }
-
-  async scanNearby(): Promise<ScanResult> {
-    return { devices: [], timestamp: Date.now() };
-  }
-
-  async dataMulePickup(): Promise<DataMuleResult> {
-    return { success: false, pickedUpCount: 0, forwardedCount: 0, dataMuleId: '' };
-  }
-
-  dispose(): void {}
-}
 ````
 
 ## File: src/lib/flooded/bleRelay.ts
@@ -22254,6 +22268,74 @@ Thời gian: ${new Date().toLocaleString('vi-VN')}`;
 }
 ````
 
+## File: src/main.tsx
+````typescript
+import { Buffer } from 'buffer';
+(window as any). Buffer = Buffer; // Polyfill Buffer toàn cục
+import { createRoot } from "react-dom/client";
+import App from "./App.tsx";
+import "./index.css";
+import eruda from 'eruda';
+eruda.init();
+
+createRoot(document.getElementById("root")!).render(<App />);
+````
+
+## File: index.html
+````html
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- Tiêu đề App chính thức -->
+    <title>FLOODED - Survival & Rescue System</title>
+
+    <script src="https://m.litert.org/page-spy/v1/page-spy.web.min.js"></script>
+<script>
+  window.$pageSpy = new PageSpy({
+    api: 'sdk.pagespy.org',
+    clientOrigin: 'https://pagespy.org'
+  });
+</script>
+    
+    <!-- Favicon & Icon ứng dụng trỏ về icon.png -->
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <link rel="apple-touch-icon" href="/icon.png" />
+    
+
+    <meta name="description" content="Hệ thống sinh tồn & cứu hộ ngoại tuyến - Offline survival & rescue system" />
+    <meta name="author" content="FLOODED" />
+    <meta name="theme-color" content="#0a0a0a" />
+    
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FLOODED" />
+
+    <!-- Open Graph (Facebook / Zalo / Preview link) -->
+    <meta property="og:title" content="FLOODED - Survival & Rescue System" />
+    <meta property="og:description" content="Offline-first emergency survival and rescue system" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/icon.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="FLOODED - Survival & Rescue System" />
+    <meta name="twitter:description" content="Offline-first emergency survival and rescue system" />
+    <meta name="twitter:image" content="/icon.png" />
+    
+
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+````
+
 ## File: src/lib/relativeReports.ts
 ````typescript
 import { supabase } from './supabaseClient';
@@ -22459,6 +22541,7 @@ export async function syncRemoteReportsFromSupabase(): Promise<void> {
 
 ## File: src/pages/RescueMode.tsx
 ````typescript
+import { parseSosDescription, hasSeverityMismatch } from '@/lib/gatewayCases';
 import { useState, useMemo, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRemoteReportsSync } from '@/hooks/useRemoteReportsSync';
@@ -22816,12 +22899,31 @@ export default function RescueMode() {
               </div>
             )}
 
-            {selectedCase.description && (
-              <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{vi ? 'Mô tả' : 'Description'}</p>
-                <p className="text-sm">{selectedCase.description}</p>
-              </div>
-            )}
+            {selectedCase.description && (() => {
+              const parsed = parseSosDescription(selectedCase.description);
+              const mismatch = hasSeverityMismatch(parsed, selectedCase.severity);
+              return (
+                <div>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider mb-1">{vi ? 'Mô tả' : 'Description'}</p>
+                 <p className="text-sm">
+                  {parsed ? `${parsed.scenarioLabel}${parsed.healthStatusLabel ? ` — ${parsed.healthStatusLabel}` : ''}` : selectedCase.description}
+                </p>
+                {parsed?.extraNote && (
+                  <p className="text-xs text-muted-foreground mt-1">{parsed.extraNote}</p>
+                )}
+                  {mismatch && (
+                    <div className="mt-1.5 p-2 rounded-lg bg-destructive/10 border border-destructive/30 flex items-start gap-1.5">
+                      <AlertTriangle className="w-3.5 h-3.5 text-destructive flex-shrink-0 mt-0.5" />
+                      <p className="text-xs text-destructive">
+                        {vi ? 'Cảnh báo: mức độ trong mô tả không khớp mức ưu tiên hệ thống — cần xác minh thủ công.' : 'Warning: description tag disagrees with system severity.'}
+                      </p>
+                    </div>
+)}
+
+                </div>
+
+              );
+            })()}
 
             {selectedCase.needTags && selectedCase.needTags.length > 0 && (
               <div>
@@ -23814,6 +23916,55 @@ export default function RescueMode() {
 </plist>
 ````
 
+## File: src/lib/comm/NativeBLEAdapter.ts
+````typescript
+// src/lib/comm/NativeBLEAdapter.ts
+import type { CommAdapter, BroadcastResult, ScanResult, DataMuleResult } from './CommAdapter';
+import { BleClient } from '@capacitor-community/bluetooth-le';
+import { broadcastSOSToNearby } from '@/lib/mesh';
+import type { SOSReport } from '@/types';
+
+export class NativeBLEAdapter implements CommAdapter {
+  readonly type = 'ble_native' as const;
+  readonly label = 'BLE thật (Access Relay T-Beam)';
+
+  async broadcastSOS(report: SOSReport): Promise<BroadcastResult> {
+    // Timeout 8 giay - bao ca BleClient.initialize() lan sendPacketViaBle(),
+    // tranh treo vinh vien tren iOS neu CBCentralManager ket o trang thai
+    // unauthorized/denied (khong co callback, khong co loi).
+    const timeoutMs = 8000;
+    const timeoutPromise = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('BLE_TIMEOUT')), timeoutMs)
+    );
+
+    const sendPromise = (async () => {
+      await BleClient.initialize();
+      const result = await broadcastSOSToNearby(report);
+      return { success: result.success, reachedCount: result.reachedCount, hopsAdded: 0 };
+    })();
+
+    try {
+      // Đua giữa việc gửi BLE (bao gồm cả initialize) và thời gian Timeout
+      return await Promise.race([sendPromise, timeoutPromise]);
+    } catch (e) {
+      console.error('[NativeBLEAdapter] Lỗi hoặc hết thời gian chờ BLE:', e);
+      // Trả về false để UI biết và dừng spinner
+      return { success: false, reachedCount: 0, hopsAdded: 0 };
+    }
+  }
+
+  async scanNearby(): Promise<ScanResult> {
+    return { devices: [], timestamp: Date.now() };
+  }
+
+  async dataMulePickup(): Promise<DataMuleResult> {
+    return { success: false, pickedUpCount: 0, forwardedCount: 0, dataMuleId: '' };
+  }
+
+  dispose(): void {}
+}
+````
+
 ## File: package.json
 ````json
 {
@@ -23839,6 +23990,7 @@ export default function RescueMode() {
     "@capacitor/ios": "^8.5.0",
     "@capacitor/preferences": "^8.0.1",
     "@hookform/resolvers": "^3.10.0",
+    "@huolala-tech/page-spy-browser": "^2.2.12",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -23908,6 +24060,7 @@ export default function RescueMode() {
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react-swc": "^3.11.0",
     "autoprefixer": "^10.4.21",
+    "eruda": "^3.4.3",
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",

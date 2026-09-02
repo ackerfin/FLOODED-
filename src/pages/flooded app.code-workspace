@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "flooded-firmware",
+			"path": "../../../flooded-firmware_1/flooded-firmware"
+		}
+	],
+	"settings": {}
+}
