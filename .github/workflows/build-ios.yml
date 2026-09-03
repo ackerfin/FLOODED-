@@ -17,11 +17,10 @@ jobs:
           npm install
           npm run build
 
-      - name: Clean & Re-add iOS Platform
+      - name: Sync iOS Platform run
         run: |
-          rm -rf ios
-          npx cap add ios
-          npx cap sync ios
+         npx cap sync ios
+        
 
       - name: Verify Xcode project exists
         run: ls -la ios/App/*.xcodeproj
